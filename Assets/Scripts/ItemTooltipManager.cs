@@ -1,13 +1,13 @@
 using TMPro;
 using UnityEngine;
 
-public class ItemTooltip : MonoBehaviour
+public class ItemTooltipManager : MonoBehaviour
 {
-    public static ItemTooltip _instance;
+    public static ItemTooltipManager instance;
 
     void Awake()
     {
-        _instance = this;
+        instance = this;
     }
 
     public TextMeshProUGUI nameText;
@@ -26,7 +26,6 @@ public class ItemTooltip : MonoBehaviour
 
     public void ShowTooltip(Item referenceItem)
     {
-        Debug.Log(referenceItem);
         nameText.text = referenceItem.name;
         damageText.text = "DMG " + referenceItem.getDamage();
 

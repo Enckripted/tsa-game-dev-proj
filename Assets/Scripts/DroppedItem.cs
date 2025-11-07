@@ -4,13 +4,23 @@ public class DroppedItem : MonoBehaviour
 {
 	public Item item;
 
+	void OnMouseDown()
+	{
+		bool success = InventoryManager.instance.AddItem(item);
+		if (success)
+		{
+			Destroy(gameObject);
+			ItemTooltipManager.instance.HideTooltip();
+		}
+	}
+
 	void OnMouseEnter()
 	{
-		ItemTooltip._instance.ShowTooltip(item);
+		ItemTooltipManager.instance.ShowTooltip(item);
 	}
 
 	void OnMouseExit()
 	{
-		ItemTooltip._instance.HideTooltip();
+		ItemTooltipManager.instance.HideTooltip();
 	}
 }
