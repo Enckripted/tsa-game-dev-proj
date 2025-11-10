@@ -10,17 +10,17 @@ public class DroppedItem : MonoBehaviour
 		if (success)
 		{
 			Destroy(gameObject);
-			ItemTooltipManager.instance.HideTooltip();
+			TooltipManager.instance.HideTooltip();
 		}
 	}
 
 	void OnMouseEnter()
 	{
-		ItemTooltipManager.instance.ShowTooltip(item);
+		TooltipManager.instance.ShowTooltip(item);
 	}
 
 	void OnMouseExit()
 	{
-		ItemTooltipManager.instance.HideTooltip();
+		TooltipManager.instance.HideTooltip();
 	}
 }

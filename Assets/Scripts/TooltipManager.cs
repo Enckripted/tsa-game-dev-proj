@@ -1,9 +1,9 @@
 using TMPro;
 using UnityEngine;
 
-public class ItemTooltipManager : MonoBehaviour
+public class TooltipManager : MonoBehaviour
 {
-    public static ItemTooltipManager instance;
+    public static TooltipManager instance;
 
     void Awake()
     {
@@ -11,8 +11,7 @@ public class ItemTooltipManager : MonoBehaviour
     }
 
     public TextMeshProUGUI nameText;
-    public TextMeshProUGUI damageText;
-    public TextMeshProUGUI materialText;
+    public TextMeshProUGUI tooltipText;
 
     void Start()
     {
@@ -27,10 +26,7 @@ public class ItemTooltipManager : MonoBehaviour
     public void ShowTooltip(Item referenceItem)
     {
         nameText.text = referenceItem.name;
-        damageText.text = "DMG " + referenceItem.getDamage();
-
-        materialText.text = referenceItem.material.name;
-        materialText.color = referenceItem.material.color;
+        tooltipText.text = referenceItem.tooltip;
 
         gameObject.SetActive(true);
     }
