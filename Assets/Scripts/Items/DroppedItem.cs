@@ -1,12 +1,22 @@
+using TMPro;
 using UnityEngine;
+
 
 public class DroppedItem : MonoBehaviour
 {
+	public TextMeshPro itemName;
+
 	public Item item;
+
+	void Awake()
+	{
+		itemName.text = item.name;
+	}
 
 	void OnMouseDown()
 	{
 		bool success = InventoryManager.instance.AddItem(item);
+		Debug.Log("space in inventory: " + success);
 		if (success)
 		{
 			Destroy(gameObject);
@@ -16,6 +26,7 @@ public class DroppedItem : MonoBehaviour
 
 	void OnMouseEnter()
 	{
+		Debug.Log("entered");
 		TooltipManager.instance.ShowTooltip(item);
 	}
 

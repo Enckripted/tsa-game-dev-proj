@@ -22,7 +22,7 @@ public interface Item
 	public ItemType type { get; }
 }
 
-public interface Item<T> where T : ItemData
+public interface Item<T> : Item where T : ItemData
 {
 	public T data { get; }
 }
