@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Iron
   m_EditorClassIdentifier: Assembly-CSharp::MaterialData
   type:
-    name: Gold
-    color: {r: 0.7169812, g: 0.67993385, b: 0, a: 1}
-  damageMult: 1
-  sellMult: 1.25
+    name: Iron
+    color: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
+  damageMult: 1.25
+  sellMult: 1

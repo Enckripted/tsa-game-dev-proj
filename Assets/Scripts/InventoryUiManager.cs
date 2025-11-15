@@ -26,7 +26,7 @@ public class InventoryUiManager : MonoBehaviour
                 slots[i].itemInSlot = null;
                 continue;
             }
-            slots[i].itemInSlot = InventoryManager.instance.inventory[i];
+            slots[i].itemInSlot = InventoryManager.instance.inventory[i].item;
         }
     }
 }

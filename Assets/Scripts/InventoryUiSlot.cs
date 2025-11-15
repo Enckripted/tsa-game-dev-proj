@@ -10,6 +10,20 @@ public class InventoryUiSlot : MonoBehaviour
     public Item itemInSlot;
     public bool selected;
 
+    /*
+    void onChange()
+    {
+        if (inventorySlot.containsItem)
+        {
+            nameText.text = inventorySlot.item.name;
+        }
+        else
+        {
+            nameText.text = "";
+        }
+    }
+    */
+
     void Update()
     {
         outline.enabled = selected;

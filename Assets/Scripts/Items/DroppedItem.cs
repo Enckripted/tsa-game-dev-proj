@@ -15,8 +15,7 @@ public class DroppedItem : MonoBehaviour
 
 	void OnMouseDown()
 	{
-		bool success = InventoryManager.instance.AddItem(item);
-		Debug.Log("space in inventory: " + success);
+		bool success = InventoryManager.instance.addItem(item);
 		if (success)
 		{
 			Destroy(gameObject);
@@ -26,7 +25,6 @@ public class DroppedItem : MonoBehaviour
 
 	void OnMouseEnter()
 	{
-		Debug.Log("entered");
 		TooltipManager.instance.ShowTooltip(item);
 	}
 

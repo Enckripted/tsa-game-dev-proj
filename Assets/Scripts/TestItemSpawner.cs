@@ -11,7 +11,6 @@ public class TestItemSpanwer : MonoBehaviour
 
     T chooseFrom<T>(List<T> l)
     {
-        Debug.Log(l.Count);
         return l[Random.Range(0, l.Count)];
     }
 

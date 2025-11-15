@@ -1,46 +1,34 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Search;
-using UnityEditorInternal;
+using System.Linq;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
 	public int inventorySlots;
-	[field: SerializeField] public List<Item> inventory { get; private set; } = new();
-
+	[field: SerializeField] public List<InventorySlot> inventory { get; private set; } = new();
 	[field: SerializeField] public int selectedSlot { get; private set; } = 0;
 
-	public bool AddItem(Item item)
+	public bool addItem(Item item)
 	{
-		for (int i = 0; i < inventory.Count; i++)
+		Debug.Log("start");
+		for (int slot = 0; slot < inventorySlots; slot++)
 		{
-			if (inventory[i] != null)
-			{
-				continue;
-			}
-			inventory[i] = item;
+			if (inventory[slot].containsItem) continue;
+			Debug.Log("insertion");
+			inventory[slot].insert(item);
 			return true;
 		}
-
-		if (inventory.Count < inventorySlots)
-		{
-			inventory.Add(item);
-			return true;
-		}
-
 		return false;
 	}
 
-	public void RemoveItemAtSlot(int slot)
+	public Item popItemInSlot(int slot)
 	{
-		if (slot >= inventorySlots)
-		{
-			Debug.LogWarning("Attempt to remove item at slot " + slot);
-			return;
-		}
+		return inventory[slot].pop();
+	}
 
-		inventory[slot] = null;
+	public bool itemInSlot(int slot)
+	{
+		return inventory[slot].containsItem;
 	}
 
 	public static InventoryManager instance;
@@ -48,6 +36,7 @@ public class InventoryManager : MonoBehaviour
 	void Awake()
 	{
 		instance = this;
+		instance.inventory = Enumerable.Repeat(new InventorySlot(), inventorySlots).ToList();
 	}
 
 	void Update()
