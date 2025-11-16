@@ -230,12 +230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2adb9d6a8d35cf14694ba18a81388c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DroppedItem
-  item:
-    name: Gold Longsword
-    baseDamage: 6
-    material:
-      name: Gold
-      color: {r: 0.5377358, g: 0.48713285, b: 0.10399607, a: 1}
 --- !u!212 &371950205
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -715,7 +709,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
   inventorySlots: 8
-  <inventory>k__BackingField: []
   <selectedSlot>k__BackingField: 0
 --- !u!4 &888287477
 Transform:
@@ -787,8 +780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemTooltip
   nameText: {fileID: 801227578}
-  damageText: {fileID: 1302277027}
-  materialText: {fileID: 2093137373}
+  tooltipText: {fileID: 0}
 --- !u!114 &1144962997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1419,12 +1411,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2adb9d6a8d35cf14694ba18a81388c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DroppedItem
-  item:
-    name: Gold Longsword
-    baseDamage: 6
-    material:
-      name: Gold
-      color: {r: 0.5377358, g: 0.48713285, b: 0.10399607, a: 1}
 --- !u!61 &1527549516
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1740,12 +1726,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2adb9d6a8d35cf14694ba18a81388c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DroppedItem
-  item:
-    name: Gold Longsword
-    baseDamage: 6
-    material:
-      name: Gold
-      color: {r: 0.5377358, g: 0.48713285, b: 0.10399607, a: 1}
 --- !u!61 &1866744125
 BoxCollider2D:
   m_ObjectHideFlags: 0
