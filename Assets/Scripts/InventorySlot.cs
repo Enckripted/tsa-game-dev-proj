@@ -1,7 +1,9 @@
-using NUnit.Framework;
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
+[Serializable]
 public class InventorySlot
 {
     public readonly UnityEvent changed;
@@ -18,9 +20,12 @@ public class InventorySlot
     {
         if (containsItem) return false;
 
-        item = nItem;
-        containsItem = true;
-        changed.Invoke();
+        if (nItem != null)
+        {
+            item = nItem;
+            containsItem = true;
+            changed.Invoke();
+        }
         return true;
     }
 

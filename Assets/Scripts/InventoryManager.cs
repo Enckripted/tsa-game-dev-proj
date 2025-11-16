@@ -10,11 +10,9 @@ public class InventoryManager : MonoBehaviour
 
 	public bool addItem(Item item)
 	{
-		Debug.Log("start");
 		for (int slot = 0; slot < inventorySlots; slot++)
 		{
 			if (inventory[slot].containsItem) continue;
-			Debug.Log("insertion");
 			inventory[slot].insert(item);
 			return true;
 		}
@@ -36,7 +34,7 @@ public class InventoryManager : MonoBehaviour
 	void Awake()
 	{
 		instance = this;
-		instance.inventory = Enumerable.Repeat(new InventorySlot(), inventorySlots).ToList();
+		instance.inventory = Enumerable.Range(0, inventorySlots).Select(_ => new InventorySlot()).ToList();
 	}
 
 	void Update()

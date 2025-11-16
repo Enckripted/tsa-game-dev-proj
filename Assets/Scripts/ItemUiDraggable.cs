@@ -1,14 +1,24 @@
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ItemUiDraggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class ItemUiDraggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
-    public InventoryUiSlotNew uiSlot;
-    [field: SerializeField] public bool beingDragged { get; private set; }
+    public TextMeshProUGUI nameText;
+
+    public InventorySlot inventorySlot;
+    public bool beingDragged { get; private set; }
 
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Canvas canvas;
+
+    void updateSprite()
+    {
+        if (inventorySlot.containsItem) nameText.text = inventorySlot.item.name;
+        else nameText.text = "";
+    }
 
     void Awake()
     {
@@ -17,9 +27,14 @@ public class ItemUiDraggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         canvas = GetComponentInParent<Canvas>();
     }
 
+    void Start()
+    {
+        inventorySlot.changed.AddListener(updateSprite);
+        updateSprite();
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("Drag begin");
         beingDragged = true;
         canvasGroup.blocksRaycasts = false;
     }
@@ -31,11 +46,19 @@ public class ItemUiDraggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("End Drag");
         beingDragged = false;
         canvasGroup.blocksRaycasts = true;
 
-        //i don't think these getcomponent calls should be too expensive
-        rectTransform.anchoredPosition = uiSlot.GetComponent<RectTransform>().anchoredPosition;
+        rectTransform.anchoredPosition = new Vector2(0, 0);
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        if (eventData.pointerDrag == null) return;
+
+        InventorySlot otherSlot = eventData.pointerDrag.GetComponent<ItemUiDraggable>().inventorySlot;
+        Item currentItem = inventorySlot.pop();
+        inventorySlot.insert(otherSlot.pop());
+        otherSlot.insert(currentItem);
     }
 }
