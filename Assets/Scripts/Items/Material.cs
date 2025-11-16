@@ -4,12 +4,18 @@ using UnityEngine;
 [Serializable]
 public class Material : Enhancement
 {
-	public MaterialType type;
-	public double damageMult;
+	private readonly MaterialData data;
+	public MaterialType type => data.type;
+
+	public Material(MaterialData materialData)
+	{
+		data = materialData;
+	}
 
 	override public GearStats apply(GearStats curStats)
 	{
-		curStats.damage *= damageMult;
+		curStats.damage *= data.damageMult;
+		curStats.sellValue *= data.sellMult;
 		return curStats;
 	}
 }
@@ -20,3 +26,4 @@ public class MaterialType
 	public String name;
 	public Color color;
 }
+

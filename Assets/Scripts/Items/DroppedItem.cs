@@ -1,12 +1,21 @@
+using TMPro;
 using UnityEngine;
+
 
 public class DroppedItem : MonoBehaviour
 {
+	public TextMeshPro itemName;
+
 	public Item item;
+
+	void Awake()
+	{
+		itemName.text = item.name;
+	}
 
 	void OnMouseDown()
 	{
-		bool success = InventoryManager.instance.AddItem(item);
+		bool success = InventoryManager.instance.addItem(item);
 		if (success)
 		{
 			Destroy(gameObject);
