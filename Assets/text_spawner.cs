@@ -7,16 +7,19 @@ using System.Linq;
 using UnityEngine.Jobs;
 using System.Collections;
 using EasyTextEffects.Effects;
+using UnityEngine.UI;
 
 
 //TODO make a hybrid class that contains both the effect type and the attribute that it corresponds to 
 public class text_spawner : MonoBehaviour
 {
-    public float Delay = 0.5f ; 
+    public float Delay = 0.5f;
+    public float size = 200f;
     //public List<GlobalTextEffectEntry> effectsList; //create corresponding affects for each enchantment
     //public enchantmentsList = //will update with proper datatype once it gets typed
     public GameObject text; //this is the text prefab
-    private List<GameObject> textList; 
+    public VerticalLayoutGroup verticalLayoutGroup; // prefab
+    private List<GameObject> textList;
     public TextEffectInstance showcase_effect;
     public float offset_amount = 25;
     public Canvas canvas;
@@ -33,7 +36,7 @@ public class text_spawner : MonoBehaviour
             "durability 1",
             "indestrutable 1"
         };
-        textList = MakeTextBoxList(list); //!!
+        textList = ExtractChildrenFromVerticalLayout(MakeTextBoxList(list)); //!!
 
         foreach (GameObject item in textList) // attempting to refresh all text effects before utilization
         {
@@ -44,7 +47,7 @@ public class text_spawner : MonoBehaviour
         foreach (GameObject textIter in textList) //iterates through and plays each affect after a delay 
         {
             TextEffect currentTextEffect = textIter.GetComponent<TextEffect>();
-            
+
             currentTextEffect.StartManualEffects();
             //yield return new WaitForSeconds(Delay);
         }
@@ -56,9 +59,9 @@ public class text_spawner : MonoBehaviour
     {
 
         //behavior if list of attributes goes past the scene
-            //keep space constant but make text smaller or something idk 
+        //keep space constant but make text smaller or something idk 
         //activate Playeffects when a button is pressed
-        
+
     }
 
     // make a text box and change its effect to the desired effect
@@ -95,31 +98,51 @@ public class text_spawner : MonoBehaviour
     /// this function is makes a list of text boxes from the relvant attributes, currently it only works with a default effect type and doesn't reference the item class attributes
     /// </summary>
     /// <returns>A list of game objects that are tmps </returns>
-    List<GameObject> MakeTextBoxList(List<string>refer2_classEffectltr)
+    VerticalLayoutGroup MakeTextBoxList(List<string> refer2_classEffectltr)
     {
-        float offset = 0;
+        VerticalLayoutGroup list = Instantiate(verticalLayoutGroup);
+        list.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(size, 0); //change size to global variable size
+
         //intialize default text effect may replace later
         GlobalTextEffectEntry default_effect = new GlobalTextEffectEntry();
         default_effect.triggerWhen = TextEffectEntry.TriggerWhen.Manual;
         default_effect.effect = showcase_effect;
         //Gameobject containing the text 
-        List<GameObject> textBoxList = new List<GameObject>();
+
 
         //interates through the attributes and creates a text box for each one
         foreach (string attribute in refer2_classEffectltr)
         {
             GameObject temp = MakeTextBox(default_effect, attribute, location); //!!
-            temp.transform.SetParent(canvas.transform);
-            temp.transform.localPosition = new Vector3(0,offset,0); 
-            textBoxList.Add(temp);
-            offset -= offset_amount;
+            temp.transform.SetParent(list.transform);
 
         }
-        return textBoxList;
 
+        return list;
     }
 
-    
+    //GameObject MakeToolTip(List<string> attributes)
+    //{
+    //    VerticalLayoutGroup currentVerticalLayoutGroup = MakeTextBoxList(attributes);
+    //    currentVerticalLayoutGroup
+
+    //    return gam
+    //}
+
+    List<GameObject> ExtractChildrenFromVerticalLayout(VerticalLayoutGroup list)
+    {
+        List<GameObject> children = new List<GameObject>();
+        for (int i = 0; i < list.transform.childCount; i++)
+        {
+            children.Add(list.transform.GetChild(i).gameObject);
+
+        }
+        return children;
+    }
+    //play effect for a couple of seconds as well as rotate littles
+    //then move on to the next effect etc
+    //make this work off a button
+
     //IEnumerator PlayEffects(List<GameObject> textBoxList)
     //{
     //    foreach (GameObject textIter in textBoxList) //iterates through and plays each affect after a delay 
