@@ -15,7 +15,7 @@ public class DroppedItem : MonoBehaviour
 
 	void OnMouseDown()
 	{
-		bool success = InventoryManager.instance.addItem(item);
+		bool success = InventoryManager.instance.inventory.pushItem(item);
 		if (success)
 		{
 			Destroy(gameObject);

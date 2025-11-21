@@ -12,7 +12,7 @@ public class InventoryUiManager : MonoBehaviour
         {
             GameObject nUiSlot = Instantiate(slotPrefab, transform);
             ItemUiDraggable draggable = nUiSlot.GetComponentInChildren<ItemUiDraggable>();
-            draggable.inventorySlot = InventoryManager.instance.inventory[i];
+            draggable.inventorySlot = InventoryManager.instance.inventory.getSlot(i);
         }
     }
 }

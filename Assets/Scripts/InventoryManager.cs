@@ -5,36 +5,15 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
 	public int inventorySlots;
-	[field: SerializeField] public List<InventorySlot> inventory { get; private set; } = new();
+	[field: SerializeField] public Inventory inventory { get; private set; }
 	[field: SerializeField] public int selectedSlot { get; private set; } = 0;
-
-	public bool addItem(Item item)
-	{
-		for (int slot = 0; slot < inventorySlots; slot++)
-		{
-			if (inventory[slot].containsItem) continue;
-			inventory[slot].insert(item);
-			return true;
-		}
-		return false;
-	}
-
-	public Item popItemInSlot(int slot)
-	{
-		return inventory[slot].pop();
-	}
-
-	public bool itemInSlot(int slot)
-	{
-		return inventory[slot].containsItem;
-	}
 
 	public static InventoryManager instance;
 
 	void Awake()
 	{
 		instance = this;
-		instance.inventory = Enumerable.Range(0, inventorySlots).Select(_ => new InventorySlot()).ToList();
+		instance.inventory = new Inventory(inventorySlots);
 	}
 
 	void Update()
