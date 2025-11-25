@@ -1,25 +1,29 @@
+using UnityEngine;
+
 public class Gear : ItemData
 {
-	public string baseName;
-	public readonly GearStats baseStats;
+	private readonly GearData data;
+
+	public string baseName => data.baseName;
+	public GearStats baseStats => data.baseStats;
 	public readonly Material material;
 	public readonly GearStats gearStats;
+
+	public Gear(GearData gearData, Material nMaterial)
+	{
+		data = gearData;
+		material = nMaterial;
+		gearStats = calcStats();
+	}
 
 	private GearStats calcStats()
 	{
 		return material.apply(baseStats);
 	}
 
-	public Gear(GearStats nBaseStats, Material nMaterial)
-	{
-		baseStats = nBaseStats;
-		material = nMaterial;
-		gearStats = calcStats();
-	}
-
 	public override string genName()
 	{
-		return material.type.name + baseName;
+		return material.type.name + " " + baseName;
 	}
 
 	public override string genTooltip()

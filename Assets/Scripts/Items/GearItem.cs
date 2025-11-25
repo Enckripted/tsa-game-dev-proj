@@ -1,14 +1,13 @@
-using System;
-using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
-[Serializable]
 public class GearItem : Item<Gear>
 {
-	[Serialize] public Image image { get; } //placeholder type
-	[Serialize] public string name { get; }
-	[Serialize] public string tooltip { get; }
-	[Serialize] public ItemType type { get; }
+	[field: SerializeField] public Image image { get; private set; } //placeholder type
+	[field: SerializeField] public string name { get; }
+	[field: SerializeField] public string tooltip { get; }
+	[field: SerializeField] public ItemType type { get; }
 
 	public Gear data { get; }
 
