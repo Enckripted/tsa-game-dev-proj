@@ -1,34 +1,41 @@
+using Unity.VisualScripting;
 using UnityEngine;
-// tbh i don't know how ts gonna work with real collision but wtv, thats for future me 
+using UnityEngine.InputSystem;
+// works with colliisons by using a raycast instead of OnCollisionEnter2D
+
 public class PlayerInteraction : MonoBehaviour
 {
-    private Interactable currentInteractable;
+    [SerializeField] private float interactRange = 1f;
+    [SerializeField] private LayerMask interactLayer;
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    private Vector2 facingDirection = Vector2.down;
+
+
+    public void OnInteract(InputValue value)
     {
-        Interactable interactable = collision.GetComponent<Interactable>();
-
-        if (interactable != null)
+        if (!value.isPressed)
         {
+            return;
+        }
 
-            currentInteractable = interactable;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, facingDirection, interactRange, interactLayer);
+
+        if (hit.collider != null)
+        {
+            Interactable interactable = hit.collider.GetComponent<Interactable>();
+            if (interactable != null && hit.collider.CompareTag("Interactable"))
+            {
+                interactable.Interact();
+            }
         }
     }
 
-    public void OnTriggerExit2D(Collider2D collision)
+    public void OnMove(InputValue value)
     {
-        if (collision.GetComponent<Interactable>() == currentInteractable)
+        Vector2 input = value.Get<Vector2>();
+        if (input != Vector2.zero)
         {
-
-            currentInteractable = null;
-        }
-    }
-
-    public void OnInteract()
-    {
-        if (currentInteractable != null)
-        {
-            currentInteractable.Interact();
+            facingDirection = input.normalized;
         }
     }
 }
