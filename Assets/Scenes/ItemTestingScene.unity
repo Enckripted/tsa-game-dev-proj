@@ -704,8 +704,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8812ea77b36e50b418f68f8eb7b4cc6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemTooltip
-  nameText: {fileID: 546761591}
-  tooltipText: {fileID: 917736534}
+  nameText: {fileID: 801227578}
+  tooltipText: {fileID: 0}
 --- !u!114 &1144962997
 MonoBehaviour:
   m_ObjectHideFlags: 0
