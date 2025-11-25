@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c3c8f24d87f6341b44484ce5f4db8c, type: 3}
   m_Name: Longsword
   m_EditorClassIdentifier: Assembly-CSharp::GearData
-  baseName: Longsword
-  baseStats:
-    damage: 5
-    sellValue: 3.125
+  <baseName>k__BackingField: 
+  <baseStats>k__BackingField:
+    damage: 0
+    sellValue: 0

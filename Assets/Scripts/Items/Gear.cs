@@ -1,24 +1,25 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Gear : ItemData
 {
-	private readonly GearData data;
-
-	public string baseName => data.baseName;
-	public GearStats baseStats => data.baseStats;
+	public string baseName { get; private set; }
+	public GearStats baseStats { get; private set; }
 	public readonly Material material;
 	public readonly GearStats gearStats;
 
 	public Gear(GearData gearData, Material nMaterial)
 	{
-		data = gearData;
+		baseName = gearData.baseName;
+		baseStats = gearData.baseStats.clone();
 		material = nMaterial;
 		gearStats = calcStats();
 	}
 
 	private GearStats calcStats()
 	{
-		return material.apply(baseStats);
+		GearStats stats = baseStats.clone();
+		return material.apply(stats);
 	}
 
 	public override string genName()
@@ -29,6 +30,6 @@ public class Gear : ItemData
 	public override string genTooltip()
 	{
 		return
-		$"Damage: {baseStats.damage}";
+		$"Damage: {gearStats.damage}";
 	}
 }

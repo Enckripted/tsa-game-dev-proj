@@ -183,6 +183,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemUiDraggable
   nameText: {fileID: 8523125821843999522}
+  inventorySlot:
+    <containsItem>k__BackingField: 0
+  canDropInSlot: 1
 --- !u!225 &3905243690271786786
 CanvasGroup:
   m_ObjectHideFlags: 0
