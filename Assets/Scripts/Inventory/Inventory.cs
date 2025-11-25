@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 [Serializable]
 public class Inventory
@@ -10,6 +11,7 @@ public class Inventory
 	[field: SerializeField] public int availableSlots { get; private set; }
 	[field: SerializeField] private List<InventorySlot> slots;
 
+	public UnityEvent changed;
 	private List<bool> prevSlotFillState;
 
 	private void modPrevFillState(int slotIndex)
@@ -24,14 +26,14 @@ public class Inventory
 	{
 		totalSlots = nTotalSlots;
 		availableSlots = nTotalSlots;
+		changed = new UnityEvent();
 		slots = Enumerable.Range(0, totalSlots).Select(_ => new InventorySlot()).ToList();
 		prevSlotFillState = Enumerable.Range(0, totalSlots).Select(_ => false).ToList();
 
 		for (int i = 0; i < totalSlots; i++)
 		{
-			//c# by default passes the int as a reference, so we need to copy it so it doesn't change
-			int index = i;
-			slots[i].changed.AddListener(() => { modPrevFillState(index); });
+			int index = i; //c# by default passes the int as a reference, so we need to copy it so it doesn't change
+			slots[i].changed.AddListener(() => { modPrevFillState(index); changed.Invoke(); });
 		}
 	}
 

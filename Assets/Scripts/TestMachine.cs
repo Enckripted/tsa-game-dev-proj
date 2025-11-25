@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 public class TestMachine : BaseMachine
 {
@@ -8,7 +7,7 @@ public class TestMachine : BaseMachine
 		get { return true; }
 	}
 
-	public override bool canRunRecipe()
+	public override bool hasValidRecipe()
 	{
 		//there are at least 2 inputs in the machine
 		return inputSlots.availableSlots <= inputSlots.totalSlots - 2;
@@ -16,12 +15,13 @@ public class TestMachine : BaseMachine
 
 	protected override Recipe getRecipe()
 	{
-		IEnumerable<ComponentQuantity> components = new List<ComponentQuantity>();
+		IEnumerable<ComponentQuantity> inputComp = new List<ComponentQuantity>();
+		IEnumerable<ComponentQuantity> outputComp = new List<ComponentQuantity>();
 		IEnumerable<GearItem> gears = new List<GearItem> { RandItemGen.instance.genRandomGear(), RandItemGen.instance.genRandomGear() };
-		return new Recipe(3.0, components, gears);
+		return new Recipe(3.0, inputComp, outputComp, gears);
 	}
 
-	protected override void extractRecipeInputs()
+	protected override void extractItemInputs()
 	{
 		int removed = 0;
 		for (int i = 0; i < inputSlots.totalSlots; i++)

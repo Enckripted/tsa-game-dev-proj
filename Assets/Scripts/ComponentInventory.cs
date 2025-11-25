@@ -9,7 +9,7 @@ public class ComponentInventory : MonoBehaviour
 
 	//as far as i know there's no real downside to using serializeddictionary instead of a normal dictionary
 	//so im just gonna keep this here
-	[field: SerializeField] public SerializedDictionary<string, int> components { get; private set; }
+	[field: SerializeField] public SerializedDictionary<string, uint> components { get; private set; }
 
 	private Exception notExistsException(string matType)
 	{
@@ -21,7 +21,21 @@ public class ComponentInventory : MonoBehaviour
 		return components.ContainsKey(matType);
 	}
 
-	public int getQuantity(string matType)
+	public bool hasQuantityAvailable(ComponentQuantity compQuant)
+	{
+		return components[compQuant.type] >= compQuant.amount;
+	}
+
+	public bool hasQuantitiesAvailable(IEnumerable<ComponentQuantity> compQuants)
+	{
+		foreach (ComponentQuantity compQuant in compQuants)
+		{
+			if (!hasQuantityAvailable(compQuant)) return false;
+		}
+		return true;
+	}
+
+	public uint getQuantity(string matType)
 	{
 		if (!matTypeExists(matType)) throw notExistsException(matType);
 		return components[matType];
