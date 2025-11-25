@@ -1,11 +1,14 @@
-using System.IO;
+using System;
+using UnityEngine;
+using UnityEngine.UIElements;
 
+[Serializable]
 public class ComponentQuantity
 {
-	public string type { get; private set; }
-	public int amount { get; private set; }
+	[field: SerializeField] public string type { get; private set; }
+	[field: SerializeField] public uint amount { get; private set; } //must always be positive
 
-	public ComponentQuantity(string matType, int matAmount)
+	public ComponentQuantity(string matType, uint matAmount)
 	{
 		type = matType;
 		amount = matAmount;

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering.Universal.Internal;
@@ -7,11 +8,13 @@ using UnityEngine.Rendering.Universal.Internal;
 public struct Recipe
 {
     public double duration { get; }
-    public IEnumerable<Item> outputs { get; }
-    public Recipe(double nDuration, IEnumerable<Item> nOutputs) //ienumerable is a read only list, which is what we want in this case
+    public IEnumerable<ComponentQuantity> componentOutputs { get; }
+    public IEnumerable<Item> itemOutputs { get; }
+    public Recipe(double nDuration, IEnumerable<ComponentQuantity> nCompOutputs, IEnumerable<Item> nItemOutputs) //ienumerable is a read only list, which is what we want in this case
     {
         duration = nDuration;
-        outputs = nOutputs;
+        componentOutputs = nCompOutputs;
+        itemOutputs = nItemOutputs;
     }
 }
 
@@ -19,8 +22,9 @@ public interface Machine
 {
     public Inventory inputSlots { get; }
     public Inventory outputSlots { get; }
+    public bool runsAutomatically { get; }
 
-    public IEnumerable<Item> recipeOutputs { get; }
+    public Recipe currentRecipe { get; }
     public double secondsRemaining { get; }
     public bool running { get; }
 
@@ -33,8 +37,12 @@ public abstract class BaseMachine : MonoBehaviour, Machine, IPointerClickHandler
 
     public Inventory inputSlots { get; private set; }
     public Inventory outputSlots { get; private set; }
+    //i've learned that there's only a couple ways to override a field from an abstract class
+    //what you're expected to do here is override the getter in your new machine class and return true or false based on
+    //whether the machine automatically runs
+    public abstract bool runsAutomatically { get; }
 
-    public IEnumerable<Item> recipeOutputs { get; protected set; }
+    public Recipe currentRecipe { get; protected set; }
     public double secondsRemaining { get; protected set; }
     public bool running { get; protected set; }
 
@@ -45,25 +53,23 @@ public abstract class BaseMachine : MonoBehaviour, Machine, IPointerClickHandler
     protected void runRecipe(Recipe recipe)
     {
         secondsRemaining = recipe.duration;
-        recipeOutputs = recipe.outputs;
+        currentRecipe = recipe;
         running = true;
     }
 
     protected void endRecipe()
     {
-        foreach (Item output in recipeOutputs)
+        foreach (ComponentQuantity compQuant in currentRecipe.componentOutputs)
+        {
+            ComponentInventory.instance.addComponentQuantity(compQuant);
+        }
+
+        foreach (Item output in currentRecipe.itemOutputs)
         {
             outputSlots.pushItem(output);
         }
 
         running = false;
-    }
-
-    void Awake()
-    {
-        //temporary solution instead of letting the child class define how many inventory slots they like
-        inputSlots = new Inventory(numInventorySlots);
-        outputSlots = new Inventory(numInventorySlots);
     }
 
     void Update()
@@ -74,11 +80,18 @@ public abstract class BaseMachine : MonoBehaviour, Machine, IPointerClickHandler
         if (running || !canRunRecipe()) return;
 
         Recipe recipe = getRecipe();
-        if (outputSlots.availableSlots < recipe.outputs.Count<Item>())
+        if (outputSlots.availableSlots < recipe.itemOutputs.Count<Item>())
             return;
         extractRecipeInputs();
         runRecipe(recipe);
         Debug.Log("running recipe");
+    }
+
+    void Awake()
+    {
+        //temporary solution instead of letting the child class define how many inventory slots they like
+        inputSlots = new Inventory(numInventorySlots);
+        outputSlots = new Inventory(numInventorySlots);
     }
 
     //temporary code since i dont have an interaction system yet

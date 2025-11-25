@@ -1,9 +1,12 @@
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+using System.Runtime.CompilerServices;
 
 public class TestMachine : BaseMachine
 {
+	public override bool runsAutomatically
+	{
+		get { return true; }
+	}
 
 	public override bool canRunRecipe()
 	{
@@ -13,8 +16,9 @@ public class TestMachine : BaseMachine
 
 	protected override Recipe getRecipe()
 	{
+		IEnumerable<ComponentQuantity> components = new List<ComponentQuantity>();
 		IEnumerable<GearItem> gears = new List<GearItem> { RandItemGen.instance.genRandomGear(), RandItemGen.instance.genRandomGear() };
-		return new Recipe(3.0, gears);
+		return new Recipe(3.0, components, gears);
 	}
 
 	protected override void extractRecipeInputs()
