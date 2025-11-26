@@ -4,26 +4,22 @@ using UnityEngine;
 [Serializable]
 public class Material : Enhancement
 {
-	private readonly MaterialData data;
-	public MaterialType type => data.type;
+	public readonly string name;
+	public readonly Color color;
+	[SerializeField] private readonly MaterialStats stats;
 
 	public Material(MaterialData materialData)
 	{
-		data = materialData;
+		name = materialData.baseName;
+		color = materialData.color;
+		stats = materialData.stats.clone();
 	}
 
 	override public GearStats apply(GearStats curStats)
 	{
-		curStats.damage *= data.damageMult;
-		curStats.sellValue *= data.sellMult;
+		curStats.damage *= stats.damageMult;
+		curStats.sellValue *= stats.sellMult;
 		return curStats;
 	}
-}
-
-[Serializable]
-public class MaterialType
-{
-	public String name;
-	public Color color;
 }
 
