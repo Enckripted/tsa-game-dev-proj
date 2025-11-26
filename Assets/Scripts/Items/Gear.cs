@@ -24,7 +24,7 @@ public class Gear : ItemData
 
 	public override string genName()
 	{
-		return material.type.name + " " + baseName;
+		return material.name + " " + baseName;
 	}
 
 	public override string genTooltip()

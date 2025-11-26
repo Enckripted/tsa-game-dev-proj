@@ -49,7 +49,13 @@ public class Inventory
 		slots[slotIndex].pop();
 	}
 
-	public bool itemInSlot(int slotIndex)
+	public Item itemInSlot(int slotIndex)
+	{
+		if (!slotContainsItem(slotIndex)) throw new Exception("Attempted to see nonexistent item in slot " + slotIndex);
+		return slots[slotIndex].item;
+	}
+
+	public bool slotContainsItem(int slotIndex)
 	{
 		return slots[slotIndex].containsItem;
 	}

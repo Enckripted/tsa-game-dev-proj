@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165bcd975ee9b0e40a0c9a92c7cbcc0d, type: 3}
   m_Name: Iron
   m_EditorClassIdentifier: Assembly-CSharp::MaterialData
-  type:
-    name: Iron
-    color: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
-  damageMult: 1.25
-  sellMult: 1
+  baseName: Iron
+  color: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
+  stats:
+    <damageMult>k__BackingField: 1.25
+    <sellMult>k__BackingField: 1

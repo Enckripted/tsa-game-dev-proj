@@ -26,7 +26,7 @@ public class TestMachine : BaseMachine
 		int removed = 0;
 		for (int i = 0; i < inputSlots.totalSlots; i++)
 		{
-			if (!inputSlots.itemInSlot(i)) continue;
+			if (!inputSlots.slotContainsItem(i)) continue;
 			inputSlots.removeItemFromSlot(i);
 			removed += 1;
 			if (removed == 2) return;

@@ -30,6 +30,7 @@ public interface Machine
     public bool running { get; }
 
     public bool hasValidRecipe();
+    public void attemptMachineStart();
 }
 
 public abstract class BaseMachine : MonoBehaviour, Machine, IPointerClickHandler
@@ -50,7 +51,7 @@ public abstract class BaseMachine : MonoBehaviour, Machine, IPointerClickHandler
     abstract protected Recipe getRecipe();
     abstract protected void extractItemInputs();
 
-    private void onInputInvChange()
+    private void updateRecipe()
     {
         if (running) return;
         if (hasValidRecipe()) currentRecipe = getRecipe();
@@ -82,14 +83,20 @@ public abstract class BaseMachine : MonoBehaviour, Machine, IPointerClickHandler
             ComponentInventory.instance.addComponentQuantity(compQuant);
         foreach (Item output in currentRecipe.Value.itemOutputs)
             outputSlots.pushItem(output);
-        Debug.Log("done");
+
+        updateRecipe();
+    }
+
+    public void attemptMachineStart()
+    {
+        if (!running && currentRecipe.HasValue && canRunRecipe()) startRecipe();
     }
 
     void Update()
     {
         secondsRemaining -= Time.deltaTime;
         if (running && secondsRemaining <= 0) endRecipe();
-        if (runsAutomatically && !running && currentRecipe.HasValue && canRunRecipe()) startRecipe();
+        if (!running && runsAutomatically) attemptMachineStart();
     }
 
     void Awake()
@@ -97,7 +104,7 @@ public abstract class BaseMachine : MonoBehaviour, Machine, IPointerClickHandler
         //temporary solution instead of letting the child class define how many inventory slots they like
         inputSlots = new Inventory(numInventorySlots);
         outputSlots = new Inventory(numInventorySlots);
-        inputSlots.changed.AddListener(onInputInvChange);
+        inputSlots.changed.AddListener(updateRecipe);
     }
 
     //temporary code since i dont have an interaction system yet
