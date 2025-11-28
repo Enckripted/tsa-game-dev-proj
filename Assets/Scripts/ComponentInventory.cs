@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 public class ComponentInventory : MonoBehaviour
 {
-	public static ComponentInventory instance;
+	public static ComponentInventory instance { get; private set; }
 
 	//as far as i know there's no real downside to using serializeddictionary instead of a normal dictionary
 	//so im just gonna keep this here

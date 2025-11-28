@@ -8,11 +8,11 @@ public class InventoryUiManager : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < InventoryManager.instance.inventorySlots; i++)
+        for (int i = 0; i < PlayerInventory.instance.inventorySlots; i++)
         {
             GameObject nUiSlot = Instantiate(slotPrefab, transform);
             ItemUiDraggable draggable = nUiSlot.GetComponentInChildren<ItemUiDraggable>();
-            draggable.inventorySlot = InventoryManager.instance.inventory.getSlot(i);
+            draggable.inventorySlot = PlayerInventory.instance.inventory.getSlot(i);
         }
     }
 }

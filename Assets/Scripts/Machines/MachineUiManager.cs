@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MachineUiManager : MonoBehaviour
 {
-	public static MachineUiManager instance;
+	public static MachineUiManager instance { get; private set; }
 
 	[SerializeField] private GameObject invSlotPrefab;
 	[SerializeField] private GameObject inputSlotContainer;
@@ -21,7 +21,7 @@ public class MachineUiManager : MonoBehaviour
 
 	[field: SerializeField] public List<ItemUiDraggable> inputSlots { get; private set; }
 	[field: SerializeField] public List<ItemUiDraggable> outputSlots { get; private set; }
-	[field: SerializeField] public Machine currentMachine { get; private set; }
+	[field: SerializeField] public IMachine currentMachine { get; private set; }
 
 	private string getCostText(IEnumerable<ComponentQuantity> compQuants)
 	{
@@ -33,7 +33,7 @@ public class MachineUiManager : MonoBehaviour
 		return current;
 	}
 
-	public void loadMachine(Machine machine)
+	public void loadMachine(IMachine machine)
 	{
 		foreach (ItemUiDraggable slot in inputSlots) Destroy(slot.transform.parent.gameObject);
 		foreach (ItemUiDraggable slot in outputSlots) Destroy(slot.transform.parent.gameObject);
