@@ -10,7 +10,7 @@ public class TestItemSpanwer : MonoBehaviour
     {
         if (droppedItem == null)
         {
-            GearItem chosenGear = RandItemGen.instance.genRandomGear();
+            GearItem chosenGear = RandomItemFactory.instance.createRandomItem();
 
             //we need to set data before the awake method is called
             GameObject obj = Instantiate(droppedItemPrefab, transform);

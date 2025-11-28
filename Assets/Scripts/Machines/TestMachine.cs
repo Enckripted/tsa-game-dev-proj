@@ -17,7 +17,7 @@ public class TestMachine : BaseMachine
 	{
 		IEnumerable<ComponentQuantity> inputComp = new List<ComponentQuantity>();
 		IEnumerable<ComponentQuantity> outputComp = new List<ComponentQuantity>();
-		IEnumerable<GearItem> gears = new List<GearItem> { RandItemGen.instance.genRandomGear(), RandItemGen.instance.genRandomGear() };
+		IEnumerable<GearItem> gears = new List<GearItem> { RandomItemFactory.instance.createRandomItem(), RandomItemFactory.instance.createRandomItem() };
 		return new Recipe(3.0, inputComp, outputComp, gears);
 	}
 

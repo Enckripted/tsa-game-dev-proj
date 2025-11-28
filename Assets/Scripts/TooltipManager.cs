@@ -3,24 +3,24 @@ using UnityEngine;
 
 public class TooltipManager : MonoBehaviour
 {
-    public static TooltipManager instance;
+    public static TooltipManager instance { get; private set; }
+
+    public Transform tooltipTransform;
+    public TextMeshProUGUI nameText;
+    public TextMeshProUGUI tooltipText;
+    private GameObject tooltipGameObject;
 
     void Awake()
     {
         instance = this;
-    }
 
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI tooltipText;
-
-    void Start()
-    {
-        gameObject.SetActive(false);
+        tooltipGameObject = tooltipTransform.gameObject;
+        tooltipGameObject.SetActive(false);
     }
 
     void Update()
     {
-        transform.position = Input.mousePosition;
+        tooltipTransform.position = Input.mousePosition;
     }
 
     public void ShowTooltip(Item referenceItem)
@@ -28,11 +28,11 @@ public class TooltipManager : MonoBehaviour
         nameText.text = referenceItem.name;
         tooltipText.text = referenceItem.tooltip;
 
-        gameObject.SetActive(true);
+        tooltipGameObject.SetActive(true);
     }
 
     public void HideTooltip()
     {
-        gameObject.SetActive(false);
+        tooltipGameObject.SetActive(false);
     }
 }

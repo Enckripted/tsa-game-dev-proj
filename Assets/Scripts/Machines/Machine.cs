@@ -19,7 +19,7 @@ public struct Recipe
     }
 }
 
-public interface Machine
+public interface IMachine
 {
     public Inventory inputSlots { get; }
     public Inventory outputSlots { get; }
@@ -33,7 +33,7 @@ public interface Machine
     public void attemptMachineStart();
 }
 
-public abstract class BaseMachine : MonoBehaviour, Machine, IPointerClickHandler
+public abstract class BaseMachine : MonoBehaviour, IMachine, IPointerClickHandler
 {
     private const int numInventorySlots = 12;
 
