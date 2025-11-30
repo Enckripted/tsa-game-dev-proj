@@ -1,10 +1,20 @@
 using UnityEngine;
+using UnityEngine.Events;
 
+//NOTE: this script should probably be at the top of every component it is on, so interactEvent gets loaded first
 public class Interactable : MonoBehaviour
 {
+    [field: SerializeField] public string interactText { get; private set; } = "[E] Interact";
+    [field: SerializeField] public float interactTime { get; private set; } = 0.4f;
+    public UnityEvent interactEvent { get; private set; }
+
     public void Interact()
     {
-        Debug.Log("Interacted with " + gameObject.name);
-        Destroy(gameObject); // placeholder script add Interact functionality to other scripts
+        interactEvent.Invoke();
+    }
+
+    void Awake()
+    {
+        interactEvent = new UnityEvent();
     }
 }

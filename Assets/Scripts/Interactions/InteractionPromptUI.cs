@@ -9,7 +9,9 @@ public class InteractionPromptUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI promptText;
 
     // hide on start
-    private void Start()
+    //note: this was originally start, which was causing a bug where the first activation would lead to start firing
+    //which would just disable the prompt. awake runs regardless of whether a component is disabled
+    private void Awake()
     {
         uiPanel.SetActive(false);
     }

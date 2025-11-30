@@ -273,7 +273,6 @@ GameObject:
   - component: {fileID: 431206291}
   - component: {fileID: 431206290}
   - component: {fileID: 431206289}
-  - component: {fileID: 431206288}
   - component: {fileID: 431206293}
   - component: {fileID: 431206294}
   - component: {fileID: 431206295}
@@ -303,18 +302,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 4.46, y: 5.2}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &431206288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431206286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e773204e83b6f24190060dd589fa214, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::playerMovement
 --- !u!50 &431206289
 Rigidbody2D:
   serializedVersion: 5

@@ -7,6 +7,7 @@ public class RandomItemFactory : MonoBehaviour
 
     public List<GearData> baseGears { get; private set; }
     public List<MaterialData> materials { get; private set; }
+    public List<ReforgeData> reforges { get; private set; }
 
     T chooseFrom<T>(List<T> l)
     {
@@ -17,7 +18,8 @@ public class RandomItemFactory : MonoBehaviour
     {
         GearData gearData = chooseFrom(baseGears);
         MaterialData materialData = chooseFrom(materials);
-        Gear gear = new Gear(gearData, new Material(materialData));
+        ReforgeData reforgeData = chooseFrom(reforges);
+        Gear gear = new Gear(gearData, new Material(materialData), new Reforge(reforgeData));
         return new GearItem(gear);
     }
 
@@ -26,5 +28,6 @@ public class RandomItemFactory : MonoBehaviour
         instance = this;
         baseGears = new List<GearData>(Resources.LoadAll<GearData>("Base Gears"));
         materials = new List<MaterialData>(Resources.LoadAll<MaterialData>("Materials"));
+        reforges = new List<ReforgeData>(Resources.LoadAll<ReforgeData>("Reforges"));
     }
 }

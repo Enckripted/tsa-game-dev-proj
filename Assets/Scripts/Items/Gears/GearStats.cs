@@ -3,8 +3,17 @@ using System;
 [Serializable]
 public class GearStats
 {
-	public double damage;
+	public double power;
+	public double timeToCast;
 	public double sellValue;
+
+	public double powerPerSecond
+	{
+		get
+		{
+			return power / timeToCast;
+		}
+	}
 
 	public GearStats clone()
 	{
