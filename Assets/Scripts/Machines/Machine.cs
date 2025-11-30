@@ -33,19 +33,23 @@ public interface IMachine
     public void attemptMachineStart();
 }
 
-public abstract class BaseMachine : MonoBehaviour, IMachine, IPointerClickHandler
+[RequireComponent(typeof(Interactable))]
+public abstract class BaseMachine : MonoBehaviour, IMachine
 {
     private const int numInventorySlots = 12;
 
     public Inventory inputSlots { get; private set; }
     public Inventory outputSlots { get; private set; }
+
     //i've learned that there's only a couple ways to override a field from an abstract class
     //what you're expected to do here is override the getter in your new machine class and return true or false based on
     //whether the machine automatically runs
     public abstract bool runsAutomatically { get; }
-    public Recipe? currentRecipe { get; protected set; } //make this a field later
+    public Recipe? currentRecipe { get; protected set; }
     [field: SerializeField] public double secondsRemaining { get; protected set; }
     [field: SerializeField] public bool running { get; protected set; }
+
+    private Interactable interactable;
 
     abstract public bool hasValidRecipe();
     abstract protected Recipe getRecipe();
@@ -92,6 +96,11 @@ public abstract class BaseMachine : MonoBehaviour, IMachine, IPointerClickHandle
         if (!running && currentRecipe.HasValue && canRunRecipe()) startRecipe();
     }
 
+    public void openMachineUi()
+    {
+        if (!ReferenceEquals(MachineUiManager.instance.currentMachine, this)) MachineUiManager.instance.loadMachine(this);
+    }
+
     void Update()
     {
         secondsRemaining -= Time.deltaTime;
@@ -105,11 +114,8 @@ public abstract class BaseMachine : MonoBehaviour, IMachine, IPointerClickHandle
         inputSlots = new Inventory(numInventorySlots);
         outputSlots = new Inventory(numInventorySlots);
         inputSlots.changed.AddListener(updateRecipe);
-    }
 
-    //temporary code since i dont have an interaction system yet
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        MachineUiManager.instance.loadMachine(this);
+        interactable = GetComponent<Interactable>();
+        interactable.interactEvent.AddListener(openMachineUi);
     }
 }

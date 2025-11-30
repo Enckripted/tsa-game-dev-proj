@@ -15,5 +15,6 @@ MonoBehaviour:
   baseName: Iron
   color: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
   stats:
-    <damageMult>k__BackingField: 1.25
+    <powerMult>k__BackingField: 1.25
+    <castTimeMult>k__BackingField: 1.1
     <sellMult>k__BackingField: 1

@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2453361869505736891}
   - component: {fileID: 1829382139606528883}
-  - component: {fileID: 5711318272433138062}
-  - component: {fileID: 1867814659515526104}
   - component: {fileID: 147948506686869077}
-  m_Layer: 0
+  - component: {fileID: 992055979369957773}
+  - component: {fileID: 5711318272433138062}
+  m_Layer: 6
   m_Name: DroppedItem
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,46 +94,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5711318272433138062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8244762787987124848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2adb9d6a8d35cf14694ba18a81388c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DroppedItem
-  itemName: {fileID: 1111914367051639528}
---- !u!50 &1867814659515526104
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8244762787987124848}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &147948506686869077
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -180,6 +140,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &992055979369957773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8244762787987124848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5f564dcad5847f49a9ffdb6e46ccc46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  <interactText>k__BackingField: '[E] Pickup'
+  <interactTime>k__BackingField: 0.01
+--- !u!114 &5711318272433138062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8244762787987124848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2adb9d6a8d35cf14694ba18a81388c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DroppedItem
+  itemName: {fileID: 1111914367051639528}
 --- !u!1 &8708204715360947471
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +178,7 @@ GameObject:
   - component: {fileID: 2886167377902316070}
   - component: {fileID: 8957458236859593405}
   - component: {fileID: 1111914367051639528}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ItemName
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,4 +1,5 @@
-public abstract class Enhancement
+public interface IEnhancement
 {
-	public abstract GearStats apply(GearStats curStats);
+	public string tooltipText { get; }
+	public GearStats applyTo(GearStats curStats);
 }

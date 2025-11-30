@@ -1,19 +1,16 @@
 using TMPro;
 using UnityEngine;
 
-
+[RequireComponent(typeof(Interactable))]
 public class DroppedItem : MonoBehaviour
 {
 	public TextMeshPro itemName;
 
 	public Item item;
 
-	void Awake()
-	{
-		itemName.text = item.name;
-	}
+	private Interactable interactable;
 
-	void OnMouseDown()
+	void pickupItem()
 	{
 		bool success = PlayerInventory.instance.inventory.pushItem(item);
 		if (success)
@@ -21,6 +18,17 @@ public class DroppedItem : MonoBehaviour
 			Destroy(gameObject);
 			TooltipManager.instance.HideTooltip();
 		}
+	}
+
+	void Awake()
+	{
+		interactable = GetComponent<Interactable>();
+		itemName.text = item.name;
+	}
+
+	void Start()
+	{
+		interactable.interactEvent.AddListener(pickupItem);
 	}
 
 	void OnMouseEnter()

@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3c3c8f24d87f6341b44484ce5f4db8c, type: 3}
-  m_Name: Sword
-  m_EditorClassIdentifier: Assembly-CSharp::GearData
-  <baseName>k__BackingField: Sword
-  <baseStats>k__BackingField:
-    damage: 4
-    sellValue: 3
+  m_Script: {fileID: 11500000, guid: 7b5d804e225ee71439b6c3d2c8fa2721, type: 3}
+  m_Name: Strong
+  m_EditorClassIdentifier: Assembly-CSharp::ReforgeData
+  baseName: Strong
+  stats:
+    powerMult: 1.15
+    castTimeMult: 1

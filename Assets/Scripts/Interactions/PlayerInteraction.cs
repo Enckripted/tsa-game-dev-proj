@@ -1,17 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [SerializeField] private float interactRange = 1.5f;
     [SerializeField] private float interactRadius = 0.5f;
-    [SerializeField] private LayerMask interactLayer;
     [SerializeField] private Vector2 holdOffset = new Vector2(0, 1.5f);
     [SerializeField] private float requiredHoldTime = 0.4f;
     [SerializeField] private InteractionPromptUI promptPrefab;
+    [SerializeField] private ContactFilter2D interactableFilter;
     private InteractionPromptUI currentPrompt;
     private Interactable currentInteractable;
     private InputSystem_Actions controls;
-    private Vector2 facingDirection = Vector2.down;
+    private Collider2D playerCollider;
     private float currentHoldTimer = 0f;
     private bool isHolding = false;
 
@@ -32,6 +32,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Start()
     {
+        playerCollider = gameObject.GetComponent<Collider2D>();
         // clone prefab and hide it
         currentPrompt = Instantiate(promptPrefab);
         currentPrompt.Close();
@@ -39,12 +40,6 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-        Vector2 moveInput = controls.Player.Move.ReadValue<Vector2>();
-        if (moveInput.sqrMagnitude > 0.1f) // sqr magnitude for better performance 🤓
-        {
-            facingDirection = moveInput.normalized;
-        }
-
         bool inputActive = controls.Player.Interact.ReadValue<float>() > 0.1f;
 
         DetectInteractable();
@@ -53,47 +48,37 @@ public class PlayerInteraction : MonoBehaviour
 
     private void DetectInteractable()
     {
-        // CircleCast instead of Raycast = better detection
-        RaycastHit2D hit = Physics2D.CircleCast(
-            transform.position,
-            interactRadius,
-            facingDirection,
-            interactRange,
-            interactLayer
-        );
+        //changed this to be a circle around the player so i don't have to fiddle with the direction -diego
+        List<Collider2D> results = new List<Collider2D>();
+        Physics2D.OverlapCircle(transform.position, interactRadius, interactableFilter, results);
 
-        if (hit.collider != null)
+        Collider2D hitCollider = null;
+        foreach (Collider2D collider in results)
         {
-            if (!hit.collider.CompareTag("Interactable")) // check tags
-            {
-                if (currentInteractable != null)
-                {
-                    ClearInteraction();
-                }
-                return;
-            }
+            if (!collider.CompareTag("Interactable")) continue;
+            if (hitCollider == null || collider.Distance(playerCollider).distance < hitCollider.Distance(playerCollider).distance)
+                hitCollider = collider;
+        }
 
-            Interactable newInteractable = hit.collider.GetComponent<Interactable>(); // get interactable component once detected
+        //nothing detected, run the clear interaction routine
+        if (hitCollider == null)
+        {
+            ClearInteraction();
+            return;
+        }
 
-            if (newInteractable != null)
+        Interactable newInteractable = hitCollider.GetComponent<Interactable>(); // get interactable component once detected
+        if (newInteractable != null)
+        {
+            if (currentInteractable != newInteractable)
             {
-                if (currentInteractable != newInteractable)
-                {
-                    currentInteractable = newInteractable;
-
-                    currentPrompt.transform.position = (Vector2)hit.collider.transform.position + holdOffset; // position prompt above interactable
-                    currentPrompt.Setup("[ Hold E ]"); // setup prompt text
-                }
-            }
-            else // bunch of checks to reset vars
-            {
-                if (currentInteractable != null)
-                {
-                    ClearInteraction();
-                }
+                currentInteractable = newInteractable;
+                currentPrompt.transform.position = (Vector2)hitCollider.transform.position + holdOffset; // position prompt above interactable
+                currentPrompt.Setup(currentInteractable.interactText); // setup prompt text
+                requiredHoldTime = currentInteractable.interactTime;
             }
         }
-        else
+        else // bunch of checks to reset vars
         {
             if (currentInteractable != null)
             {
@@ -110,15 +95,20 @@ public class PlayerInteraction : MonoBehaviour
             return;
         }
 
+        if (controls.Player.Interact.WasPressedThisFrame()) isHolding = true;
+
         if (isButtonPressed)
         {
-            if (!isHolding)
+            /*
+            Debug.Log(controls.Player.Interact.WasPressedThisFrame());
+            if (controls.Player.Interact.WasPressedThisFrame())
             {
                 isHolding = true;
                 currentHoldTimer = 0f;
-            }
+            } 
+            */
 
-            currentHoldTimer += Time.deltaTime;
+            if (isHolding) currentHoldTimer += Time.deltaTime;
 
             float progress = Mathf.Clamp01(currentHoldTimer / requiredHoldTime); // calculate progress maxed at 1
             currentPrompt.UpdateProgress(progress); // update that bih
@@ -130,12 +120,9 @@ public class PlayerInteraction : MonoBehaviour
         }
         else
         {
-            if (isHolding) // reset vars
-            {
-                isHolding = false;
-                currentHoldTimer = 0f;
-                currentPrompt.UpdateProgress(0f);
-            }
+            isHolding = false;
+            currentHoldTimer = 0f;
+            currentPrompt.UpdateProgress(0f);
         }
     }
 
@@ -148,7 +135,9 @@ public class PlayerInteraction : MonoBehaviour
         currentHoldTimer = 0f;
         currentPrompt.UpdateProgress(0f);
 
-        currentPrompt.Close();
+        //commenting this because it feels a bit weird to open a machine ui, close it, and then not be able to open it again -diego
+        //also if the object is gone then next frame the script will realize and remove the prompt anyways
+        //currentPrompt.Close();
     }
 
     private void ClearInteraction()
