@@ -114,8 +114,11 @@ public abstract class BaseMachine : MonoBehaviour, IMachine
         inputSlots = new Inventory(numInventorySlots);
         outputSlots = new Inventory(numInventorySlots);
         inputSlots.changed.AddListener(updateRecipe);
-
         interactable = GetComponent<Interactable>();
+    }
+
+    void Start()
+    {
         interactable.interactEvent.AddListener(openMachineUi);
     }
 }

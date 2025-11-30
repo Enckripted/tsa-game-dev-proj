@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ItemUiDraggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
+public class ItemUiDraggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler, IPointerClickHandler
 {
     [SerializeField] private TextMeshProUGUI nameText;
 
@@ -43,6 +43,7 @@ public class ItemUiDraggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Debug.Log("begin");
         beingDragged = true;
         canvasGroup.blocksRaycasts = false;
         transform.SetParent(dragPriorityObject.transform, false);
@@ -71,5 +72,10 @@ public class ItemUiDraggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         Item currentItem = inventorySlot.pop();
         inventorySlot.insert(otherSlot.pop());
         otherSlot.insert(currentItem);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log("CLICK");
     }
 }

@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2453361869505736891}
   - component: {fileID: 1829382139606528883}
+  - component: {fileID: 197954121864666839}
   - component: {fileID: 147948506686869077}
   - component: {fileID: 992055979369957773}
   - component: {fileID: 5711318272433138062}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: DroppedItem
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -94,6 +95,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &197954121864666839
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8244762787987124848}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &147948506686869077
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -178,7 +206,7 @@ GameObject:
   - component: {fileID: 2886167377902316070}
   - component: {fileID: 8957458236859593405}
   - component: {fileID: 1111914367051639528}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: ItemName
   m_TagString: Untagged
   m_Icon: {fileID: 0}

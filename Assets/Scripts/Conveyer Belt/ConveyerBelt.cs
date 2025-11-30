@@ -34,7 +34,7 @@ public class ConveyerBelt : MonoBehaviour
     }
 
     // main loop
-    void FixedUpdate()
+    void Update() //as far i know, it's fine if this is update instead of fixedupdate since delta time is used
     {
         MoveItems();
         HandleSpawning();
@@ -104,7 +104,8 @@ public class ConveyerBelt : MonoBehaviour
         // ts fried me
         GearItem chosenGear = RandomItemFactory.instance.createRandomItem(); // singleton call
 
-        GameObject obj = Instantiate(droppedItemPrefab, startPos, Quaternion.identity); // create obj
+        //parent under this object to tidy up the inspector
+        GameObject obj = Instantiate(droppedItemPrefab, startPos, Quaternion.identity, transform); // create obj
 
         obj.SetActive(false); // prevent null refs in awake
 

@@ -263,6 +263,8 @@ GameObject:
   - component: {fileID: 5778231739997997449}
   - component: {fileID: 3776738663720512410}
   - component: {fileID: 3409544272995720593}
+  - component: {fileID: 3773762386355642468}
+  - component: {fileID: 8457077304248405136}
   m_Layer: 5
   m_Name: ItemTooltip
   m_TagString: Untagged
@@ -278,7 +280,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2894721829007366303}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -349,9 +351,9 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
@@ -368,7 +370,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
   m_HorizontalFit: 0
-  m_VerticalFit: 1
+  m_VerticalFit: 2
+--- !u!225 &3773762386355642468
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894721829007366303}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 1
+--- !u!114 &8457077304248405136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894721829007366303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8812ea77b36e50b418f68f8eb7b4cc6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipManager
+  nameText: {fileID: 5955867532325505002}
+  tooltipText: {fileID: 47228494839056907}
 --- !u!1 &2942109224850894249
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,8 +695,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1521918056582545199}
   - {fileID: 26985990469823427}
+  - {fileID: 1521918056582545199}
   - {fileID: 9003580859737822896}
   - {fileID: 671205774788089215}
   m_Father: {fileID: 0}
@@ -752,6 +780,7 @@ GameObject:
   - component: {fileID: 26985990469823427}
   - component: {fileID: 302995185171440742}
   - component: {fileID: 149093046195621735}
+  - component: {fileID: 6826503234123230581}
   m_Layer: 5
   m_Name: Toolbar
   m_TagString: Untagged
@@ -818,6 +847,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &6826503234123230581
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3838990608408893603}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4569202585740292592
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,7 +1444,6 @@ GameObject:
   - component: {fileID: 6753988930780524310}
   - component: {fileID: 6052647489738039304}
   - component: {fileID: 5955867532325505002}
-  - component: {fileID: 4092627242437982074}
   m_Layer: 5
   m_Name: NameText
   m_TagString: Untagged
@@ -1425,9 +1465,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1521918056582545199}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 330, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &6052647489738039304
@@ -1529,20 +1569,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4092627242437982074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6642384093912636039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
 --- !u!1 &6924435003341320169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1690,7 +1716,6 @@ GameObject:
   - component: {fileID: 5953223539769857418}
   - component: {fileID: 4009569116348326695}
   - component: {fileID: 47228494839056907}
-  - component: {fileID: 5427913669611886703}
   m_Layer: 5
   m_Name: TooltipText
   m_TagString: Untagged
@@ -1712,10 +1737,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1521918056582545199}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -40.76}
-  m_SizeDelta: {x: 330, y: 24.58}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 330, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4009569116348326695
 CanvasRenderer:
@@ -1816,20 +1841,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5427913669611886703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9132095783615861905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
-  m_HorizontalFit: 0
-  m_VerticalFit: 0
 --- !u!1 &9143671167190480203
 GameObject:
   m_ObjectHideFlags: 0

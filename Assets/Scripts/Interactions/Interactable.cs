@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-//NOTE: this script should probably be at the top of every component it is on, so interactEvent gets loaded first
 public class Interactable : MonoBehaviour
 {
     [field: SerializeField] public string interactText { get; private set; } = "[E] Interact";

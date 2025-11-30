@@ -70,6 +70,7 @@ public class MachineUiManager : MonoBehaviour
 	{
 		canvasGroup.alpha = 0;
 		canvasGroup.blocksRaycasts = false;
+		currentMachine = null; //necessary for the interactions to be able to tell whether it is already open
 	}
 
 	void Awake()

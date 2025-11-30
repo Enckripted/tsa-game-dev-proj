@@ -5,34 +5,32 @@ public class TooltipManager : MonoBehaviour
 {
     public static TooltipManager instance { get; private set; }
 
-    public Transform tooltipTransform;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI tooltipText;
-    private GameObject tooltipGameObject;
+
+    private CanvasGroup canvasGroup;
 
     void Awake()
     {
         instance = this;
-
-        tooltipGameObject = tooltipTransform.gameObject;
-        tooltipGameObject.SetActive(false);
+        canvasGroup = GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
     }
 
     void Update()
     {
-        tooltipTransform.position = Input.mousePosition;
+        transform.position = Input.mousePosition;
     }
 
     public void ShowTooltip(Item referenceItem)
     {
         nameText.text = referenceItem.name;
         tooltipText.text = referenceItem.tooltip;
-
-        tooltipGameObject.SetActive(true);
+        canvasGroup.alpha = 1;
     }
 
     public void HideTooltip()
     {
-        tooltipGameObject.SetActive(false);
+        canvasGroup.alpha = 0;
     }
 }
