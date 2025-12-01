@@ -106,7 +106,7 @@ public abstract class BaseMachine : MonoBehaviour, IMachine
 
     public void openMachineUi()
     {
-        NewMachineUiManager.instance.openUi(this, uiPrefab);
+        MachineUiManager.instance.openUi(this, uiPrefab);
         //if (!ReferenceEquals(MachineUiManager.instance.currentMachine, this)) MachineUiManager.instance.loadMachine(this);
     }
 

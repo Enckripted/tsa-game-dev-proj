@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class NewMachineUiManager : MonoBehaviour
+public class MachineUiManager : MonoBehaviour
 {
-	public static NewMachineUiManager instance;
+	public static MachineUiManager instance;
 
 	public IMachine currentMachine { get; private set; }
 	private GameObject currentMachineUi;

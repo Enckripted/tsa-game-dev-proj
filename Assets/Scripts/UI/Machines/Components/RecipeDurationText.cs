@@ -12,7 +12,7 @@ public class RecipeDurationText : MonoBehaviour
 
     void Update()
     {
-        IMachine machine = NewMachineUiManager.instance.currentMachine;
+        IMachine machine = MachineUiManager.instance.currentMachine;
         if (machine.running) label.text = $"{machine.secondsRemaining:0.0}s";
         else label.text = "0.0s";
     }

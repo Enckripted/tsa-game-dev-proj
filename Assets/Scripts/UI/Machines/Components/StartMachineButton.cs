@@ -19,7 +19,7 @@ public class StartMachineButton : MonoBehaviour
 
     void Update()
     {
-        machine = NewMachineUiManager.instance.currentMachine;
+        machine = MachineUiManager.instance.currentMachine;
         if (machine.running) buttonLabel.text = "Stop";
         else buttonLabel.text = "Start";
     }
