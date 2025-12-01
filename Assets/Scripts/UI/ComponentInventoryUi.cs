@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ComponentListUi : MonoBehaviour
+public class ComponentInventoryUi : MonoBehaviour
 {
 	[SerializeField] private GameObject componentQuantityElement;
 

@@ -1,0 +1,27 @@
+using UnityEngine;
+
+public class NewMachineUiManager : MonoBehaviour
+{
+	public static NewMachineUiManager instance;
+
+	public IMachine currentMachine { get; private set; }
+	private GameObject currentMachineUi;
+
+	public void openUi(IMachine machine, GameObject uiPrefab)
+	{
+		if (currentMachineUi != null) return;
+		currentMachine = machine;
+		currentMachineUi = Instantiate(uiPrefab, transform);
+	}
+
+	public void closeUi()
+	{
+		currentMachine = null;
+		Destroy(currentMachineUi);
+	}
+
+	void Awake()
+	{
+		instance = this;
+	}
+}
