@@ -21,8 +21,6 @@ public class ComponentListUi : MonoBehaviour
 	void updateText()
 	{
 		componentsText.text = "None";
-		Debug.Log(_components.Count());
-		Debug.Log(_components.Count<ComponentQuantity>());
 		if (_components == null || _components.Count() == 0) return;
 
 		List<string> lines = new List<string>();

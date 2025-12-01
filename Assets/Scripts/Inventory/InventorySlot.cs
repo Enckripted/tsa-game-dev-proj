@@ -24,7 +24,6 @@ public class InventorySlot
         {
             item = nItem;
             containsItem = true;
-            Debug.Log(item);
             changed.Invoke();
         }
         return true;
