@@ -5,7 +5,6 @@ using TMPro;
 public class InteractionPromptUI : MonoBehaviour
 {
     [SerializeField] private GameObject uiPanel;
-    [SerializeField] private Image progressBar;
     [SerializeField] private TextMeshProUGUI promptText;
 
     // hide on start
@@ -21,13 +20,6 @@ public class InteractionPromptUI : MonoBehaviour
     {
         promptText.text = text;
         uiPanel.SetActive(true);
-        progressBar.fillAmount = 0;
-    }
-
-    // update that bih
-    public void UpdateProgress(float progress)
-    {
-        progressBar.fillAmount = progress;
     }
 
     // close it

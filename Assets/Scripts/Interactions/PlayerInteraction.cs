@@ -5,15 +5,12 @@ public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private float interactRadius = 0.5f;
     [SerializeField] private Vector2 holdOffset = new Vector2(0, 1.5f);
-    [SerializeField] private float requiredHoldTime = 0.4f;
     [SerializeField] private InteractionPromptUI promptPrefab;
     [SerializeField] private ContactFilter2D interactableFilter;
     private InteractionPromptUI currentPrompt;
     private Interactable currentInteractable;
     private InputSystem_Actions controls;
     private Collider2D playerCollider;
-    private float currentHoldTimer = 0f;
-    private bool isHolding = false;
 
     // standard unity stuff
     private void Awake()
@@ -40,7 +37,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-        bool inputActive = controls.Player.Interact.ReadValue<float>() > 0.1f;
+        bool inputActive = controls.Player.Interact.ReadValue<float>() > 0.5f;
 
         DetectInteractable();
         HandleInteractionLogic(inputActive);
@@ -73,10 +70,11 @@ public class PlayerInteraction : MonoBehaviour
             if (currentInteractable != newInteractable)
             {
                 currentInteractable = newInteractable;
-                currentPrompt.transform.position = (Vector2)hitCollider.transform.position + holdOffset; // position prompt above interactable
                 currentPrompt.Setup(currentInteractable.interactText); // setup prompt text
-                requiredHoldTime = currentInteractable.interactTime;
             }
+
+            // simple fix moved transform outside of if statemtent so it updates every frame
+            currentPrompt.transform.position = (Vector2)hitCollider.transform.position + holdOffset; // position prompt above interactable
         }
         else // bunch of checks to reset vars
         {
@@ -95,45 +93,19 @@ public class PlayerInteraction : MonoBehaviour
             return;
         }
 
-        if (controls.Player.Interact.WasPressedThisFrame()) isHolding = true;
-
+        // remmoved everything related to hold interactions
         if (isButtonPressed)
         {
-            /*
-            Debug.Log(controls.Player.Interact.WasPressedThisFrame());
-            if (controls.Player.Interact.WasPressedThisFrame())
-            {
-                isHolding = true;
-                currentHoldTimer = 0f;
-            } 
-            */
-
-            if (isHolding) currentHoldTimer += Time.deltaTime;
-
-            float progress = Mathf.Clamp01(currentHoldTimer / requiredHoldTime); // calculate progress maxed at 1
-            currentPrompt.UpdateProgress(progress); // update that bih
-
-            if (currentHoldTimer >= requiredHoldTime) // checks if time is good
-            {
-                PerformInteraction();
-            }
-        }
-        else
-        {
-            isHolding = false;
-            currentHoldTimer = 0f;
-            currentPrompt.UpdateProgress(0f);
+            PerformInteraction();
         }
     }
 
     // helper methods 
     private void PerformInteraction()
     {
-        currentInteractable.Interact();
 
-        isHolding = false;
-        currentHoldTimer = 0f;
-        currentPrompt.UpdateProgress(0f);
+        // cleaned up hold logic here too
+        currentInteractable.Interact();
 
         //commenting this because it feels a bit weird to open a machine ui, close it, and then not be able to open it again -diego
         //also if the object is gone then next frame the script will realize and remove the prompt anyways
@@ -142,9 +114,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private void ClearInteraction()
     {
+        // no more hold logic
         currentInteractable = null;
-        isHolding = false;
-        currentHoldTimer = 0f;
         currentPrompt.Close();
     }
 }
