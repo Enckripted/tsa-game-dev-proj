@@ -119,14 +119,14 @@ public abstract class BaseMachine : MonoBehaviour, IMachine
 
     void Awake()
     {
-        inputSlots = new Inventory(numInputSlots);
-        outputSlots = new Inventory(numOutputSlots);
-        inputSlots.changed.AddListener(updateRecipe);
         interactable = GetComponent<Interactable>();
     }
 
     void Start()
     {
+        inputSlots = new Inventory(numInputSlots, PlayerInventory.instance.inventory);
+        outputSlots = new Inventory(numOutputSlots, PlayerInventory.instance.inventory);
+        inputSlots.changed.AddListener(updateRecipe);
         interactable.interactEvent.AddListener(openMachineUi);
     }
 }

@@ -17,3 +17,7 @@ MonoBehaviour:
     power: 6
     timeToCast: 3
     sellValue: 3
+  <levelStats>k__BackingField:
+    power: 0.5
+    timeToCast: 0.05
+    sellValue: 1

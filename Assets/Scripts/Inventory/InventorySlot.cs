@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,11 +8,14 @@ public class InventorySlot
     public readonly UnityEvent changed;
     [field: SerializeField] public Item item { get; private set; }
     [field: SerializeField] public bool containsItem { get; private set; }
+    [field: SerializeReference] public Inventory targetInventory { get; set; } //maybe don't serialize
+    //TODO: add a custom setter here
 
-    public InventorySlot()
+    public InventorySlot(Inventory targetInventory)
     {
-        changed = new UnityEvent();
-        containsItem = false;
+        this.changed = new UnityEvent();
+        this.containsItem = false;
+        this.targetInventory = targetInventory;
     }
 
     public bool insert(Item nItem)
@@ -36,5 +38,12 @@ public class InventorySlot
         containsItem = false;
         changed.Invoke();
         return temp;
+    }
+
+    public bool quickMove()
+    {
+        if (targetInventory == null || !targetInventory.pushItem(item)) return false;
+        pop();
+        return true;
     }
 }

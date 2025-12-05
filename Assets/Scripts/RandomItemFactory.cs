@@ -19,7 +19,7 @@ public class RandomItemFactory : MonoBehaviour
         GearData gearData = chooseFrom(baseGears);
         MaterialData materialData = chooseFrom(materials);
         ReforgeData reforgeData = chooseFrom(reforges);
-        Gear gear = new Gear(gearData, new Material(materialData), new Reforge(reforgeData));
+        Gear gear = new Gear(gearData, 1, new Material(materialData), new Reforge(reforgeData));
         return new GearItem(gear);
     }
 

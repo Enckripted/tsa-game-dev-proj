@@ -2,8 +2,9 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
-public class ItemUiDraggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
+public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TextMeshProUGUI nameText;
 
@@ -18,11 +19,18 @@ public class ItemUiDraggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Canvas canvas;
+    private InputAction shiftAction;
 
     void updateSprite()
     {
         if (inventorySlot.containsItem) nameText.text = inventorySlot.item.name;
         else nameText.text = "";
+    }
+
+    bool checkShiftClick()
+    {
+        if (shiftAction.IsPressed()) inventorySlot.quickMove();
+        return shiftAction.IsPressed();
     }
 
     void Awake()
@@ -33,6 +41,7 @@ public class ItemUiDraggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         canvas = GetComponentInParent<Canvas>();
+        shiftAction = InputSystem.actions.FindAction("Sprint");
     }
 
     void Start()
@@ -41,8 +50,14 @@ public class ItemUiDraggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         updateSprite();
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        checkShiftClick();
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (checkShiftClick()) return;
         beingDragged = true;
         canvasGroup.blocksRaycasts = false;
         transform.SetParent(dragPriorityObject.transform, false);
@@ -71,5 +86,15 @@ public class ItemUiDraggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         Item currentItem = inventorySlot.pop();
         inventorySlot.insert(otherSlot.pop());
         otherSlot.insert(currentItem);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (inventorySlot.item != null) TooltipManager.instance.ShowTooltip(inventorySlot.item);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        TooltipManager.instance.HideTooltip();
     }
 }

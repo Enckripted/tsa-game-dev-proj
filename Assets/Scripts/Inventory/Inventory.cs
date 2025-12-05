@@ -9,20 +9,37 @@ public class Inventory
 {
 	[field: SerializeField] public int totalSlots { get; }
 	[field: SerializeField] public int availableSlots { get; private set; }
+	public Inventory targetInventory { get => _targetInventory; set { _targetInventory = value; updateTargetInventory(); } }
 	[field: SerializeField] private List<InventorySlot> slots;
 
-	public UnityEvent changed;
+	private Inventory _targetInventory;
 
-	public Inventory(int nTotalSlots)
+	public UnityEvent changed;
+	private List<bool> prevSlotFillState;
+
+	private void modPrevFillState(int slotIndex)
 	{
-		totalSlots = nTotalSlots;
-		availableSlots = nTotalSlots;
-		changed = new UnityEvent();
-		slots = Enumerable.Range(0, totalSlots).Select(_ => new InventorySlot()).ToList();
+		if (slots[slotIndex].containsItem == prevSlotFillState[slotIndex]) return;
+		if (slots[slotIndex].containsItem) availableSlots -= 1;
+		else availableSlots += 1;
+		prevSlotFillState[slotIndex] = slots[slotIndex].containsItem;
+	}
+
+	public Inventory(int nTotalSlots, Inventory targetInventory = null)
+	{
+		this.totalSlots = nTotalSlots;
+		this.availableSlots = nTotalSlots;
+		this.changed = new UnityEvent();
+
+		this.slots = Enumerable.Range(0, totalSlots).Select(_ => new InventorySlot(_targetInventory)).ToList();
+		this.prevSlotFillState = Enumerable.Repeat(false, totalSlots).ToList();
+
+		this.targetInventory = targetInventory;
 
 		for (int i = 0; i < totalSlots; i++)
 		{
-			slots[i].changed.AddListener(() => changed.Invoke());
+			int index = i; //c# by default passes the int as a reference, so we need to copy it so it doesn't change
+			this.slots[i].changed.AddListener(() => { modPrevFillState(index); changed.Invoke(); });
 		}
 	}
 
@@ -52,5 +69,13 @@ public class Inventory
 	public InventorySlot getSlot(int slotIndex)
 	{
 		return slots[slotIndex];
+	}
+
+	private void updateTargetInventory()
+	{
+		foreach (InventorySlot slot in slots)
+		{
+			slot.targetInventory = _targetInventory;
+		}
 	}
 }

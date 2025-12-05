@@ -88,8 +88,8 @@ GameObject:
   - component: {fileID: 8483862202795080205}
   - component: {fileID: 1868916721562524677}
   - component: {fileID: 2879075869354063902}
-  - component: {fileID: 3349026534781674909}
   - component: {fileID: 3905243690271786786}
+  - component: {fileID: 3349026534781674909}
   m_Layer: 5
   m_Name: ItemUiDraggable
   m_TagString: Untagged
@@ -170,6 +170,18 @@ MonoBehaviour:
   m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
   m_EffectDistance: {x: 5, y: 5}
   m_UseGraphicAlpha: 0
+--- !u!225 &3905243690271786786
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6048722060696363259}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &3349026534781674909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,18 +198,6 @@ MonoBehaviour:
   inventorySlot:
     <containsItem>k__BackingField: 0
   canDropInSlot: 1
---- !u!225 &3905243690271786786
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6048722060696363259}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &8716166257445708169
 GameObject:
   m_ObjectHideFlags: 0
