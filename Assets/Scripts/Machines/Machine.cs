@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public struct Recipe
 {
@@ -24,6 +22,7 @@ public interface IMachine
     public Inventory inputSlots { get; }
     public Inventory outputSlots { get; }
     public bool runsAutomatically { get; }
+    public GameObject uiPrefab { get; }
 
     public Recipe? currentRecipe { get; }
     public double secondsRemaining { get; }
@@ -31,20 +30,21 @@ public interface IMachine
 
     public bool hasValidRecipe();
     public void attemptMachineStart();
+    public void attemptMachineStop();
 }
 
 [RequireComponent(typeof(Interactable))]
 public abstract class BaseMachine : MonoBehaviour, IMachine
 {
-    private const int numInventorySlots = 12;
+    public abstract int numInputSlots { get; }
+    public abstract int numOutputSlots { get; }
+    public abstract bool runsAutomatically { get; }
+    public abstract bool stopsWhenFinished { get; }
+    public abstract GameObject uiPrefab { get; protected set; }
 
     public Inventory inputSlots { get; private set; }
     public Inventory outputSlots { get; private set; }
 
-    //i've learned that there's only a couple ways to override a field from an abstract class
-    //what you're expected to do here is override the getter in your new machine class and return true or false based on
-    //whether the machine automatically runs
-    public abstract bool runsAutomatically { get; }
     public Recipe? currentRecipe { get; protected set; }
     [field: SerializeField] public double secondsRemaining { get; protected set; }
     [field: SerializeField] public bool running { get; protected set; }
@@ -89,6 +89,7 @@ public abstract class BaseMachine : MonoBehaviour, IMachine
             outputSlots.pushItem(output);
 
         updateRecipe();
+        if (currentRecipe != null && !stopsWhenFinished) startRecipe();
     }
 
     public void attemptMachineStart()
@@ -96,9 +97,17 @@ public abstract class BaseMachine : MonoBehaviour, IMachine
         if (!running && currentRecipe.HasValue && canRunRecipe()) startRecipe();
     }
 
+    public void attemptMachineStop()
+    {
+        if (!running) return;
+        running = false;
+        updateRecipe();
+    }
+
     public void openMachineUi()
     {
-        if (!ReferenceEquals(MachineUiManager.instance.currentMachine, this)) MachineUiManager.instance.loadMachine(this);
+        MachineUiManager.instance.openUi(this, uiPrefab);
+        //if (!ReferenceEquals(MachineUiManager.instance.currentMachine, this)) MachineUiManager.instance.loadMachine(this);
     }
 
     void Update()
@@ -110,15 +119,14 @@ public abstract class BaseMachine : MonoBehaviour, IMachine
 
     void Awake()
     {
-        //temporary solution instead of letting the child class define how many inventory slots they like
-        inputSlots = new Inventory(numInventorySlots);
-        outputSlots = new Inventory(numInventorySlots);
-        inputSlots.changed.AddListener(updateRecipe);
         interactable = GetComponent<Interactable>();
     }
 
     void Start()
     {
+        inputSlots = new Inventory(numInputSlots, PlayerInventory.instance.inventory);
+        outputSlots = new Inventory(numOutputSlots, PlayerInventory.instance.inventory);
+        inputSlots.changed.AddListener(updateRecipe);
         interactable.interactEvent.AddListener(openMachineUi);
     }
 }

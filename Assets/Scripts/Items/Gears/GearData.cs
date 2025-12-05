@@ -7,4 +7,5 @@ public class GearData : ScriptableObject
 {
 	[field: SerializeField] public string baseName { get; private set; }
 	[field: SerializeField] public GearStats baseStats { get; private set; }
+	[field: SerializeField] public GearStats levelStats { get; private set; }
 }

@@ -1,11 +1,14 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class TestMachine : BaseMachine
 {
-	public override bool runsAutomatically
-	{
-		get { return true; }
-	}
+	public override int numInputSlots => 12;
+	public override int numOutputSlots => 12;
+	public override bool runsAutomatically => true;
+	public override bool stopsWhenFinished => true;
+
+	[field: SerializeField] public override GameObject uiPrefab { get; protected set; }
 
 	public override bool hasValidRecipe()
 	{

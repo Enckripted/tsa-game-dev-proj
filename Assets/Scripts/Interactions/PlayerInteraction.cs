@@ -40,7 +40,7 @@ public class PlayerInteraction : MonoBehaviour
         bool inputActive = controls.Player.Interact.ReadValue<float>() > 0.5f;
 
         DetectInteractable();
-        HandleInteractionLogic(inputActive);
+        HandleInteractionLogic();
     }
 
     private void DetectInteractable()
@@ -85,7 +85,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private void HandleInteractionLogic(bool isButtonPressed)
+    private void HandleInteractionLogic()
     {
         // safety checks n stuff
         if (currentInteractable == null)
@@ -94,7 +94,7 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         // remmoved everything related to hold interactions
-        if (isButtonPressed)
+        if (controls.Player.Interact.WasPressedThisFrame()) //changed to only pressed this frame to prevent 1 click on e nuking an entire item pile
         {
             PerformInteraction();
         }

@@ -1,8 +1,9 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Interactable))]
-public class DroppedItem : MonoBehaviour
+public class DroppedItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 	public TextMeshPro itemName;
 
@@ -31,12 +32,12 @@ public class DroppedItem : MonoBehaviour
 		interactable.interactEvent.AddListener(pickupItem);
 	}
 
-	void OnMouseEnter()
+	public void OnPointerEnter(PointerEventData eventData)
 	{
 		TooltipManager.instance.ShowTooltip(item);
 	}
 
-	void OnMouseExit()
+	public void OnPointerExit(PointerEventData eventData)
 	{
 		TooltipManager.instance.HideTooltip();
 	}
