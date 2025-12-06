@@ -10,6 +10,11 @@ public class LevellerMachineUi : MonoBehaviour
 	void Awake()
 	{
 		machine = MachineUiManager.instance.currentMachine as LevellerMachine;
+
+	}
+
+	void Start()
+	{
 		uiInputSlots.inventory = machine.inputSlots;
 		uiOutputSlots.inventory = machine.outputSlots;
 	}

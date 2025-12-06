@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ComponentListUi : MonoBehaviour
 {
+	public bool showTextWhenNull = false;
+
 	private IEnumerable<ComponentQuantity> _components;
 	public IEnumerable<ComponentQuantity> components
 	{
