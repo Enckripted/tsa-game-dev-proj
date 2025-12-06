@@ -37,6 +37,7 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
     {
         dragPriorityObject = GameObject.Find("DragPriority");
         if (!dragPriorityObject) throw new Exception("No DragPriority object found in canvas for draggable objects");
+
         slotObject = transform.parent.gameObject;
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
@@ -58,6 +59,7 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (checkShiftClick()) return;
+
         beingDragged = true;
         canvasGroup.blocksRaycasts = false;
         transform.SetParent(dragPriorityObject.transform, false);
@@ -65,7 +67,6 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
 
     public void OnDrag(PointerEventData eventData)
     {
-        //rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
         rectTransform.position = eventData.position;
     }
 

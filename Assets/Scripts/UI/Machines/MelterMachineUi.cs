@@ -15,6 +15,10 @@ public class MelterMachineUi : MonoBehaviour
 	void Awake()
 	{
 		machine = MachineUiManager.instance.currentMachine as MelterMachine;
+	}
+
+	void Start()
+	{
 		uiInputSlots.inventory = machine.inputSlots;
 		machine.inputSlots.changed.AddListener(updateComponentValue);
 	}
