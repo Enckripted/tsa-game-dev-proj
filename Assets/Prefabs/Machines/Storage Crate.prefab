@@ -164,6 +164,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e92a772f4b5a074582082e87730a228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StorageMachine
-  <secondsRemaining>k__BackingField: 0
-  <running>k__BackingField: 0
+  numStorageSlots: 18
   <uiPrefab>k__BackingField: {fileID: 7214800564637545079, guid: cf0a442e69427e743a2a8cdeceef5627, type: 3}

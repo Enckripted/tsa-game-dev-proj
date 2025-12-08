@@ -1,25 +1,20 @@
 using UnityEngine;
 
-public class MelterMachineUi : MonoBehaviour
+public class MelterMachineUi : MachineUi
 {
-	public InventoryUi uiInputSlots;
-	public ComponentListUi uiComponentList;
+	protected override IMachine _machine => machine;
+	public MelterMachine machine { get; set; }
 
-	private MelterMachine machine;
+	[SerializeField] private ComponentListUi componentListUi;
 
 	void updateComponentValue()
 	{
-		uiComponentList.components = machine.getInputMaterialValue();
+		componentListUi.components = machine.getInputMaterialValue();
 	}
 
-	void Awake()
+	protected override void onLoad()
 	{
-		machine = MachineUiManager.instance.currentMachine as MelterMachine;
-	}
-
-	void Start()
-	{
-		uiInputSlots.inventory = machine.inputSlots;
 		machine.inputSlots.changed.AddListener(updateComponentValue);
+		updateComponentValue();
 	}
 }

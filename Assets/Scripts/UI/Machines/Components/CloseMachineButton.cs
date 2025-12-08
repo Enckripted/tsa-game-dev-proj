@@ -7,7 +7,7 @@ public class CloseMachineBtn : MonoBehaviour
     {
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            MachineUiManager.instance.closeUi();
+            TileEntityUiManager.instance.closeUi();
         });
     }
 }

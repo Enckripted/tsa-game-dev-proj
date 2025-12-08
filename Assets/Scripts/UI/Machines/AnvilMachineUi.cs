@@ -2,14 +2,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class AnvilMachineUi : MonoBehaviour
+public class AnvilMachineUi : MachineUi
 {
-	public InventoryUi uiInputSlots;
-	public InventoryUi uiOutputSlots;
-	public ComponentListUi uiComponentCost;
-	public TextMeshProUGUI uiCostText;
+	protected override IMachine _machine => machine;
+	public AnvilMachine machine { get; set; }
 
-	private AnvilMachine machine;
+	[SerializeField] private InventoryUi uiOutputSlots;
+	[SerializeField] private ComponentListUi uiComponentCost;
+	[SerializeField] private TextMeshProUGUI uiCostText;
 
 	void updateComponentCost()
 	{
@@ -25,18 +25,10 @@ public class AnvilMachineUi : MonoBehaviour
 		}
 	}
 
-	void Awake()
+	protected override void onLoad()
 	{
-		machine = MachineUiManager.instance.currentMachine as AnvilMachine;
-	}
-
-	void Start()
-	{
-		uiInputSlots.inventory = machine.inputSlots;
 		uiOutputSlots.inventory = machine.outputSlots;
-
 		machine.inputSlots.changed.AddListener(updateComponentCost);
 		updateComponentCost();
 	}
-
 }

@@ -675,6 +675,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5438676155276265965, guid: a3b0665269761214cb9943bdbc14035d, type: 3}
+      propertyPath: numStorageSlots
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6130020791396143526, guid: a3b0665269761214cb9943bdbc14035d, type: 3}
       propertyPath: m_Name
       value: Storage Crate

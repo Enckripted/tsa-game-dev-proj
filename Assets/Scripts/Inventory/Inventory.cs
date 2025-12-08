@@ -1,16 +1,17 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
 [Serializable]
-public class Inventory
+public class Inventory : IEnumerable
 {
 	[field: SerializeField] public int totalSlots { get; }
 	[field: SerializeField] public int availableSlots { get; private set; }
 	public Inventory targetInventory { get => _targetInventory; set { _targetInventory = value; updateTargetInventory(); } }
-	[field: SerializeField] private List<InventorySlot> slots;
+	[field: SerializeField] public List<InventorySlot> slots { get; private set; }
 
 	private Inventory _targetInventory;
 
@@ -41,6 +42,11 @@ public class Inventory
 			int index = i; //c# by default passes the int as a reference, so we need to copy it so it doesn't change
 			this.slots[i].changed.AddListener(() => { modPrevFillState(index); changed.Invoke(); });
 		}
+	}
+
+	public IEnumerator GetEnumerator()
+	{
+		return (IEnumerator)slots;
 	}
 
 	public bool pushItem(Item item)
