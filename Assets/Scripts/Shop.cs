@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Shop : TileEntity
 {
-	[SerializeField] private const int numSellSlots = 24;
+	[SerializeField] private int numSellSlots = 20;
 	public Inventory sellSlots { get; private set; }
 
 	[field: SerializeField] public override GameObject uiPrefab { get; protected set; }

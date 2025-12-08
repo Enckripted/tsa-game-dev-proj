@@ -46,7 +46,7 @@ public class Inventory : IEnumerable
 
 	public IEnumerator GetEnumerator()
 	{
-		return (IEnumerator)slots;
+		return slots.GetEnumerator();
 	}
 
 	public bool pushItem(Item item)
