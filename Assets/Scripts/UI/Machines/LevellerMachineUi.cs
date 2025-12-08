@@ -1,21 +1,15 @@
 using UnityEngine;
 
-public class LevellerMachineUi : MonoBehaviour
+public class LevellerMachineUi : MachineUi
 {
-	public InventoryUi uiInputSlots;
-	public InventoryUi uiOutputSlots;
+	protected override IMachine _machine => machine;
+	public LevellerMachine machine { get; set; }
 
-	private LevellerMachine machine;
+	[SerializeField] private InventoryUi uiOutputSlots;
 
-	void Awake()
+	protected override void onLoad()
 	{
-		machine = MachineUiManager.instance.currentMachine as LevellerMachine;
-
-	}
-
-	void Start()
-	{
-		uiInputSlots.inventory = machine.inputSlots;
+		Debug.Log(machine);
 		uiOutputSlots.inventory = machine.outputSlots;
 	}
 }

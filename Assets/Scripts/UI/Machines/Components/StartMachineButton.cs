@@ -4,8 +4,9 @@ using UnityEngine.UI;
 
 public class StartMachineButton : MonoBehaviour
 {
+    public IMachine machine { get; set; }
+
     private TextMeshProUGUI buttonLabel;
-    private IMachine machine;
 
     void Awake()
     {
@@ -19,7 +20,6 @@ public class StartMachineButton : MonoBehaviour
 
     void Update()
     {
-        machine = MachineUiManager.instance.currentMachine;
         if (machine.running) buttonLabel.text = "Stop";
         else buttonLabel.text = "Start";
     }

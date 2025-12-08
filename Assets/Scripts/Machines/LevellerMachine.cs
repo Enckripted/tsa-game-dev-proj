@@ -47,4 +47,10 @@ public class LevellerMachine : BaseMachine
 		for (int i = 0; i < numInputSlots; i++)
 			inputSlots.getSlot(i).pop();
 	}
+
+	protected override void loadMachineIntoUi(GameObject uiInstance)
+	{
+		LevellerMachineUi ui = uiInstance.GetComponent<LevellerMachineUi>();
+		ui.machine = this;
+	}
 }

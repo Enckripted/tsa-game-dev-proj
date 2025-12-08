@@ -60,4 +60,10 @@ public class MelterMachine : BaseMachine
 	{
 		inputSlots.removeItemFromSlot(findSlotWithGearItem());
 	}
+
+	protected override void loadMachineIntoUi(GameObject uiInstance)
+	{
+		MelterMachineUi ui = uiInstance.GetComponent<MelterMachineUi>();
+		ui.machine = this;
+	}
 }

@@ -22,7 +22,6 @@ public interface IMachine
     public Inventory inputSlots { get; }
     public Inventory outputSlots { get; }
     public bool runsAutomatically { get; }
-    public GameObject uiPrefab { get; }
 
     public Recipe? currentRecipe { get; }
     public double secondsRemaining { get; }
@@ -34,13 +33,12 @@ public interface IMachine
 }
 
 [RequireComponent(typeof(Interactable))]
-public abstract class BaseMachine : MonoBehaviour, IMachine
+public abstract class BaseMachine : TileEntity, IMachine
 {
     public abstract int numInputSlots { get; }
     public abstract int numOutputSlots { get; }
     public abstract bool runsAutomatically { get; }
     public abstract bool stopsWhenFinished { get; }
-    public abstract GameObject uiPrefab { get; protected set; }
 
     public Inventory inputSlots { get; private set; }
     public Inventory outputSlots { get; private set; }
@@ -49,11 +47,10 @@ public abstract class BaseMachine : MonoBehaviour, IMachine
     [field: SerializeField] public double secondsRemaining { get; protected set; }
     [field: SerializeField] public bool running { get; protected set; }
 
-    private Interactable interactable;
-
-    abstract public bool hasValidRecipe();
-    abstract protected Recipe getRecipe();
-    abstract protected void extractItemInputs();
+    public abstract bool hasValidRecipe();
+    protected abstract Recipe getRecipe();
+    protected abstract void extractItemInputs();
+    protected abstract void loadMachineIntoUi(GameObject uiInstance);
 
     private void updateRecipe()
     {
@@ -104,10 +101,22 @@ public abstract class BaseMachine : MonoBehaviour, IMachine
         updateRecipe();
     }
 
-    public void openMachineUi()
+    public override void loadUi(GameObject uiInstance)
     {
-        MachineUiManager.instance.openUi(this, uiPrefab);
-        //if (!ReferenceEquals(MachineUiManager.instance.currentMachine, this)) MachineUiManager.instance.loadMachine(this);
+        loadMachineIntoUi(uiInstance);
+        PlayerInventory.instance.inventory.targetInventory = inputSlots;
+    }
+
+    public override void unloadUi(GameObject uiInstance)
+    {
+        PlayerInventory.instance.inventory.targetInventory = null;
+    }
+
+    protected override void onStart()
+    {
+        inputSlots = new Inventory(numInputSlots, PlayerInventory.instance.inventory);
+        outputSlots = new Inventory(numOutputSlots, PlayerInventory.instance.inventory);
+        inputSlots.changed.AddListener(updateRecipe);
     }
 
     void Update()
@@ -115,18 +124,5 @@ public abstract class BaseMachine : MonoBehaviour, IMachine
         secondsRemaining -= Time.deltaTime;
         if (running && secondsRemaining <= 0) endRecipe();
         if (!running && runsAutomatically) attemptMachineStart();
-    }
-
-    void Awake()
-    {
-        interactable = GetComponent<Interactable>();
-    }
-
-    void Start()
-    {
-        inputSlots = new Inventory(numInputSlots, PlayerInventory.instance.inventory);
-        outputSlots = new Inventory(numOutputSlots, PlayerInventory.instance.inventory);
-        inputSlots.changed.AddListener(updateRecipe);
-        interactable.interactEvent.AddListener(openMachineUi);
     }
 }

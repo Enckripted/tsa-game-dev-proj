@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6130020791396143526
+--- !u!1 &1746037525809143846
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3291394547772822086}
-  - component: {fileID: 6293195643337156469}
-  - component: {fileID: 126474826770041971}
-  - component: {fileID: 3054952456377162532}
-  - component: {fileID: 5438676155276265965}
+  - component: {fileID: 3742069274955667614}
+  - component: {fileID: 2524138952583988567}
+  - component: {fileID: 5140510005124175041}
+  - component: {fileID: 3207774853564621441}
+  - component: {fileID: 3104406702626241101}
   m_Layer: 6
-  m_Name: Storage Crate
+  m_Name: Shop
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3291394547772822086
+--- !u!4 &3742069274955667614
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6130020791396143526}
+  m_GameObject: {fileID: 1746037525809143846}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: -3, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6293195643337156469
+--- !u!212 &2524138952583988567
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6130020791396143526}
+  m_GameObject: {fileID: 1746037525809143846}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.96344334, b: 0.8156863, a: 1}
+  m_Color: {r: 0.79761523, g: 0.63576895, b: 0.8584906, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -93,13 +93,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &126474826770041971
+--- !u!61 &5140510005124175041
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6130020791396143526}
+  m_GameObject: {fileID: 1746037525809143846}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -139,30 +139,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3054952456377162532
+--- !u!114 &3207774853564621441
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6130020791396143526}
+  m_GameObject: {fileID: 1746037525809143846}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5f564dcad5847f49a9ffdb6e46ccc46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   <interactText>k__BackingField: '[E] Use'
---- !u!114 &5438676155276265965
+--- !u!114 &3104406702626241101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6130020791396143526}
+  m_GameObject: {fileID: 1746037525809143846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e92a772f4b5a074582082e87730a228, type: 3}
+  m_Script: {fileID: 11500000, guid: 882173fc35483e74694908b1d946139e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StorageMachine
-  numStorageSlots: 18
-  <uiPrefab>k__BackingField: {fileID: 7214800564637545079, guid: cf0a442e69427e743a2a8cdeceef5627, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::Shop
+  numSellSlots: 20
+  <uiPrefab>k__BackingField: {fileID: 7214800564637545079, guid: cfe4e2d23e86be34ca54d4e22b2078ae, type: 3}

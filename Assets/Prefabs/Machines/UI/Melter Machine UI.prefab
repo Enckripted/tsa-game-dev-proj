@@ -108,7 +108,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MelterMachineUi
   uiInputSlots: {fileID: 789615814607125604}
-  uiComponentList: {fileID: 3502011495799994420}
+  startMachineButton: {fileID: 1389563295183817250}
+  recipeDurationText: {fileID: 1931717467626122730}
+  componentListUi: {fileID: 3502011495799994420}
 --- !u!1 &8076493649020338282
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,6 +461,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b32aeb35946adc43ad42019ab735871, type: 3}
+--- !u!114 &1389563295183817250 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3552330702124997204, guid: 4b32aeb35946adc43ad42019ab735871, type: 3}
+  m_PrefabInstance: {fileID: 2451314477942280310}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d97d09e3536ec489dcd3d99929ac9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StartMachineButton
 --- !u!224 &6208493972311233139 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8371578008049697285, guid: 4b32aeb35946adc43ad42019ab735871, type: 3}
@@ -781,3 +794,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8362503775228345951, guid: 71dc289f3ff85dc47afaf783b2226d84, type: 3}
   m_PrefabInstance: {fileID: 8691573552977999771}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1931717467626122730 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7084297273062677105, guid: 71dc289f3ff85dc47afaf783b2226d84, type: 3}
+  m_PrefabInstance: {fileID: 8691573552977999771}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3e00b358799cd4da7478b0c507a82d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeDurationText

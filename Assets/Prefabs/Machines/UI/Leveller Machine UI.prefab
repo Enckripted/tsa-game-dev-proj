@@ -108,6 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevellerMachineUi
   uiInputSlots: {fileID: 465638304496157890}
+  startMachineButton: {fileID: 7831501127329449918}
+  recipeDurationText: {fileID: 8108758336632392742}
   uiOutputSlots: {fileID: 4062885089399719207}
 --- !u!1 &9031020846927964409
 GameObject:
@@ -460,6 +462,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8362503775228345951, guid: 71dc289f3ff85dc47afaf783b2226d84, type: 3}
   m_PrefabInstance: {fileID: 1357943500097541719}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8108758336632392742 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7084297273062677105, guid: 71dc289f3ff85dc47afaf783b2226d84, type: 3}
+  m_PrefabInstance: {fileID: 1357943500097541719}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3e00b358799cd4da7478b0c507a82d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeDurationText
 --- !u!1001 &1705146698109516212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -777,3 +790,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8371578008049697285, guid: 4b32aeb35946adc43ad42019ab735871, type: 3}
   m_PrefabInstance: {fileID: 6765388760152858090}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7831501127329449918 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3552330702124997204, guid: 4b32aeb35946adc43ad42019ab735871, type: 3}
+  m_PrefabInstance: {fileID: 6765388760152858090}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d97d09e3536ec489dcd3d99929ac9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StartMachineButton
