@@ -47,6 +47,51 @@ MonoBehaviour:
   <components>k__BackingField:
     m_Keys: []
     m_Values: 
+--- !u!1 &2291920148714735763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1257530433207318825}
+  - component: {fileID: 5115080861011203565}
+  m_Layer: 0
+  m_Name: ItemSpriteManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1257530433207318825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2291920148714735763}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2309340168480305501}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5115080861011203565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2291920148714735763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b1094a6ef0ec8845b7e17ef898192cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSpriteManager
+  maskColor: {r: 1, g: 0.6392157, b: 0.69803923, a: 0}
 --- !u!1 &7328586772007405145
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,10 +139,11 @@ MonoBehaviour:
   inventorySlots: 8
   <inventory>k__BackingField:
     <availableSlots>k__BackingField: 0
-    slots: []
+    <slots>k__BackingField: []
     changed:
       m_PersistentCalls:
         m_Calls: []
+  <money>k__BackingField: 0
   <selectedSlot>k__BackingField: 0
   references:
     version: 2
@@ -135,6 +181,7 @@ Transform:
   - {fileID: 6994235448430105311}
   - {fileID: 7046429837930016092}
   - {fileID: 5652809461388646610}
+  - {fileID: 1257530433207318825}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7854539229373522776

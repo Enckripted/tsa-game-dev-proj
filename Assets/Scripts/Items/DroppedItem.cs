@@ -10,6 +10,7 @@ public class DroppedItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 	public Item item;
 
 	private Interactable interactable;
+	private SpriteRenderer spriteRenderer;
 
 	void pickupItem()
 	{
@@ -21,10 +22,29 @@ public class DroppedItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 		}
 	}
 
+	void loadSprite()
+	{
+		Sprite sprite;
+		if (item.type == ItemType.Gear)
+		{
+			GearItem gearItem = item as GearItem;
+			sprite = ItemSpriteManager.instance.getItemSpriteFor(gearItem.data.baseName, gearItem.data.material);
+		}
+		else
+		{
+			throw new System.Exception("this code path shouldn't run unless we add new items!");
+		}
+		Debug.Log(spriteRenderer);
+		Debug.Log(sprite);
+		spriteRenderer.sprite = sprite;
+	}
+
 	void Awake()
 	{
 		interactable = GetComponent<Interactable>();
-		itemName.text = item.name;
+		spriteRenderer = GetComponent<SpriteRenderer>();
+		loadSprite();
+		//itemName.text = item.name;
 	}
 
 	void Start()
