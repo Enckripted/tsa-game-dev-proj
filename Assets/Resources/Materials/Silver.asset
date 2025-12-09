@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Silver
   m_EditorClassIdentifier: Assembly-CSharp::MaterialData
   baseName: Silver
-  color: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
+  color: {r: 0.7169812, g: 1, b: 0.7169812, a: 1}
   stats:
     <powerMult>k__BackingField: 1.25
     <castTimeMult>k__BackingField: 0.75
