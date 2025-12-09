@@ -9,6 +9,7 @@ public class MelterMachine : BaseMachine
 	public override bool stopsWhenFinished => false;
 
 	[field: SerializeField] public override GameObject uiPrefab { get; protected set; }
+	[SerializeField] private AudioClip soundEffect;
 
 	//returns -1 if nothing is found
 	private int findSlotWithGearItem()
@@ -59,6 +60,11 @@ public class MelterMachine : BaseMachine
 	protected override void extractItemInputs()
 	{
 		inputSlots.removeItemFromSlot(findSlotWithGearItem());
+	}
+
+	protected override void onRecipeEnd()
+	{
+		SoundManager.instance.playSound(soundEffect);
 	}
 
 	protected override void loadMachineIntoUi(GameObject uiInstance)

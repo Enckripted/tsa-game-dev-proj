@@ -17,7 +17,7 @@ public abstract class MachineUi : MonoBehaviour
 		uiInputSlots.inventory = _machine.inputSlots;
 		startMachineButton.machine = _machine;
 		recipeDurationText.machine = _machine;
-		Debug.Log("aaaa");
+
 		onLoad();
 	}
 }

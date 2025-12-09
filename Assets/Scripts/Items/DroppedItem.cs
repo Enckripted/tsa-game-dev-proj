@@ -34,8 +34,6 @@ public class DroppedItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 		{
 			throw new System.Exception("this code path shouldn't run unless we add new items!");
 		}
-		Debug.Log(spriteRenderer);
-		Debug.Log(sprite);
 		spriteRenderer.sprite = sprite;
 	}
 

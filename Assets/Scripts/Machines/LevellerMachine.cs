@@ -48,6 +48,8 @@ public class LevellerMachine : BaseMachine
 			inputSlots.getSlot(i).pop();
 	}
 
+	protected override void onRecipeEnd() { }
+
 	protected override void loadMachineIntoUi(GameObject uiInstance)
 	{
 		LevellerMachineUi ui = uiInstance.GetComponent<LevellerMachineUi>();

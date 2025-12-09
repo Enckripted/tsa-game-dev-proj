@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Iron
   m_EditorClassIdentifier: Assembly-CSharp::MaterialData
   baseName: Iron
-  color: {r: 0.4433962, g: 0.8352941, b: 0.4433962, a: 1}
+  color: {r: 0.4433962, g: 0.44313726, b: 0.4433962, a: 1}
   stats:
     <powerMult>k__BackingField: 1.25
     <castTimeMult>k__BackingField: 1.1

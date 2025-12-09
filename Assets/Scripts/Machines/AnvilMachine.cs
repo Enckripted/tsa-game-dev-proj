@@ -33,6 +33,8 @@ public class AnvilMachine : BaseMachine
 		inputSlots.getSlot(0).pop();
 	}
 
+	protected override void onRecipeEnd() { }
+
 	protected override void loadMachineIntoUi(GameObject uiInstance)
 	{
 		AnvilMachineUi ui = uiInstance.GetComponent<AnvilMachineUi>();

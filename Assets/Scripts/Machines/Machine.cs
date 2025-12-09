@@ -50,6 +50,7 @@ public abstract class BaseMachine : TileEntity, IMachine
     public abstract bool hasValidRecipe();
     protected abstract Recipe getRecipe();
     protected abstract void extractItemInputs();
+    protected abstract void onRecipeEnd();
     protected abstract void loadMachineIntoUi(GameObject uiInstance);
 
     private void updateRecipe()
@@ -85,6 +86,7 @@ public abstract class BaseMachine : TileEntity, IMachine
         foreach (Item output in currentRecipe.Value.itemOutputs)
             outputSlots.pushItem(output);
 
+        onRecipeEnd();
         updateRecipe();
         if (currentRecipe != null && !stopsWhenFinished) startRecipe();
     }

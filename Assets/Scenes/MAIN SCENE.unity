@@ -422,6 +422,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7827172614357595858, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
+      propertyPath: m_Name
+      value: TileEntityUi
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
