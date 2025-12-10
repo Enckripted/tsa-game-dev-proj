@@ -274,6 +274,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 47228494839056907, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: a5af2307a5b57ac4e835e3b28acd0cda, type: 2}
+    - target: {fileID: 47228494839056907, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6384241035045446204, guid: a5af2307a5b57ac4e835e3b28acd0cda, type: 2}
+    - target: {fileID: 47228494839056907, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 347884263418349487, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -374,6 +386,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game UI
       objectReference: {fileID: 0}
+    - target: {fileID: 5363098696783464953, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: a5af2307a5b57ac4e835e3b28acd0cda, type: 2}
+    - target: {fileID: 5363098696783464953, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6384241035045446204, guid: a5af2307a5b57ac4e835e3b28acd0cda, type: 2}
+    - target: {fileID: 5363098696783464953, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5953223539769857418, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -392,6 +416,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5953223539769857418, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955867532325505002, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: a5af2307a5b57ac4e835e3b28acd0cda, type: 2}
+    - target: {fileID: 5955867532325505002, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6384241035045446204, guid: a5af2307a5b57ac4e835e3b28acd0cda, type: 2}
+    - target: {fileID: 5955867532325505002, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6174950544576819728, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
@@ -730,7 +766,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.222271, g: 0.21026167, b: 0.3301887, a: 0}
+  m_BackGroundColor: {r: 0.036376752, g: 0.0127269495, b: 0.24528301, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

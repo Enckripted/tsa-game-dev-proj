@@ -34,7 +34,7 @@ public class ConveyerBelt : MonoBehaviour
     }
 
     // main loop
-    void Update() //as far i know, it's fine if this is update instead of fixedupdate since delta time is used
+    void Update() //as far i know, it's fine if this is update instead of fixedupdate since delta time is used -diego
     {
         MoveItems();
         HandleSpawning();
@@ -105,7 +105,7 @@ public class ConveyerBelt : MonoBehaviour
         GearItem chosenGear = RandomItemFactory.instance.createRandomItem(); // singleton call
 
         //parent under this object to tidy up the inspector
-        GameObject obj = Instantiate(droppedItemPrefab, startPos, Quaternion.identity, transform); // create obj
+        GameObject obj = Instantiate(droppedItemPrefab, startPos, Quaternion.identity, transform.parent); // create obj
 
         obj.SetActive(false); // prevent null refs in awake
 
@@ -119,9 +119,12 @@ public class ConveyerBelt : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
 
         // ensure its visible above belt obj
+        // removed because it looks a bit better if the item is "coming out of a chute" -diego
+        /*
         Vector3 fixPos = obj.transform.position;
         fixPos.z = transform.position.z - 0.1f;
         obj.transform.position = fixPos;
+        */
 
         // activate
         obj.SetActive(true);

@@ -24,7 +24,7 @@ public class TileEntityUiManager : MonoBehaviour
 		}
 		currentTileEntity = tileEntity;
 		currentUiInstance = uiInstance;
-		currentUiInstance.transform.SetParent(transform.parent, false);
+		currentUiInstance.transform.SetParent(transform, false);
 
 		currentUiTransform = currentUiInstance.GetComponent<RectTransform>();
 		currentUiTransform.anchoredPosition = Vector2.zero;

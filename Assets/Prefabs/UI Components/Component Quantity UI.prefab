@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2700765684299784737}
   - component: {fileID: 7139695958027376778}
   m_Layer: 5
-  m_Name: ComponentQuantity
+  m_Name: Component Quantity UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Greatwood: 200'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a5af2307a5b57ac4e835e3b28acd0cda, type: 2}
+  m_sharedMaterial: {fileID: 6384241035045446204, guid: a5af2307a5b57ac4e835e3b28acd0cda, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
