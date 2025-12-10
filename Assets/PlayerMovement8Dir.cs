@@ -7,7 +7,7 @@ public class PlayerMovement8Dir : MonoBehaviour
     [SerializeField] private float acceleration = 50f;
     [SerializeField] private float deceleration = 50f;
     [SerializeField] private float turnSpeed = 45f;
-    [SerializeField] private float collisionOffset = 0.05f;
+    [SerializeField] private float collisionOffset = 0.12f;
     [SerializeField] private ContactFilter2D movementFilter;
 
     private Rigidbody2D rb;
