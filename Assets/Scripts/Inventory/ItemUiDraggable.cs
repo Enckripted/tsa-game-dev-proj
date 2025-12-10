@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -20,11 +21,28 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
     private CanvasGroup canvasGroup;
     private Canvas canvas;
     private InputAction shiftAction;
+    private Image image;
 
     void updateSprite()
     {
-        if (inventorySlot.containsItem) nameText.text = inventorySlot.item.name;
-        else nameText.text = "";
+        if (inventorySlot.item == null)
+        {
+            image.enabled = false;
+            return;
+        }
+        Item item = inventorySlot.item;
+        Sprite sprite;
+        if (item.type == ItemType.Gear)
+        {
+            GearItem gearItem = item as GearItem;
+            sprite = ItemSpriteManager.instance.getItemSpriteFor(gearItem.data.baseName, gearItem.data.material);
+        }
+        else
+        {
+            throw new Exception("this code path shouldn't run unless we add new items!");
+        }
+        image.sprite = sprite;
+        image.enabled = true;
     }
 
     bool checkShiftClick()
@@ -41,6 +59,7 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
         slotObject = transform.parent.gameObject;
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+        image = GetComponent<Image>();
         canvas = GetComponentInParent<Canvas>();
         shiftAction = InputSystem.actions.FindAction("Sprint");
     }

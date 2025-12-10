@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 public class Gear : ItemData
 {
@@ -37,7 +38,11 @@ public class Gear : ItemData
 	public override string genName()
 	{
 		List<string> words = new List<string> { material.name, baseName };
-		if (reforge != null) words.Insert(0, reforge.name);
+		if (reforge != null)
+		{
+			words.Insert(0, "<color=#2e8b57>" + reforge.name); //yet another hack getting implemented just before the deadline
+			words.Add("</color>");
+		}
 		return string.Join(" ", words);
 	}
 

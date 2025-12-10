@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 165bcd975ee9b0e40a0c9a92c7cbcc0d, type: 3}
-  m_Name: Wood
+  m_Name: Crystal
   m_EditorClassIdentifier: Assembly-CSharp::MaterialData
-  baseName: Wood
-  color: {r: 0.4245283, g: 0.25551644, b: 0, a: 1}
+  baseName: Crystal
+  color: {r: 0.990566, g: 0.61209506, b: 0.98417056, a: 1}
   stats:
-    <powerMult>k__BackingField: 1
+    <powerMult>k__BackingField: 1.5
     <castTimeMult>k__BackingField: 1
-    <sellMult>k__BackingField: 0.8
+    <sellMult>k__BackingField: 0.4

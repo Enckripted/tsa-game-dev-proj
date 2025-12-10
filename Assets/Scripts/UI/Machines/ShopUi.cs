@@ -17,7 +17,7 @@ public class ShopUi : MonoBehaviour
 
 	void updateValueText()
 	{
-		valueText.text = "$" + shop.getSellValue();
+		valueText.text = $"${shop.getSellValue():0.00}";
 	}
 
 	void Start()

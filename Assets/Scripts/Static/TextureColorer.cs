@@ -34,26 +34,7 @@ public static class TextureColorer
 				}
 			}
 		}
-		/*
-		Color[] pixels = texture.GetPixels();
 
-		for (int i = 0; i < pixels.Length; i++)
-		{
-			Color pixel = pixels[i];
-			if (Vector3.Distance(
-				new Vector3(pixel.r, pixel.g, pixel.b),
-				new Vector3(maskColor.r, maskColor.g, maskColor.b)
-			) < tolerance)
-			{
-				pixels[i] = new Color(Mathf.LinearToGammaSpace(newColor.r), Mathf.LinearToGammaSpace(newColor.b), Mathf.LinearToGammaSpace(newColor.g), pixel.a);
-			}
-		}
-		*/
-
-
-		//Debug.Log(texture.format);
-		//Debug.Log(nTexture.format);
-		//nTexture.SetPixels(pixels);
 		nTexture.Apply();
 		return nTexture;
 	}

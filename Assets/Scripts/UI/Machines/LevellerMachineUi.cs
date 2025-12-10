@@ -9,7 +9,6 @@ public class LevellerMachineUi : MachineUi
 
 	protected override void onLoad()
 	{
-		Debug.Log(machine);
 		uiOutputSlots.inventory = machine.outputSlots;
 	}
 }

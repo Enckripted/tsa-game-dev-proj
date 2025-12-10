@@ -33,6 +33,7 @@ public interface IMachine
 }
 
 [RequireComponent(typeof(Interactable))]
+[RequireComponent(typeof(AudioSource))]
 public abstract class BaseMachine : TileEntity, IMachine
 {
     public abstract int numInputSlots { get; }
@@ -50,7 +51,11 @@ public abstract class BaseMachine : TileEntity, IMachine
     public abstract bool hasValidRecipe();
     protected abstract Recipe getRecipe();
     protected abstract void extractItemInputs();
+    protected abstract void onRecipeEnd();
+    protected abstract void machineUpdate();
     protected abstract void loadMachineIntoUi(GameObject uiInstance);
+
+    protected AudioSource audioSource;
 
     private void updateRecipe()
     {
@@ -85,6 +90,7 @@ public abstract class BaseMachine : TileEntity, IMachine
         foreach (Item output in currentRecipe.Value.itemOutputs)
             outputSlots.pushItem(output);
 
+        onRecipeEnd();
         updateRecipe();
         if (currentRecipe != null && !stopsWhenFinished) startRecipe();
     }
@@ -116,6 +122,7 @@ public abstract class BaseMachine : TileEntity, IMachine
     {
         inputSlots = new Inventory(numInputSlots, PlayerInventory.instance.inventory);
         outputSlots = new Inventory(numOutputSlots, PlayerInventory.instance.inventory);
+        audioSource = GetComponent<AudioSource>();
         inputSlots.changed.AddListener(updateRecipe);
     }
 
@@ -124,5 +131,6 @@ public abstract class BaseMachine : TileEntity, IMachine
         secondsRemaining -= Time.deltaTime;
         if (running && secondsRemaining <= 0) endRecipe();
         if (!running && runsAutomatically) attemptMachineStart();
+        machineUpdate();
     }
 }
