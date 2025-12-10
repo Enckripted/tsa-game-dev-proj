@@ -9,6 +9,7 @@ public class LevellerMachine : BaseMachine
 	public override bool stopsWhenFinished => true;
 
 	[field: SerializeField] public override GameObject uiPrefab { get; protected set; }
+	[field: SerializeField] private AudioClip finishSfx;
 
 	private bool allInputsIdentical()
 	{
@@ -48,7 +49,12 @@ public class LevellerMachine : BaseMachine
 			inputSlots.getSlot(i).pop();
 	}
 
-	protected override void onRecipeEnd() { }
+	protected override void onRecipeEnd()
+	{
+		audioSource.PlayOneShot(finishSfx);
+	}
+
+	protected override void machineUpdate() { }
 
 	protected override void loadMachineIntoUi(GameObject uiInstance)
 	{

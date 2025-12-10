@@ -67,6 +67,8 @@ public class MelterMachine : BaseMachine
 		SoundManager.instance.playSound(soundEffect);
 	}
 
+	protected override void machineUpdate() { }
+
 	protected override void loadMachineIntoUi(GameObject uiInstance)
 	{
 		MelterMachineUi ui = uiInstance.GetComponent<MelterMachineUi>();
