@@ -1,21 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestItemSpanwer : MonoBehaviour
+public class TestItemSpawner : MonoBehaviour
 {
-    public GameObject droppedItemPrefab;
+    public GameObject DroppedItemPrefab;
+
     private DroppedItem droppedItem;
 
     void Update()
     {
         if (droppedItem == null)
         {
-            GearItem chosenGear = RandomItemFactory.instance.createRandomItem();
+            WandItem chosenWand = RandomItemFactory.CreateRandomWand();
 
             //we need to set data before the awake method is called
-            GameObject obj = Instantiate(droppedItemPrefab, transform);
+            GameObject obj = Instantiate(DroppedItemPrefab, transform);
             droppedItem = obj.GetComponent<DroppedItem>();
-            droppedItem.item = chosenGear;
+            droppedItem.Item = chosenWand;
             obj.SetActive(true);
         }
     }

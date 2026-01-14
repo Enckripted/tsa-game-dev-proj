@@ -102,7 +102,7 @@ public class ConveyerBelt : MonoBehaviour
     private void SpawnItem()
     {
         // ts fried me
-        GearItem chosenGear = RandomItemFactory.instance.createRandomItem(); // singleton call
+        WandItem chosenWand = RandomItemFactory.CreateRandomWand(); // singleton call
 
         //parent under this object to tidy up the inspector
         GameObject obj = Instantiate(droppedItemPrefab, startPos, Quaternion.identity, transform.parent); // create obj
@@ -111,7 +111,7 @@ public class ConveyerBelt : MonoBehaviour
 
         // fill out checklist for dropped item
         DroppedItem droppedScript = obj.GetComponent<DroppedItem>();
-        droppedScript.item = chosenGear;
+        droppedScript.Item = chosenWand;
 
         // fill out rb checklist
         Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();

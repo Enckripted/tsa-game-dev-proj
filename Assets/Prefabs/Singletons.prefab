@@ -102,6 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8517384831317759441}
   - component: {fileID: 8648407449141458634}
+  - component: {fileID: 5373143288606709781}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -136,6 +137,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00dff40f91893f74c8c7557a274389ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+--- !u!82 &5373143288606709781
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2475849211198570899}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7328586772007405145
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,9 +243,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8073526814902943577}
-  - component: {fileID: 1865828027863388127}
+  - component: {fileID: 2940224385395653091}
   m_Layer: 0
-  m_Name: PlayerInventory
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,7 +266,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2309340168480305501}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1865828027863388127
+--- !u!114 &2940224385395653091
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,21 +275,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7328586772007405145}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e17fbde449d1f469a5edfe4f33ae32, type: 3}
+  m_Script: {fileID: 11500000, guid: ed3a0fedf023fc14bb621eadba6db1d6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Inventory
-  inventorySlots: 8
-  <inventory>k__BackingField:
-    <availableSlots>k__BackingField: 0
-    <slots>k__BackingField: []
-    changed:
-      m_PersistentCalls:
-        m_Calls: []
-  <money>k__BackingField: 0
-  <selectedSlot>k__BackingField: 0
-  references:
-    version: 2
-    RefIds: []
+  m_EditorClassIdentifier: Assembly-CSharp::Player
 --- !u!1 &7524182710692427518
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,10 +309,10 @@ Transform:
   m_Children:
   - {fileID: 8073526814902943577}
   - {fileID: 6994235448430105311}
-  - {fileID: 7046429837930016092}
   - {fileID: 5652809461388646610}
   - {fileID: 1257530433207318825}
   - {fileID: 8517384831317759441}
+  - {fileID: 15146022340525322}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7854539229373522776
@@ -273,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f15af358c5df0ff4dbf27e0c76e538a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScriptableObjectData
---- !u!1 &9168268874189108889
+--- !u!1 &9130936284375322540
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,22 +367,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7046429837930016092}
-  - component: {fileID: 4500601507914877776}
+  - component: {fileID: 15146022340525322}
+  - component: {fileID: 5030055507360490457}
   m_Layer: 0
-  m_Name: RandomItemFactory
+  m_Name: GameColors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7046429837930016092
+--- !u!4 &15146022340525322
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9168268874189108889}
+  m_GameObject: {fileID: 9130936284375322540}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -305,15 +391,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2309340168480305501}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4500601507914877776
+--- !u!114 &5030055507360490457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9168268874189108889}
+  m_GameObject: {fileID: 9130936284375322540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66cc00310dc7ace47b7ba4d40eb37783, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e1a495160f5dd5489445e8073c242f0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RandomItemFactory
+  m_EditorClassIdentifier: Assembly-CSharp::GameColors
+  GoldColor: {r: 0.735849, g: 0.6632694, b: 0, a: 1}
+  NameReforgeColor: {r: 0, g: 0.5566038, b: 0.13734935, a: 1}

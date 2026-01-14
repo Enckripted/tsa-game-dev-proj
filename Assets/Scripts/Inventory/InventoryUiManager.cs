@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class InventoryUiManager : MonoBehaviour
 {
-    public GameObject slotPrefab;
+    public GameObject SlotPrefab;
 
     void Start()
     {
-        for (int i = 0; i < PlayerInventory.instance.inventorySlots; i++)
+        for (int i = 0; i < Player.PlayerInventory.TotalSlots; i++)
         {
-            GameObject nUiSlot = Instantiate(slotPrefab, transform);
+            GameObject nUiSlot = Instantiate(SlotPrefab, transform);
             ItemUiDraggable draggable = nUiSlot.GetComponentInChildren<ItemUiDraggable>();
-            draggable.inventorySlot = PlayerInventory.instance.inventory.getSlot(i);
+            draggable.InventorySlot = Player.PlayerInventory.GetSlot(i);
         }
     }
 }

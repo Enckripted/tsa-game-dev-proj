@@ -3,37 +3,35 @@ using UnityEngine;
 
 public class ScriptableObjectData : MonoBehaviour
 {
-	public static ScriptableObjectData instance;
+    public static List<WandScriptableObject> BaseWands { get; private set; }
+    public static List<MaterialData> BaseMaterials { get; private set; }
+    public static List<WandReforgeScriptableObject> BaseWandReforges { get; private set; }
 
-	public List<GearData> baseGears { get; private set; }
-	public List<MaterialData> materials { get; private set; }
-	public List<ReforgeData> reforges { get; private set; }
+    //i don't know if there's a better way of doing this
+    private static T ChooseFrom<T>(List<T> l)
+    {
+        return l[Random.Range(0, l.Count)];
+    }
 
-	//i don't know if there's a better way of doing this
-	T chooseFrom<T>(List<T> l)
-	{
-		return l[Random.Range(0, l.Count)];
-	}
-	public GearData getRandomGearData()
-	{
-		return chooseFrom(baseGears);
-	}
+    public static WandScriptableObject RandomBaseWandData()
+    {
+        return ChooseFrom(BaseWands);
+    }
 
-	public Material getRandomMaterial()
-	{
-		return new Material(chooseFrom(materials));
-	}
+    public static MaterialData RandomMaterialData()
+    {
+        return ChooseFrom(BaseMaterials);
+    }
 
-	public Reforge getRandomReforge()
-	{
-		return new Reforge(chooseFrom(reforges));
-	}
+    public static WandReforgeScriptableObject RandomWandReforgeData()
+    {
+        return ChooseFrom(BaseWandReforges);
+    }
 
-	void Awake()
-	{
-		instance = this;
-		baseGears = new List<GearData>(Resources.LoadAll<GearData>("Base Gears"));
-		materials = new List<MaterialData>(Resources.LoadAll<MaterialData>("Materials"));
-		reforges = new List<ReforgeData>(Resources.LoadAll<ReforgeData>("Reforges"));
-	}
+    void Awake()
+    {
+        BaseWands = new List<WandScriptableObject>(Resources.LoadAll<WandScriptableObject>("Base Wands"));
+        BaseMaterials = new List<MaterialData>(Resources.LoadAll<MaterialData>("Materials"));
+        BaseWandReforges = new List<WandReforgeScriptableObject>(Resources.LoadAll<WandReforgeScriptableObject>("Wand Reforges"));
+    }
 }

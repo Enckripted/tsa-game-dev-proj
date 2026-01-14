@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165bcd975ee9b0e40a0c9a92c7cbcc0d, type: 3}
   m_Name: Iron
   m_EditorClassIdentifier: Assembly-CSharp::MaterialData
-  baseName: Iron
-  color: {r: 0.4433962, g: 0.44313726, b: 0.4433962, a: 1}
-  stats:
-    <powerMult>k__BackingField: 1.25
-    <castTimeMult>k__BackingField: 1.1
-    <sellMult>k__BackingField: 1
+  Name: Iron
+  Color: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
+  StatMultipliers:
+    Power: 1.2
+    TimeToCast: 0.95
+    SellValue: 5

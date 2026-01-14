@@ -9,10 +9,10 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
 {
     [SerializeField] private TextMeshProUGUI nameText;
 
-    public InventorySlot inventorySlot;
-    public bool canDropInSlot;
+    public InventorySlot InventorySlot;
+    public bool CanDropInSlot;
 
-    public bool beingDragged { get; private set; }
+    public bool BeingDragged { get; private set; }
 
     //there is no way to set z-index currently in unity, so we need to parent to a gameobject that is highest up in the hiearchy
     private GameObject dragPriorityObject;
@@ -23,19 +23,19 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
     private InputAction shiftAction;
     private Image image;
 
-    void updateSprite()
+    void UpdateSprite()
     {
-        if (inventorySlot.item == null)
+        if (InventorySlot.StoredItem == null)
         {
             image.enabled = false;
             return;
         }
-        Item item = inventorySlot.item;
+        IItem item = InventorySlot.StoredItem;
         Sprite sprite;
-        if (item.type == ItemType.Gear)
+        if (item.Type == ItemType.WandItem)
         {
-            GearItem gearItem = item as GearItem;
-            sprite = ItemSpriteManager.instance.getItemSpriteFor(gearItem.data.baseName, gearItem.data.material);
+            WandItem gearItem = item as WandItem;
+            sprite = ItemSpriteManager.instance.getItemSpriteFor(gearItem.BaseName, gearItem.WandMaterial);
         }
         else
         {
@@ -45,9 +45,9 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
         image.enabled = true;
     }
 
-    bool checkShiftClick()
+    bool CheckShiftClick()
     {
-        if (shiftAction.IsPressed()) inventorySlot.quickMove();
+        if (shiftAction.IsPressed()) InventorySlot.QuickMove();
         return shiftAction.IsPressed();
     }
 
@@ -66,20 +66,20 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
 
     void Start()
     {
-        inventorySlot.changed.AddListener(updateSprite);
-        updateSprite();
+        InventorySlot.Changed.AddListener(UpdateSprite);
+        UpdateSprite();
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        checkShiftClick();
+        CheckShiftClick();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (checkShiftClick()) return;
+        if (CheckShiftClick()) return;
 
-        beingDragged = true;
+        BeingDragged = true;
         canvasGroup.blocksRaycasts = false;
         transform.SetParent(dragPriorityObject.transform, false);
     }
@@ -92,7 +92,7 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
     //onenddrag always fires before ondrop, so this position set always works
     public void OnEndDrag(PointerEventData eventData)
     {
-        beingDragged = false;
+        BeingDragged = false;
         canvasGroup.blocksRaycasts = true;
         transform.SetParent(slotObject.transform, false);
         rectTransform.localPosition = new Vector2(0, 0);
@@ -100,17 +100,17 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag == null || !canDropInSlot) return;
+        if (eventData.pointerDrag == null || !CanDropInSlot) return;
 
-        InventorySlot otherSlot = eventData.pointerDrag.GetComponent<ItemUiDraggable>().inventorySlot;
-        Item currentItem = inventorySlot.pop();
-        inventorySlot.insert(otherSlot.pop());
-        otherSlot.insert(currentItem);
+        InventorySlot otherSlot = eventData.pointerDrag.GetComponent<ItemUiDraggable>().InventorySlot;
+        IItem currentItem = InventorySlot.Pop();
+        InventorySlot.Insert(otherSlot.Pop());
+        otherSlot.Insert(currentItem);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (inventorySlot.item != null) TooltipManager.instance.ShowTooltip(inventorySlot.item);
+        if (InventorySlot.StoredItem != null) TooltipManager.instance.ShowTooltip(InventorySlot.StoredItem.ItemTooltip);
     }
 
     public void OnPointerExit(PointerEventData eventData)

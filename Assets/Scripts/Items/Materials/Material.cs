@@ -4,38 +4,35 @@ using EasyTextEffects.Editor.MyBoxCopy.Extensions;
 using UnityEngine;
 
 [Serializable]
-public class Material : IEnhancement
+public class Material
 {
-	public readonly string name;
-	public readonly Color color;
-	[SerializeField] private readonly MaterialStats stats;
+    public readonly string Name;
+    public readonly Color Color;
+    private readonly WandStats StatMultiplier;
 
-	public string tooltipText
-	{
-		get
-		{
-			//TODO: consolidate this logic into some sort of TooltipBuilder
-			List<string> lines = new List<string>() { $"<b><color={color.ToHex()}>{name}</color></b>" };
-			if (stats.powerMult != 1.0) lines.Add($"x{stats.powerMult:0.00} to item power");
-			if (stats.castTimeMult != 1.0) lines.Add($"x{stats.castTimeMult:0.00} to casting speed");
-			if (stats.sellMult != 1.0) lines.Add($"x{stats.sellMult:0.00} to sell value");
-			return string.Join("\n", lines);
-		}
-	}
+    public Tooltip MaterialTooltip
+    {
+        get
+        {
+            Tooltip tooltip = new Tooltip();
+            tooltip.AddLine(Name, true, Color.ToHex());
+            if (StatMultiplier.Power != 1.0) tooltip.AddLine($"x{StatMultiplier.TimeToCast:0.00} to item power");
+            if (StatMultiplier.TimeToCast != 1.0) tooltip.AddLine($"x{StatMultiplier.TimeToCast:0.00} to casting speed");
+            if (StatMultiplier.SellValue != 1.0) tooltip.AddLine($"x{StatMultiplier.SellValue:0.00} to sell value");
+            return tooltip;
+        }
+    }
 
-	public Material(MaterialData materialData)
-	{
-		name = materialData.baseName;
-		color = materialData.color;
-		stats = materialData.stats.clone();
-	}
+    public Material(MaterialData materialData)
+    {
+        Name = materialData.Name;
+        Color = materialData.Color;
+        StatMultiplier = materialData.StatMultipliers;
+    }
 
-	public GearStats applyTo(GearStats curStats)
-	{
-		curStats.power *= stats.powerMult;
-		curStats.timeToCast *= stats.castTimeMult;
-		curStats.sellValue *= stats.sellMult;
-		return curStats;
-	}
+    public WandStats ApplyTo(WandStats curStats)
+    {
+        return curStats * StatMultiplier;
+    }
 }
 

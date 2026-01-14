@@ -5,45 +5,45 @@ using UnityEngine.Events;
 [Serializable]
 public class InventorySlot
 {
-    public readonly UnityEvent changed;
-    [field: SerializeField] public Item item { get; private set; }
-    [field: SerializeField] public bool containsItem { get; private set; }
-    [field: SerializeReference] public Inventory targetInventory { get; set; } //maybe don't serialize
+    public readonly UnityEvent Changed;
+    [field: SerializeField] public IItem StoredItem { get; private set; }
+    [field: SerializeField] public bool ContainsItem { get; private set; }
+    [field: SerializeReference] public Inventory TargetInventory { get; set; } //maybe don't serialize
     //TODO: add a custom setter here
 
     public InventorySlot(Inventory targetInventory)
     {
-        this.changed = new UnityEvent();
-        this.containsItem = false;
-        this.targetInventory = targetInventory;
+        Changed = new UnityEvent();
+        ContainsItem = false;
+        TargetInventory = targetInventory;
     }
 
-    public bool insert(Item nItem)
+    public bool Insert(IItem nItem)
     {
-        if (containsItem) return false;
+        if (ContainsItem) return false;
 
         if (nItem != null)
         {
-            item = nItem;
-            containsItem = true;
-            changed.Invoke();
+            StoredItem = nItem;
+            ContainsItem = true;
+            Changed.Invoke();
         }
         return true;
     }
 
-    public Item pop()
+    public IItem Pop()
     {
-        Item temp = item;
-        item = null;
-        containsItem = false;
-        changed.Invoke();
+        IItem temp = StoredItem;
+        StoredItem = null;
+        ContainsItem = false;
+        Changed.Invoke();
         return temp;
     }
 
-    public bool quickMove()
+    public bool QuickMove()
     {
-        if (targetInventory == null || !targetInventory.pushItem(item)) return false;
-        pop();
+        if (TargetInventory == null || !TargetInventory.PushItem(StoredItem)) return false;
+        Pop();
         return true;
     }
 }

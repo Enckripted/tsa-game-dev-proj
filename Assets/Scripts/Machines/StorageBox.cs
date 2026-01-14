@@ -13,12 +13,12 @@ public class StorageBox : TileEntity
 		StorageBoxUi ui = uiInstance.GetComponent<StorageBoxUi>();
 		ui.storageBox = this;
 
-		PlayerInventory.instance.inventory.targetInventory = storageSlots;
+		Player.PlayerInventory.TargetInventory = storageSlots;
 	}
 
 	public override void unloadUi(GameObject uiInstance)
 	{
-		PlayerInventory.instance.inventory.targetInventory = null;
+		Player.PlayerInventory.TargetInventory = null;
 	}
 
 	protected override void onStart()

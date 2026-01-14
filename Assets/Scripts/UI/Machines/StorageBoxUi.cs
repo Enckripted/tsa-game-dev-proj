@@ -3,12 +3,12 @@ using UnityEngine;
 //TODO: TURN THIS INTO A TILEENTITY INSTEAD OF A MACHINE
 public class StorageBoxUi : MonoBehaviour
 {
-	[SerializeField] private InventoryUi uiStorageSlots;
+    [SerializeField] private InventoryUi uiStorageSlots;
 
-	public StorageBox storageBox { get; set; }
+    public StorageBox storageBox { get; set; }
 
-	void Start()
-	{
-		uiStorageSlots.inventory = storageBox.storageSlots;
-	}
+    void Start()
+    {
+        uiStorageSlots.inventory = storageBox.storageSlots;
+    }
 }

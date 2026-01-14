@@ -8,80 +8,82 @@ using UnityEngine.Events;
 [Serializable]
 public class Inventory : IEnumerable
 {
-	[field: SerializeField] public int totalSlots { get; }
-	[field: SerializeField] public int availableSlots { get; private set; }
-	public Inventory targetInventory { get => _targetInventory; set { _targetInventory = value; updateTargetInventory(); } }
-	[field: SerializeField] public List<InventorySlot> slots { get; private set; }
+    [field: SerializeField] public int TotalSlots { get; }
+    [field: SerializeField] public int AvailableSlots { get; private set; }
+    public Inventory TargetInventory { get => _targetInventory; set { _targetInventory = value; UpdateTargetInventory(); } }
+    [field: SerializeField] public List<InventorySlot> Slots { get; private set; }
 
-	private Inventory _targetInventory;
+    private Inventory _targetInventory;
 
-	public UnityEvent changed;
-	private List<bool> prevSlotFillState;
+    public UnityEvent Changed;
+    private List<bool> prevSlotFillState;
 
-	private void modPrevFillState(int slotIndex)
-	{
-		if (slots[slotIndex].containsItem == prevSlotFillState[slotIndex]) return;
-		if (slots[slotIndex].containsItem) availableSlots -= 1;
-		else availableSlots += 1;
-		prevSlotFillState[slotIndex] = slots[slotIndex].containsItem;
-	}
+    //utility function for keeping track of how many available slots are left in the inventory
+    //which is used in stuff like machines
+    private void ModPrevFillState(int slotIndex)
+    {
+        if (Slots[slotIndex].ContainsItem == prevSlotFillState[slotIndex]) return;
+        if (Slots[slotIndex].ContainsItem) AvailableSlots -= 1;
+        else AvailableSlots += 1;
+        prevSlotFillState[slotIndex] = Slots[slotIndex].ContainsItem;
+    }
 
-	public Inventory(int nTotalSlots, Inventory targetInventory = null)
-	{
-		this.totalSlots = nTotalSlots;
-		this.availableSlots = nTotalSlots;
-		this.changed = new UnityEvent();
+    public Inventory(int totalSlots, Inventory targetInventory = null)
+    {
+        TotalSlots = totalSlots;
+        AvailableSlots = totalSlots;
+        Changed = new UnityEvent();
 
-		this.slots = Enumerable.Range(0, totalSlots).Select(_ => new InventorySlot(_targetInventory)).ToList();
-		this.prevSlotFillState = Enumerable.Repeat(false, totalSlots).ToList();
+        Slots = Enumerable.Range(0, totalSlots).Select(_ => new InventorySlot(_targetInventory)).ToList();
+        this.prevSlotFillState = Enumerable.Repeat(false, totalSlots).ToList();
 
-		this.targetInventory = targetInventory;
+        TargetInventory = targetInventory;
 
-		for (int i = 0; i < totalSlots; i++)
-		{
-			int index = i; //c# by default passes the int as a reference, so we need to copy it so it doesn't change
-			this.slots[i].changed.AddListener(() => { modPrevFillState(index); changed.Invoke(); });
-		}
-	}
+        for (int i = 0; i < totalSlots; i++)
+        {
+            int index = i; //c# by default passes the int as a reference, so we need to copy it so it doesn't change
+            Slots[i].Changed.AddListener(() => { ModPrevFillState(index); Changed.Invoke(); });
+        }
+    }
 
-	public IEnumerator GetEnumerator()
-	{
-		return slots.GetEnumerator();
-	}
+    public IEnumerator GetEnumerator()
+    {
+        return Slots.GetEnumerator();
+    }
 
-	public bool pushItem(Item item)
-	{
-		for (int i = 0; i < totalSlots; i++)
-			if (slots[i].insert(item)) return true;
-		return false;
-	}
+    public bool PushItem(IItem item)
+    {
+        for (int i = 0; i < TotalSlots; i++)
+            if (Slots[i].Insert(item)) return true;
+        return false;
+    }
 
-	public void removeItemFromSlot(int slotIndex)
-	{
-		slots[slotIndex].pop();
-	}
+    public void RemoveItemFromSlot(int slotIndex)
+    {
+        Slots[slotIndex].Pop();
+    }
 
-	public Item itemInSlot(int slotIndex)
-	{
-		if (!slotContainsItem(slotIndex)) throw new Exception("Attempted to see nonexistent item in slot " + slotIndex);
-		return slots[slotIndex].item;
-	}
+    public IItem ItemInSlot(int slotIndex)
+    {
+        if (!SlotContainsItem(slotIndex)) throw new Exception("Attempted to see nonexistent item in slot " + slotIndex);
+        return Slots[slotIndex].StoredItem;
+    }
 
-	public bool slotContainsItem(int slotIndex)
-	{
-		return slots[slotIndex].containsItem;
-	}
+    public bool SlotContainsItem(int slotIndex)
+    {
+        return Slots[slotIndex].ContainsItem;
+    }
 
-	public InventorySlot getSlot(int slotIndex)
-	{
-		return slots[slotIndex];
-	}
+    public InventorySlot GetSlot(int slotIndex)
+    {
+        return Slots[slotIndex];
+    }
 
-	private void updateTargetInventory()
-	{
-		foreach (InventorySlot slot in slots)
-		{
-			slot.targetInventory = _targetInventory;
-		}
-	}
+    private void UpdateTargetInventory()
+    {
+        foreach (InventorySlot slot in Slots)
+        {
+            slot.TargetInventory = _targetInventory;
+        }
+    }
 }

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165bcd975ee9b0e40a0c9a92c7cbcc0d, type: 3}
   m_Name: Silver
   m_EditorClassIdentifier: Assembly-CSharp::MaterialData
-  baseName: Silver
-  color: {r: 0.7169812, g: 0.7176471, b: 0.7169812, a: 1}
-  stats:
-    <powerMult>k__BackingField: 1.25
-    <castTimeMult>k__BackingField: 0.75
-    <sellMult>k__BackingField: 1
+  Name: Silver
+  Color: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
+  StatMultipliers:
+    Power: 0.8
+    TimeToCast: 0.8
+    SellValue: 1

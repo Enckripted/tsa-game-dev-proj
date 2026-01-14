@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165bcd975ee9b0e40a0c9a92c7cbcc0d, type: 3}
   m_Name: Diamond
   m_EditorClassIdentifier: Assembly-CSharp::MaterialData
-  baseName: Diamond
-  color: {r: 0, g: 0.7735849, b: 0.6822353, a: 1}
-  stats:
-    <powerMult>k__BackingField: 0.5
-    <castTimeMult>k__BackingField: 1.2
-    <sellMult>k__BackingField: 1.8
+  Name: Diamond
+  Color: {r: 0, g: 0.7907807, b: 0.8301887, a: 1}
+  StatMultipliers:
+    Power: 0.5
+    TimeToCast: 1.25
+    SellValue: 1.5
