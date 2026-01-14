@@ -274,8 +274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8812ea77b36e50b418f68f8eb7b4cc6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TooltipManager
-  nameText: {fileID: 5955867532325505002}
-  tooltipText: {fileID: 47228494839056907}
+  NameText: {fileID: 5955867532325505002}
+  TooltipText: {fileID: 47228494839056907}
 --- !u!1 &3520308352138113669
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,7 +751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291f923935d2f464e868af8a974504c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryUiManager
-  slotPrefab: {fileID: 5223675979348635170, guid: f4ade00e2f3af6749b6d88fa87d52168, type: 3}
+  SlotPrefab: {fileID: 0}
 --- !u!1 &6642384093912636039
 GameObject:
   m_ObjectHideFlags: 0

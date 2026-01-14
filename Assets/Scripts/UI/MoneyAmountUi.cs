@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class MoneyAmountUi : MonoBehaviour
 {
-	private TextMeshProUGUI label;
+    private TextMeshProUGUI label;
 
-	void Awake()
-	{
-		label = GetComponent<TextMeshProUGUI>();
-	}
+    void Awake()
+    {
+        label = GetComponent<TextMeshProUGUI>();
+    }
 
-	void Update()
-	{
-		label.text = $"${PlayerInventory.instance.money:0.00}";
-	}
+    void Update()
+    {
+        label.text = $"${Player.Money:0.00}";
+    }
 }

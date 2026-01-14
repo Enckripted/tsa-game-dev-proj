@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165bcd975ee9b0e40a0c9a92c7cbcc0d, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: Assembly-CSharp::MaterialData
-  baseName: Gold
-  color: {r: 0.7169812, g: 0.6780416, b: 0, a: 1}
-  stats:
-    <powerMult>k__BackingField: 1
-    <castTimeMult>k__BackingField: 1
-    <sellMult>k__BackingField: 1.25
+  Name: Gold
+  Color: {r: 0.5754717, g: 0.5562377, b: 0, a: 1}
+  StatMultipliers:
+    Power: 0.9
+    TimeToCast: 1.05
+    SellValue: 1.1

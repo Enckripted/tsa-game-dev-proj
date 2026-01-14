@@ -7,8 +7,8 @@ public struct Recipe
     public double duration { get; }
     public IEnumerable<ComponentQuantity> componentInputs { get; }
     public IEnumerable<ComponentQuantity> componentOutputs { get; }
-    public IEnumerable<Item> itemOutputs { get; }
-    public Recipe(double nDuration, IEnumerable<ComponentQuantity> nCompInputs, IEnumerable<ComponentQuantity> nCompOutputs, IEnumerable<Item> nItemOutputs) //ienumerable is a read only list, which is what we want in this case
+    public IEnumerable<IItem> itemOutputs { get; }
+    public Recipe(double nDuration, IEnumerable<ComponentQuantity> nCompInputs, IEnumerable<ComponentQuantity> nCompOutputs, IEnumerable<IItem> nItemOutputs) //ienumerable is a read only list, which is what we want in this case
     {
         duration = nDuration;
         componentInputs = nCompInputs;
@@ -67,7 +67,7 @@ public abstract class BaseMachine : TileEntity, IMachine
     private bool canRunRecipe()
     {
         return currentRecipe.HasValue &&
-        outputSlots.availableSlots >= currentRecipe.Value.itemOutputs.Count<Item>() &&
+        outputSlots.AvailableSlots >= currentRecipe.Value.itemOutputs.Count<IItem>() &&
         ComponentInventory.instance.hasQuantitiesAvailable(currentRecipe.Value.componentInputs);
     }
 
@@ -87,8 +87,8 @@ public abstract class BaseMachine : TileEntity, IMachine
 
         foreach (ComponentQuantity compQuant in currentRecipe.Value.componentOutputs)
             ComponentInventory.instance.addComponentQuantity(compQuant);
-        foreach (Item output in currentRecipe.Value.itemOutputs)
-            outputSlots.pushItem(output);
+        foreach (IItem output in currentRecipe.Value.itemOutputs)
+            outputSlots.PushItem(output);
 
         onRecipeEnd();
         updateRecipe();
@@ -110,20 +110,20 @@ public abstract class BaseMachine : TileEntity, IMachine
     public override void loadUi(GameObject uiInstance)
     {
         loadMachineIntoUi(uiInstance);
-        PlayerInventory.instance.inventory.targetInventory = inputSlots;
+        Player.PlayerInventory.TargetInventory = inputSlots;
     }
 
     public override void unloadUi(GameObject uiInstance)
     {
-        PlayerInventory.instance.inventory.targetInventory = null;
+        Player.PlayerInventory.TargetInventory = null;
     }
 
     protected override void onStart()
     {
-        inputSlots = new Inventory(numInputSlots, PlayerInventory.instance.inventory);
-        outputSlots = new Inventory(numOutputSlots, PlayerInventory.instance.inventory);
+        inputSlots = new Inventory(numInputSlots, Player.PlayerInventory);
+        outputSlots = new Inventory(numOutputSlots, Player.PlayerInventory);
         audioSource = GetComponent<AudioSource>();
-        inputSlots.changed.AddListener(updateRecipe);
+        inputSlots.Changed.AddListener(updateRecipe);
     }
 
     void Update()

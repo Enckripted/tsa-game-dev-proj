@@ -6,8 +6,8 @@ public class TooltipManager : MonoBehaviour
 {
     public static TooltipManager instance { get; private set; }
 
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI tooltipText;
+    public TextMeshProUGUI NameText;
+    public TextMeshProUGUI TooltipText;
 
     private CanvasGroup canvasGroup;
     private new RectTransform transform;
@@ -35,10 +35,10 @@ public class TooltipManager : MonoBehaviour
         transform.pivot = pivot;
     }
 
-    public void ShowTooltip(Item referenceItem)
+    public void ShowTooltip(Tooltip tooltip)
     {
-        nameText.text = referenceItem.name;
-        tooltipText.text = referenceItem.tooltip;
+        NameText.text = tooltip.NameText;
+        TooltipText.text = tooltip.Text;
         canvasGroup.alpha = 1;
     }
 
