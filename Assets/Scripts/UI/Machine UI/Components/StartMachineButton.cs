@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class StartMachineButton : MonoBehaviour
 {
-    public IMachine machine { get; set; }
+    public IMachine Machine { get; set; }
 
     private TextMeshProUGUI buttonLabel;
 
@@ -13,14 +13,14 @@ public class StartMachineButton : MonoBehaviour
         buttonLabel = GetComponentInChildren<TextMeshProUGUI>();
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            if (machine.running) machine.attemptMachineStop();
-            else machine.attemptMachineStart();
+            if (Machine.Running) Machine.AttemptMachineStop();
+            else Machine.AttemptMachineStart();
         });
     }
 
     void Update()
     {
-        if (machine.running) buttonLabel.text = "Stop";
+        if (Machine.Running) buttonLabel.text = "Stop";
         else buttonLabel.text = "Start";
     }
 }

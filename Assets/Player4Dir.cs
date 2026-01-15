@@ -13,7 +13,7 @@ public class Player4Dir : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 currentVelocity;
     private InputSystem_Actions controls;
-    private List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    private readonly List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
     private void Awake()
     {

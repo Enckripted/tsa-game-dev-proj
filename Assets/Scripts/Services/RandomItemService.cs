@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class RandomItemFactory
+public static class RandomItemService
 {
     public static WandItem CreateRandomWand()
     {

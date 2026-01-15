@@ -10,8 +10,12 @@ public class Player : MonoBehaviour
     {
         Money = 0;
         PlayerInventory = new Inventory(8);
-        //TODO: Rewrite into proper component inventory
-        //PlayerComponents = new ComponentInventory();
+
+        PlayerComponents = new ComponentInventory();
+        foreach (MaterialData material in ScriptableObjectData.BaseMaterials)
+        {
+            PlayerComponents.AddComponentQuantity(new ComponentQuantity(material.name, 0));
+        }
     }
 
     public static bool HasMoney(double amount) => Money >= amount;

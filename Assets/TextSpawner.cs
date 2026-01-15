@@ -10,24 +10,24 @@ using EasyTextEffects.Effects;
 using UnityEngine.UI;
 
 
-//TODO make a hybrid class that contains both the effect type and the attribute that it corresponds to 
-public class text_spawner : MonoBehaviour
+//TODO make a hybrid class that contains both the effect type and the attribute that it corresponds to
+public class TextSpanwer : MonoBehaviour
 {
     public float Delay = 0.5f;
-    public float size = 200f;
+    public float Size = 200f;
     //public List<GlobalTextEffectEntry> effectsList; //create corresponding affects for each enchantment
     //public enchantmentsList = //will update with proper datatype once it gets typed
-    public GameObject text; //this is the text prefab
-    public VerticalLayoutGroup verticalLayoutGroup; // prefab
+    public GameObject Text; //this is the text prefab
+    public VerticalLayoutGroup VertLayoutGroup; // prefab
     private List<GameObject> textList;
-    public TextEffectInstance showcase_effect;
-    public float offset_amount = 25;
-    public Canvas canvas;
-    public Vector3 location;
+    public TextEffectInstance ShowcaseEffect;
+    public float OffsetAmount = 25;
+    public Canvas UiCanvas;
+    public Vector3 Location;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //create function calls 
+        //create function calls
         List<string> list = new List<string>()
         {
             "strength 1",
@@ -44,7 +44,7 @@ public class text_spawner : MonoBehaviour
             currentTextEffect.Refresh();
         }
 
-        foreach (GameObject textIter in textList) //iterates through and plays each affect after a delay 
+        foreach (GameObject textIter in textList) //iterates through and plays each affect after a delay
         {
             TextEffect currentTextEffect = textIter.GetComponent<TextEffect>();
 
@@ -59,7 +59,7 @@ public class text_spawner : MonoBehaviour
     {
 
         //behavior if list of attributes goes past the scene
-        //keep space constant but make text smaller or something idk 
+        //keep space constant but make text smaller or something idk
         //activate Playeffects when a button is pressed
 
     }
@@ -70,7 +70,7 @@ public class text_spawner : MonoBehaviour
     GameObject MakeTextBox(GlobalTextEffectEntry effectType, string attribute, Vector3 position)
     {
         //create object and grab the global effects list
-        GameObject currentText = Instantiate(text); //only makes one copy
+        GameObject currentText = Instantiate(Text); //only makes one copy
         //update the current text box position in world space
         currentText.transform.position = position;
 
@@ -81,14 +81,14 @@ public class text_spawner : MonoBehaviour
         //populate current global effects list for the one object
         foreach (GlobalTextEffectEntry effect in effects) //!!
         {
-            //force effect to be added as manual if not 
+            //force effect to be added as manual if not
             if (effect.triggerWhen != TextEffectEntry.TriggerWhen.Manual)
             {
                 effect.triggerWhen = TextEffectEntry.TriggerWhen.Manual;
             }
         }
 
-        //change basic text to attribute text 
+        //change basic text to attribute text
         TextMeshProUGUI currentTextMeshPro = currentText.GetComponent<TextMeshProUGUI>();
         currentTextMeshPro.text = attribute;
 
@@ -100,20 +100,20 @@ public class text_spawner : MonoBehaviour
     /// <returns>A list of game objects that are tmps </returns>
     VerticalLayoutGroup MakeTextBoxList(List<string> refer2_classEffectltr)
     {
-        VerticalLayoutGroup list = Instantiate(verticalLayoutGroup);
-        list.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(size, 0); //change size to global variable size
+        VerticalLayoutGroup list = Instantiate(VertLayoutGroup);
+        list.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(Size, 0); //change size to global variable size
 
         //intialize default text effect may replace later
         GlobalTextEffectEntry default_effect = new GlobalTextEffectEntry();
         default_effect.triggerWhen = TextEffectEntry.TriggerWhen.Manual;
-        default_effect.effect = showcase_effect;
-        //Gameobject containing the text 
+        default_effect.effect = ShowcaseEffect;
+        //Gameobject containing the text
 
 
         //interates through the attributes and creates a text box for each one
         foreach (string attribute in refer2_classEffectltr)
         {
-            GameObject temp = MakeTextBox(default_effect, attribute, location); //!!
+            GameObject temp = MakeTextBox(default_effect, attribute, Location); //!!
             temp.transform.SetParent(list.transform);
 
         }
@@ -145,7 +145,7 @@ public class text_spawner : MonoBehaviour
 
     //IEnumerator PlayEffects(List<GameObject> textBoxList)
     //{
-    //    foreach (GameObject textIter in textBoxList) //iterates through and plays each affect after a delay 
+    //    foreach (GameObject textIter in textBoxList) //iterates through and plays each affect after a delay
     //    {
     //        TextEffect currentTextEffect = textIter.GetComponent<TextEffect>();
 

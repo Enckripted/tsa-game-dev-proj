@@ -35,7 +35,7 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
         if (item.Type == ItemType.WandItem)
         {
             WandItem gearItem = item as WandItem;
-            sprite = ItemSpriteManager.instance.getItemSpriteFor(gearItem.BaseName, gearItem.WandMaterial);
+            sprite = ItemSpriteManager.GetItemSpriteFor(gearItem.BaseName, gearItem.WandMaterial);
         }
         else
         {
@@ -110,11 +110,11 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (InventorySlot.StoredItem != null) TooltipManager.instance.ShowTooltip(InventorySlot.StoredItem.ItemTooltip);
+        if (InventorySlot.StoredItem != null) TooltipManager.Instance.ShowTooltip(InventorySlot.StoredItem.ItemTooltip);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        TooltipManager.instance.HideTooltip();
+        TooltipManager.Instance.HideTooltip();
     }
 }

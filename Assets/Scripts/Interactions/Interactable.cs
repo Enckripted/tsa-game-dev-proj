@@ -3,16 +3,16 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
-    [field: SerializeField] public string interactText { get; private set; } = "[E] Interact";
-    public UnityEvent interactEvent { get; private set; }
+    [field: SerializeField] public string InteractText { get; private set; } = "[E] Interact";
+    public UnityEvent InteractEvent { get; private set; }
 
     public void Interact()
     {
-        interactEvent.Invoke();
+        InteractEvent.Invoke();
     }
 
     void Awake()
     {
-        interactEvent = new UnityEvent();
+        InteractEvent = new UnityEvent();
     }
 }

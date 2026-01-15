@@ -14,7 +14,7 @@ public class ConveyerBelt : MonoBehaviour
     [SerializeField] private Vector2 spawnOffset = Vector2.zero;
     [SerializeField] private float minItemSpacing = 1.5f;
 
-    private List<BeltItemData> activeItems = new List<BeltItemData>();
+    private readonly List<BeltItemData> activeItems = new List<BeltItemData>();
     private float timeSinceLastSpawn = 0f;
     private Vector2 startPos;
     private Vector2 normalizedDir;
@@ -22,9 +22,9 @@ public class ConveyerBelt : MonoBehaviour
     // POCO class to hold data for each item on list
     private class BeltItemData
     {
-        public GameObject gameObject;
-        public Transform transform;
-        public float distanceTraveled;
+        public GameObject BeltGameObject;
+        public Transform BeltTransform;
+        public float DistanceTraveled;
     }
 
     void Start()
@@ -47,7 +47,7 @@ public class ConveyerBelt : MonoBehaviour
         {
             BeltItemData data = activeItems[i];
 
-            if (data.gameObject == null)
+            if (data.BeltGameObject == null)
             {
                 activeItems.RemoveAt(i);
                 continue;
@@ -55,13 +55,13 @@ public class ConveyerBelt : MonoBehaviour
 
             // calculate movement
             float step = beltSpeed * Time.deltaTime; // calc step size
-            data.transform.Translate(normalizedDir * step, Space.World); // actually move it
-            data.distanceTraveled += step; // add step to POCO distance
+            data.BeltTransform.Translate(normalizedDir * step, Space.World); // actually move it
+            data.DistanceTraveled += step; // add step to POCO distance
 
             // ensure item within belt length
-            if (data.distanceTraveled >= beltLength)
+            if (data.DistanceTraveled >= beltLength)
             {
-                Destroy(data.gameObject);
+                Destroy(data.BeltGameObject);
                 activeItems.RemoveAt(i);
             }
         }
@@ -92,9 +92,9 @@ public class ConveyerBelt : MonoBehaviour
 
         BeltItemData lastItem = activeItems[activeItems.Count - 1];
 
-        if (lastItem.gameObject == null) return true;
+        if (lastItem.BeltGameObject == null) return true;
 
-        float dist = Vector2.Distance(startPos, lastItem.transform.position);
+        float dist = Vector2.Distance(startPos, lastItem.BeltTransform.position);
 
         return dist >= minItemSpacing;
     }
@@ -102,7 +102,7 @@ public class ConveyerBelt : MonoBehaviour
     private void SpawnItem()
     {
         // ts fried me
-        WandItem chosenWand = RandomItemFactory.CreateRandomWand(); // singleton call
+        WandItem chosenWand = RandomItemService.CreateRandomWand(); // singleton call
 
         //parent under this object to tidy up the inspector
         GameObject obj = Instantiate(droppedItemPrefab, startPos, Quaternion.identity, transform.parent); // create obj
@@ -132,9 +132,9 @@ public class ConveyerBelt : MonoBehaviour
         // add list
         activeItems.Add(new BeltItemData
         {
-            gameObject = obj,
-            transform = obj.transform,
-            distanceTraveled = 0f
+            BeltGameObject = obj,
+            BeltTransform = obj.transform,
+            DistanceTraveled = 0f
         });
     }
 }

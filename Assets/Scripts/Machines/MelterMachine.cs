@@ -3,37 +3,37 @@ using UnityEngine;
 
 public class MelterMachine : BaseMachine
 {
-    public override int numInputSlots => 12;
-    public override int numOutputSlots => 0;
-    public override bool runsAutomatically => false;
-    public override bool stopsWhenFinished => false;
+    public override int NumInputSlots => 12;
+    public override int NumOutputSlots => 0;
+    public override bool RunsAutomatically => false;
+    public override bool StopsWhenFinished => false;
 
-    [field: SerializeField] public override GameObject uiPrefab { get; protected set; }
+    [field: SerializeField] public override GameObject UiPrefab { get; protected set; }
     [SerializeField] private AudioClip soundEffect;
 
     //returns -1 if nothing is found
-    private int findSlotWithWandItem()
+    private int FindSlotWithWandItem()
     {
-        for (int i = 0; i < inputSlots.TotalSlots; i++)
-            if (inputSlots.SlotContainsItem(i) && inputSlots.ItemInSlot(i).Type == ItemType.WandItem)
+        for (int i = 0; i < InputSlots.TotalSlots; i++)
+            if (InputSlots.SlotContainsItem(i) && InputSlots.ItemInSlot(i).Type == ItemType.WandItem)
                 return i;
         return -1;
     }
 
-    public override bool hasValidRecipe()
+    public override bool HasValidRecipe()
     {
-        return findSlotWithWandItem() != -1;
+        return FindSlotWithWandItem() != -1;
     }
 
-    public IEnumerable<ComponentQuantity> getInputMaterialValue()
+    public IEnumerable<ComponentQuantity> GetInputMaterialValue()
     {
         Dictionary<string, uint> quant = new Dictionary<string, uint>();
-        for (int i = 0; i < inputSlots.TotalSlots; i++)
+        for (int i = 0; i < InputSlots.TotalSlots; i++)
         {
-            if (inputSlots.SlotContainsItem(i) && inputSlots.ItemInSlot(i).Type == ItemType.WandItem)
+            if (InputSlots.SlotContainsItem(i) && InputSlots.ItemInSlot(i).Type == ItemType.WandItem)
             {
 
-                WandItem currentGear = inputSlots.ItemInSlot(i) as WandItem;
+                WandItem currentGear = InputSlots.ItemInSlot(i) as WandItem;
                 if (!quant.ContainsKey(currentGear.WandMaterial.Name)) quant.Add(currentGear.WandMaterial.Name, 0);
                 quant[currentGear.WandMaterial.Name] += 5;
             }
@@ -47,9 +47,9 @@ public class MelterMachine : BaseMachine
         return components;
     }
 
-    protected override Recipe getRecipe()
+    protected override Recipe GetRecipe()
     {
-        WandItem inputItem = inputSlots.ItemInSlot(findSlotWithWandItem()) as WandItem;
+        WandItem inputItem = InputSlots.ItemInSlot(FindSlotWithWandItem()) as WandItem;
 
         IEnumerable<ComponentQuantity> inputComp = new List<ComponentQuantity> { };
         IEnumerable<ComponentQuantity> outputComp = new List<ComponentQuantity> { new ComponentQuantity(inputItem.WandMaterial.Name, 5) };
@@ -57,21 +57,22 @@ public class MelterMachine : BaseMachine
         return new Recipe(2.0, inputComp, outputComp, itemOutput);
     }
 
-    protected override void extractItemInputs()
+    protected override void ExtractItemInputs()
     {
-        inputSlots.RemoveItemFromSlot(findSlotWithWandItem());
+        InputSlots.RemoveItemFromSlot(FindSlotWithWandItem());
     }
 
-    protected override void onRecipeEnd()
+    protected override void OnRecipeEnd()
     {
-        SoundManager.instance.playSound(soundEffect);
+        //TODO: replace with proper sound playing
+        //SoundManager.instance.playSound(soundEffect);
     }
 
-    protected override void machineUpdate() { }
+    protected override void MachineUpdate() { }
 
-    protected override void loadMachineIntoUi(GameObject uiInstance)
+    protected override void LoadMachineIntoUi(GameObject uiInstance)
     {
         MelterMachineUi ui = uiInstance.GetComponent<MelterMachineUi>();
-        ui.machine = this;
+        ui.Machine = this;
     }
 }

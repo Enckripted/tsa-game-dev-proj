@@ -5,21 +5,14 @@ using UnityEngine;
 public class ItemSpriteManager : MonoBehaviour
 {
     [SerializeField] private Color maskColor;
-    private Dictionary<string, Dictionary<string, Sprite>> sprites;
+    private static Dictionary<string, Dictionary<string, Sprite>> sprites;
 
-    public static ItemSpriteManager instance;
-
-    public Sprite getItemSpriteFor(string baseName, Material material)
+    public static Sprite GetItemSpriteFor(string baseName, Material material)
     {
         if (!sprites.ContainsKey(baseName)) throw new Exception("Tried to access non-existent sprite item type " + baseName);
         if (!sprites[baseName].ContainsKey(material.Name)) throw new Exception("Tried to access non-existent material sprite "
             + material.Name + " for sprite item type " + baseName);
         return sprites[baseName][material.Name];
-    }
-
-    void Awake()
-    {
-        instance = this;
     }
 
     void Start()
@@ -33,7 +26,7 @@ public class ItemSpriteManager : MonoBehaviour
 
             foreach (MaterialData materialData in ScriptableObjectData.BaseMaterials)
             {
-                Texture2D texture = TextureColorer.colorTexture(itemTexture, maskColor, materialData.Color);
+                Texture2D texture = TextureColorer.ColorTexture(itemTexture, maskColor, materialData.Color);
                 Sprite sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 
                 sprites[itemTexture.name].Add(materialData.Name, sprite);

@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class ComponentQuantityUi : MonoBehaviour
 {
-	public string componentType { get; set; }
+    public string ComponentType { get; set; }
 
-	private TextMeshProUGUI textElement;
+    private TextMeshProUGUI textElement;
 
-	void Awake()
-	{
-		textElement = GetComponent<TextMeshProUGUI>();
-	}
+    void Awake()
+    {
+        textElement = GetComponent<TextMeshProUGUI>();
+    }
 
-	void Update()
-	{
-		textElement.text = $"{componentType}: {ComponentInventory.instance.getQuantity(componentType)}";
-	}
+    void Update()
+    {
+        textElement.text = $"{ComponentType}: {Player.PlayerComponents.GetQuantity(ComponentType)}";
+    }
 }

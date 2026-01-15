@@ -3,26 +3,26 @@ using UnityEngine;
 
 public class StorageBox : TileEntity
 {
-	[SerializeField] private int numStorageSlots;
-	public Inventory storageSlots { get; private set; }
+    [SerializeField] private int numStorageSlots;
+    public Inventory StorageSlots { get; private set; }
 
-	[field: SerializeField] public override GameObject uiPrefab { get; protected set; }
+    [field: SerializeField] public override GameObject UiPrefab { get; protected set; }
 
-	public override void loadUi(GameObject uiInstance)
-	{
-		StorageBoxUi ui = uiInstance.GetComponent<StorageBoxUi>();
-		ui.storageBox = this;
+    public override void LoadUi(GameObject uiInstance)
+    {
+        StorageBoxUi ui = uiInstance.GetComponent<StorageBoxUi>();
+        ui.StorageBoxInstance = this;
 
-		Player.PlayerInventory.TargetInventory = storageSlots;
-	}
+        Player.PlayerInventory.TargetInventory = StorageSlots;
+    }
 
-	public override void unloadUi(GameObject uiInstance)
-	{
-		Player.PlayerInventory.TargetInventory = null;
-	}
+    public override void UnloadUi(GameObject uiInstance)
+    {
+        Player.PlayerInventory.TargetInventory = null;
+    }
 
-	protected override void onStart()
-	{
-		storageSlots = new Inventory(numStorageSlots);
-	}
+    protected override void OnStart()
+    {
+        StorageSlots = new Inventory(numStorageSlots);
+    }
 }

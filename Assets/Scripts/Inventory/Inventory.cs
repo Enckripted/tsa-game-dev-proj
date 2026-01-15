@@ -16,7 +16,7 @@ public class Inventory : IEnumerable
     private Inventory _targetInventory;
 
     public UnityEvent Changed;
-    private List<bool> prevSlotFillState;
+    private readonly List<bool> prevSlotFillState;
 
     //utility function for keeping track of how many available slots are left in the inventory
     //which is used in stuff like machines

@@ -3,27 +3,27 @@ using UnityEngine;
 public class Shop : TileEntity
 {
     [SerializeField] private int numSellSlots = 20;
-    public Inventory sellSlots { get; private set; }
+    public Inventory SellSlots { get; private set; }
 
-    [field: SerializeField] public override GameObject uiPrefab { get; protected set; }
+    [field: SerializeField] public override GameObject UiPrefab { get; protected set; }
 
-    public override void loadUi(GameObject uiInstance)
+    public override void LoadUi(GameObject uiInstance)
     {
         ShopUi ui = uiInstance.GetComponent<ShopUi>();
-        ui.shop = this;
+        ui.ShopInstance = this;
 
-        Player.PlayerInventory.TargetInventory = sellSlots;
+        Player.PlayerInventory.TargetInventory = SellSlots;
     }
 
-    public override void unloadUi(GameObject uiInstance)
+    public override void UnloadUi(GameObject uiInstance)
     {
         Player.PlayerInventory.TargetInventory = null;
     }
 
-    public double getSellValue()
+    public double GetSellValue()
     {
         double sellValue = 0;
-        foreach (InventorySlot slot in sellSlots)
+        foreach (InventorySlot slot in SellSlots)
         {
             if (!slot.ContainsItem || slot.StoredItem.Type != ItemType.WandItem) continue;
             sellValue += (slot.StoredItem as WandItem).Stats.SellValue;
@@ -31,14 +31,14 @@ public class Shop : TileEntity
         return sellValue;
     }
 
-    public void sellItems()
+    public void SellItems()
     {
-        Player.AddMoney(getSellValue());
-        foreach (InventorySlot slot in sellSlots) slot.Pop();
+        Player.AddMoney(GetSellValue());
+        foreach (InventorySlot slot in SellSlots) slot.Pop();
     }
 
-    protected override void onStart()
+    protected override void OnStart()
     {
-        sellSlots = new Inventory(numSellSlots);
+        SellSlots = new Inventory(numSellSlots);
     }
 }

@@ -2,33 +2,33 @@ using UnityEngine;
 
 public interface ITileEntity
 {
-    public GameObject uiPrefab { get; }
+    public GameObject UiPrefab { get; }
 
-    public void loadUi(GameObject uiInstance);
-    public void unloadUi(GameObject uiInstance);
+    public void LoadUi(GameObject uiInstance);
+    public void UnloadUi(GameObject uiInstance);
 }
 
 [RequireComponent(typeof(Interactable))]
 public abstract class TileEntity : MonoBehaviour, ITileEntity
 {
     //a set has to be there for it to serialize
-    public abstract GameObject uiPrefab { get; protected set; }
+    public abstract GameObject UiPrefab { get; protected set; }
 
     private Interactable interactable;
 
-    public abstract void loadUi(GameObject uiInstance);
-    public abstract void unloadUi(GameObject uiInstance);
-    protected abstract void onStart();
+    public abstract void LoadUi(GameObject uiInstance);
+    public abstract void UnloadUi(GameObject uiInstance);
+    protected abstract void OnStart();
 
-    private GameObject instantiateUi()
+    private GameObject InstantiateUi()
     {
-        return Instantiate(uiPrefab);
+        return Instantiate(UiPrefab);
     }
 
-    private void openPrefabUi()
+    private void OpenPrefabUi()
     {
-        GameObject uiInstance = instantiateUi();
-        TileEntityUiManager.instance.openUi(this, uiInstance);
+        GameObject uiInstance = InstantiateUi();
+        TileEntityUiManager.Instance.OpenUi(this, uiInstance);
     }
 
     void Awake()
@@ -38,7 +38,7 @@ public abstract class TileEntity : MonoBehaviour, ITileEntity
 
     void Start()
     {
-        interactable.interactEvent.AddListener(openPrefabUi);
-        onStart();
+        interactable.InteractEvent.AddListener(OpenPrefabUi);
+        OnStart();
     }
 }

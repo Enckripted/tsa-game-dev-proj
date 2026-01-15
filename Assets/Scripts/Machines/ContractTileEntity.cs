@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class ContractTileEntity : TileEntity
 {
-	[field: SerializeField] public override GameObject uiPrefab { get; protected set; }
+	[field: SerializeField] public override GameObject UiPrefab { get; protected set; }
 
-	protected override void onStart()
+	protected override void OnStart()
 	{
 	}
 
-	public override void loadUi(GameObject uiInstance)
+	public override void LoadUi(GameObject uiInstance)
 	{
 	}
 
-	public override void unloadUi(GameObject uiInstance)
+	public override void UnloadUi(GameObject uiInstance)
 	{
 	}
 }

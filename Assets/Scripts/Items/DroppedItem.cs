@@ -18,7 +18,7 @@ public class DroppedItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (success)
         {
             Destroy(gameObject);
-            TooltipManager.instance.HideTooltip();
+            TooltipManager.Instance.HideTooltip();
         }
     }
 
@@ -28,7 +28,7 @@ public class DroppedItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (Item.Type == ItemType.WandItem)
         {
             WandItem wandItem = Item as WandItem;
-            sprite = ItemSpriteManager.instance.getItemSpriteFor(wandItem.BaseName, wandItem.WandMaterial);
+            sprite = ItemSpriteManager.GetItemSpriteFor(wandItem.BaseName, wandItem.WandMaterial);
         }
         else
         {
@@ -47,16 +47,16 @@ public class DroppedItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     void Start()
     {
-        interactable.interactEvent.AddListener(PickupItem);
+        interactable.InteractEvent.AddListener(PickupItem);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        TooltipManager.instance.ShowTooltip(Item.ItemTooltip);
+        TooltipManager.Instance.ShowTooltip(Item.ItemTooltip);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        TooltipManager.instance.HideTooltip();
+        TooltipManager.Instance.HideTooltip();
     }
 }

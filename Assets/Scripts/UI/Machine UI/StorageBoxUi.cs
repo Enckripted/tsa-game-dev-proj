@@ -5,10 +5,10 @@ public class StorageBoxUi : MonoBehaviour
 {
     [SerializeField] private InventoryUi uiStorageSlots;
 
-    public StorageBox storageBox { get; set; }
+    public StorageBox StorageBoxInstance { get; set; }
 
     void Start()
     {
-        uiStorageSlots.inventory = storageBox.storageSlots;
+        uiStorageSlots.Inventory = StorageBoxInstance.StorageSlots;
     }
 }

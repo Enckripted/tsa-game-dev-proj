@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class AnvilMachineUi : MachineUi
 {
-    protected override IMachine _machine => machine;
-    public AnvilMachine machine { get; set; }
+    protected override IMachine MachineInstance => Machine;
+    public AnvilMachine Machine { get; set; }
 
     [SerializeField] private InventoryUi uiOutputSlots;
     [SerializeField] private ComponentListUi uiComponentCost;
     [SerializeField] private TextMeshProUGUI uiCostText;
 
-    void updateComponentCost()
+    void UpdateComponentCost()
     {
-        if (machine.currentRecipe != null)
+        if (Machine.CurrentRecipe != null)
         {
-            uiComponentCost.components = machine.currentRecipe.Value.componentInputs;
+            uiComponentCost.components = Machine.CurrentRecipe.Value.ComponentInputs;
             uiCostText.gameObject.SetActive(true);
         }
         else
@@ -25,10 +25,10 @@ public class AnvilMachineUi : MachineUi
         }
     }
 
-    protected override void onLoad()
+    protected override void OnLoad()
     {
-        uiOutputSlots.inventory = machine.outputSlots;
-        machine.inputSlots.Changed.AddListener(updateComponentCost);
-        updateComponentCost();
+        uiOutputSlots.Inventory = Machine.OutputSlots;
+        Machine.InputSlots.Changed.AddListener(UpdateComponentCost);
+        UpdateComponentCost();
     }
 }

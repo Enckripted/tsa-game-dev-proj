@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class RecipeDurationText : MonoBehaviour
 {
-    public IMachine machine { get; set; }
+    public IMachine Machine { get; set; }
 
     private TextMeshProUGUI label;
 
@@ -14,7 +14,7 @@ public class RecipeDurationText : MonoBehaviour
 
     void Update()
     {
-        if (machine.running) label.text = $"{machine.secondsRemaining:0.0}s";
+        if (Machine.Running) label.text = $"{Machine.SecondsRemaining:0.0}s";
         else label.text = "0.0s";
     }
 }

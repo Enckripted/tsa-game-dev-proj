@@ -4,7 +4,7 @@ using UnityEngine.Rendering;
 
 public class TooltipManager : MonoBehaviour
 {
-    public static TooltipManager instance { get; private set; }
+    public static TooltipManager Instance { get; private set; }
 
     public TextMeshProUGUI NameText;
     public TextMeshProUGUI TooltipText;
@@ -14,7 +14,7 @@ public class TooltipManager : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        Instance = this;
         canvasGroup = GetComponent<CanvasGroup>();
         transform = GetComponent<RectTransform>();
 
