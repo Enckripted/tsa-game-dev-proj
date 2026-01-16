@@ -5,22 +5,22 @@ using UnityEngine;
 
 public class ComponentListUi : MonoBehaviour
 {
-    public bool showTextWhenNull = false;
+    public bool ShowTextWhenNull = false;
 
     private IEnumerable<ComponentQuantity> _components;
-    public IEnumerable<ComponentQuantity> components
+    public IEnumerable<ComponentQuantity> Components
     {
         get => _components; //the get accessor can only be blank in c# 14 if there's a set accessor???
         set
         {
             _components = value;
-            updateText();
+            UpdateText();
         }
     }
 
     private TextMeshProUGUI componentsText;
 
-    void updateText()
+    void UpdateText()
     {
         componentsText.text = "None";
         if (_components == null || _components.Count() == 0) return;

@@ -53,6 +53,7 @@ public class AnvilMachine : BaseMachine
 
     protected override void LoadMachineIntoUi(GameObject uiInstance)
     {
+        Debug.Log(this.InputSlots);
         AnvilMachineUi ui = uiInstance.GetComponent<AnvilMachineUi>();
         ui.Machine = this;
     }

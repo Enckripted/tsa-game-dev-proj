@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5f564dcad5847f49a9ffdb6e46ccc46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  <interactText>k__BackingField: '[E] Use'
+  <InteractText>k__BackingField: '[E] Interact'
 --- !u!114 &5423741819883218389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,9 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 505c45a283c34eb4397307fe07b31b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnvilMachine
-  <secondsRemaining>k__BackingField: 0
-  <running>k__BackingField: 0
-  <uiPrefab>k__BackingField: {fileID: 7214800564637545079, guid: fdd29137d2cdf144fadd7aa44b92a9e1, type: 3}
+  <SecondsRemaining>k__BackingField: 0
+  <Running>k__BackingField: 0
+  <UiPrefab>k__BackingField: {fileID: 7214800564637545079, guid: fdd29137d2cdf144fadd7aa44b92a9e1, type: 3}
   runningSfx: {fileID: 8300000, guid: 6eed360d7e7a5c041b30183d49688d3a, type: 3}
   runningSfxDelaySecs: 1
   finishSfx: {fileID: 8300000, guid: 6eed360d7e7a5c041b30183d49688d3a, type: 3}

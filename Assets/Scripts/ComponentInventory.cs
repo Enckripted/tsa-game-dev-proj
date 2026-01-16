@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+//TODO: maybe add safety checks for strings that aren't in our material database?
 public class ComponentInventory
 {
     //as far as i know there's no real downside to using serializeddictionary instead of a normal dictionary
     //so im just gonna keep this here
     [field: SerializeField] public SerializedDictionary<string, uint> Components { get; private set; }
 
-    private Exception NotExistsException(string matType)
+    public ComponentInventory()
     {
-        return new Exception("No existing component type called " + matType);
+        Components = new SerializedDictionary<string, uint>();
     }
 
-    private bool MatTypeExists(string matType)
+    private bool MatTypeInInventory(string matType)
     {
         return Components.ContainsKey(matType);
     }
@@ -35,19 +36,19 @@ public class ComponentInventory
 
     public uint GetQuantity(string matType)
     {
-        if (!MatTypeExists(matType)) throw NotExistsException(matType);
+        if (!MatTypeInInventory(matType)) Components[matType] = 0;
         return Components[matType];
     }
 
     public void AddComponentQuantity(ComponentQuantity compQuant)
     {
-        if (!MatTypeExists(compQuant.Type)) throw NotExistsException(compQuant.Type);
+        if (!MatTypeInInventory(compQuant.Type)) Components[compQuant.Type] = 0;
         Components[compQuant.Type] += compQuant.Amount;
     }
 
     public void SubtractComponentQuantity(ComponentQuantity compQuant)
     {
-        if (!MatTypeExists(compQuant.Type)) throw NotExistsException(compQuant.Type);
+        if (!MatTypeInInventory(compQuant.Type)) Components[compQuant.Type] = 0;
         if (GetQuantity(compQuant.Type) - compQuant.Amount < 0) throw new Exception("Subtracted more than current amount for component type called " + compQuant.Type);
         Components[compQuant.Type] -= compQuant.Amount;
     }

@@ -15,12 +15,12 @@ public class AnvilMachineUi : MachineUi
     {
         if (Machine.CurrentRecipe != null)
         {
-            uiComponentCost.components = Machine.CurrentRecipe.Value.ComponentInputs;
+            uiComponentCost.Components = Machine.CurrentRecipe.Value.ComponentInputs;
             uiCostText.gameObject.SetActive(true);
         }
         else
         {
-            uiComponentCost.components = new List<ComponentQuantity>();
+            uiComponentCost.Components = new List<ComponentQuantity>();
             uiCostText.gameObject.SetActive(true);
         }
     }
