@@ -7,7 +7,7 @@ public class Tooltip
     {
         get
         {
-            return $"<color=#{NameHexColor}>{Name}</color>";
+            return $"<color=#{ColorUtility.ToHtmlStringRGB(NameColor)}>{Name}</color>";
         }
     }
     public string Text
@@ -19,24 +19,23 @@ public class Tooltip
     }
 
     protected string Name;
-    protected string NameHexColor;
+    protected Color NameColor;
     protected readonly List<string> Lines;
 
-    public Tooltip(string name = "", string nameHexColor = "FFFFFF")
+    public Tooltip(string name = "", Color color = default)
     {
         Name = name;
-        NameHexColor = nameHexColor;
+        NameColor = color != default ? color : Color.white;
         Lines = new List<string>();
     }
 
-    public void AddLine(string text, bool bold = false, string hexColor = null)
+    public void AddLine(string text, bool bold = false, Color color = default)
     {
-        Debug.Log(hexColor);
         string currentLine = "";
         if (bold) currentLine += "<b>";
-        if (hexColor != null) currentLine += $"<color={hexColor}>";
+        if (color != default) currentLine += $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>";
         currentLine += text;
-        if (hexColor != null) currentLine += "</color>";
+        if (color != default) currentLine += "</color>";
         if (bold) currentLine += "</b>";
         Lines.Add(currentLine);
     }

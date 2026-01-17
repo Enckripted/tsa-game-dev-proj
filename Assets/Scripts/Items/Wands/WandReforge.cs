@@ -8,7 +8,7 @@ public class WandReforge : IWandEnhancement
         get
         {
             Tooltip tooltip = new Tooltip();
-            tooltip.AddLine(Name, true, "#2e8b57");
+            tooltip.AddLine(Name, true, GameColors.Instance.NameReforgeColor);
             tooltip.AddLine($"x{StatMultipliers.Power:0.00} to item power");
             tooltip.AddLine($"x{StatMultipliers.TimeToCast:0.00} to casting speed");
             return tooltip;

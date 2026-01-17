@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class WandItem : IItem
@@ -43,12 +43,14 @@ public class WandItem : IItem
 
     private Tooltip BuildWandTooltip()
     {
-        Tooltip tooltip = new Tooltip(Name, WandReforge != null ? GameColors.Instance.NameReforgeColor.ToHexString() : "FFFFFF");
+        Tooltip tooltip = new Tooltip(Name, WandReforge != null ? GameColors.Instance.NameReforgeColor : Color.white);
         tooltip.AddLine($"Level {Level} {BaseName}", true);
-        tooltip.AddLine($"{Stats.SellValue:0.00}", true, GameColors.Instance.GoldColor.ToHexString());
+        tooltip.AddNewLine();
+        tooltip.AddLine($"${Stats.SellValue:0.00}", true, GameColors.Instance.GoldColor);
         tooltip.AddLine($"Power: {Stats.Power:0.00}");
         tooltip.AddLine($"Time to Cast: {Stats.TimeToCast:0.00}");
         tooltip.AddLine($"Power per Second: {Stats.PowerPerSecond:0.00}");
+        tooltip.AddNewLine();
         tooltip.CombineWith(WandMaterial.MaterialTooltip);
         return tooltip;
     }
