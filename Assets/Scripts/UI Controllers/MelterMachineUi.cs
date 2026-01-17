@@ -5,7 +5,7 @@ public class MelterMachineUi : MachineUi
     protected override IMachine MachineInstance => Machine;
     public MelterMachine Machine { get; set; }
 
-    [SerializeField] private ComponentListUi componentListUi;
+    [SerializeField] private FragmentListUi componentListUi;
 
     void UpdateComponentValue()
     {

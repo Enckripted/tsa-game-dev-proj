@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ComponentInventoryUi : MonoBehaviour
+public class FragmentInventoryUi : MonoBehaviour
 {
     [SerializeField] private GameObject componentQuantityElement;
 
@@ -10,7 +10,7 @@ public class ComponentInventoryUi : MonoBehaviour
         foreach (KeyValuePair<string, uint> pair in Player.PlayerComponents.Components)
         {
             GameObject nQuantity = Instantiate(componentQuantityElement, transform);
-            nQuantity.GetComponent<ComponentQuantityUi>().ComponentType = pair.Key;
+            nQuantity.GetComponent<FragmentQuantityUi>().ComponentType = pair.Key;
         }
     }
 }

@@ -8,7 +8,7 @@ public class AnvilMachineUi : MachineUi
     public AnvilMachine Machine { get; set; }
 
     [SerializeField] private InventoryUi uiOutputSlots;
-    [SerializeField] private ComponentListUi uiComponentCost;
+    [SerializeField] private FragmentListUi uiComponentCost;
     [SerializeField] private TextMeshProUGUI uiCostText;
 
     void UpdateComponentCost()

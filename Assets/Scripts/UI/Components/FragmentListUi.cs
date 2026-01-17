@@ -3,7 +3,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-public class ComponentListUi : MonoBehaviour
+public class FragmentListUi : MonoBehaviour
 {
     public bool ShowTextWhenNull = false;
 

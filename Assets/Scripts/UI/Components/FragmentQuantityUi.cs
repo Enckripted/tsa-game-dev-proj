@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class ComponentQuantityUi : MonoBehaviour
+public class FragmentQuantityUi : MonoBehaviour
 {
     public string ComponentType { get; set; }
 
