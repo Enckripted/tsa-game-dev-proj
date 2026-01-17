@@ -20,7 +20,7 @@ public class AnvilMachineUi : MachineUi
         }
         else
         {
-            uiComponentCost.Components = new List<ComponentQuantity>();
+            uiComponentCost.Components = new List<FragmentQuantity>();
             uiCostText.gameObject.SetActive(true);
         }
     }

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public static class TextureColorer
+public static class TextureColorerService
 {
     //doesn't need to be an argument for now
     private const double Tolerance = 0.05;

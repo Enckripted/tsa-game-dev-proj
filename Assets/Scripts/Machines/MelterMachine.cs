@@ -25,7 +25,7 @@ public class MelterMachine : BaseMachine
         return FindSlotWithWandItem() != -1;
     }
 
-    public IEnumerable<ComponentQuantity> GetInputMaterialValue()
+    public IEnumerable<FragmentQuantity> GetInputMaterialValue()
     {
         Dictionary<string, uint> quant = new Dictionary<string, uint>();
         for (int i = 0; i < InputSlots.TotalSlots; i++)
@@ -39,10 +39,10 @@ public class MelterMachine : BaseMachine
             }
         }
 
-        List<ComponentQuantity> components = new List<ComponentQuantity>();
+        List<FragmentQuantity> components = new List<FragmentQuantity>();
         foreach (KeyValuePair<string, uint> pair in quant)
         {
-            components.Add(new ComponentQuantity(pair.Key, pair.Value));
+            components.Add(new FragmentQuantity(pair.Key, pair.Value));
         }
         return components;
     }
@@ -51,8 +51,8 @@ public class MelterMachine : BaseMachine
     {
         WandItem inputItem = InputSlots.ItemInSlot(FindSlotWithWandItem()) as WandItem;
 
-        IEnumerable<ComponentQuantity> inputComp = new List<ComponentQuantity> { };
-        IEnumerable<ComponentQuantity> outputComp = new List<ComponentQuantity> { new ComponentQuantity(inputItem.WandMaterial.Name, 5) };
+        IEnumerable<FragmentQuantity> inputComp = new List<FragmentQuantity> { };
+        IEnumerable<FragmentQuantity> outputComp = new List<FragmentQuantity> { new FragmentQuantity(inputItem.WandMaterial.Name, 5) };
         IEnumerable<IItem> itemOutput = new List<IItem> { };
         return new Recipe(2.0, inputComp, outputComp, itemOutput);
     }

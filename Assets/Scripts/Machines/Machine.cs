@@ -5,10 +5,10 @@ using UnityEngine;
 public struct Recipe
 {
     public double Duration { get; }
-    public IEnumerable<ComponentQuantity> ComponentInputs { get; }
-    public IEnumerable<ComponentQuantity> ComponentOutputs { get; }
+    public IEnumerable<FragmentQuantity> ComponentInputs { get; }
+    public IEnumerable<FragmentQuantity> ComponentOutputs { get; }
     public IEnumerable<IItem> ItemOutputs { get; }
-    public Recipe(double nDuration, IEnumerable<ComponentQuantity> nCompInputs, IEnumerable<ComponentQuantity> nCompOutputs, IEnumerable<IItem> nItemOutputs) //ienumerable is a read only list, which is what we want in this case
+    public Recipe(double nDuration, IEnumerable<FragmentQuantity> nCompInputs, IEnumerable<FragmentQuantity> nCompOutputs, IEnumerable<IItem> nItemOutputs) //ienumerable is a read only list, which is what we want in this case
     {
         Duration = nDuration;
         ComponentInputs = nCompInputs;
@@ -76,7 +76,7 @@ public abstract class BaseMachine : TileEntity, IMachine
         SecondsRemaining = CurrentRecipe.Value.Duration;
         Running = true;
 
-        foreach (ComponentQuantity compQuant in CurrentRecipe.Value.ComponentInputs)
+        foreach (FragmentQuantity compQuant in CurrentRecipe.Value.ComponentInputs)
             Player.PlayerComponents.SubtractComponentQuantity(compQuant);
         ExtractItemInputs();
     }
@@ -85,7 +85,7 @@ public abstract class BaseMachine : TileEntity, IMachine
     {
         Running = false;
 
-        foreach (ComponentQuantity compQuant in CurrentRecipe.Value.ComponentOutputs)
+        foreach (FragmentQuantity compQuant in CurrentRecipe.Value.ComponentOutputs)
             Player.PlayerComponents.AddComponentQuantity(compQuant);
         foreach (IItem output in CurrentRecipe.Value.ItemOutputs)
             OutputSlots.PushItem(output);

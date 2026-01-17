@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 //TODO: maybe add safety checks for strings that aren't in our material database?
-public class ComponentInventory
+public class FragmentInventory
 {
     //as far as i know there's no real downside to using serializeddictionary instead of a normal dictionary
     //so im just gonna keep this here
     [field: SerializeField] public SerializedDictionary<string, uint> Components { get; private set; }
 
-    public ComponentInventory()
+    public FragmentInventory()
     {
         Components = new SerializedDictionary<string, uint>();
     }
@@ -20,14 +20,14 @@ public class ComponentInventory
         return Components.ContainsKey(matType);
     }
 
-    public bool HasQuantityAvailable(ComponentQuantity compQuant)
+    public bool HasQuantityAvailable(FragmentQuantity compQuant)
     {
         return Components[compQuant.Type] >= compQuant.Amount;
     }
 
-    public bool HasQuantitiesAvailable(IEnumerable<ComponentQuantity> compQuants)
+    public bool HasQuantitiesAvailable(IEnumerable<FragmentQuantity> compQuants)
     {
-        foreach (ComponentQuantity compQuant in compQuants)
+        foreach (FragmentQuantity compQuant in compQuants)
         {
             if (!HasQuantityAvailable(compQuant)) return false;
         }
@@ -40,13 +40,13 @@ public class ComponentInventory
         return Components[matType];
     }
 
-    public void AddComponentQuantity(ComponentQuantity compQuant)
+    public void AddComponentQuantity(FragmentQuantity compQuant)
     {
         if (!MatTypeInInventory(compQuant.Type)) Components[compQuant.Type] = 0;
         Components[compQuant.Type] += compQuant.Amount;
     }
 
-    public void SubtractComponentQuantity(ComponentQuantity compQuant)
+    public void SubtractComponentQuantity(FragmentQuantity compQuant)
     {
         if (!MatTypeInInventory(compQuant.Type)) Components[compQuant.Type] = 0;
         if (GetQuantity(compQuant.Type) - compQuant.Amount < 0) throw new Exception("Subtracted more than current amount for component type called " + compQuant.Type);

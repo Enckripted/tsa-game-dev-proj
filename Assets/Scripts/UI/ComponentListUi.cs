@@ -7,8 +7,8 @@ public class ComponentListUi : MonoBehaviour
 {
     public bool ShowTextWhenNull = false;
 
-    private IEnumerable<ComponentQuantity> _components;
-    public IEnumerable<ComponentQuantity> Components
+    private IEnumerable<FragmentQuantity> _components;
+    public IEnumerable<FragmentQuantity> Components
     {
         get => _components; //the get accessor can only be blank in c# 14 if there's a set accessor???
         set

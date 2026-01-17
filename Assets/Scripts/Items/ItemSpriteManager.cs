@@ -26,7 +26,7 @@ public class ItemSpriteManager : MonoBehaviour
 
             foreach (MaterialData materialData in ScriptableObjectData.BaseMaterials)
             {
-                Texture2D texture = TextureColorer.ColorTexture(itemTexture, maskColor, materialData.Color);
+                Texture2D texture = TextureColorerService.ColorTexture(itemTexture, maskColor, materialData.Color);
                 Sprite sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 
                 sprites[itemTexture.name].Add(materialData.Name, sprite);

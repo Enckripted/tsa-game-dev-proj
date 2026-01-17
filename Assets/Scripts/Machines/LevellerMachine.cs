@@ -37,8 +37,8 @@ public class LevellerMachine : BaseMachine
         WandItem reference = (InputSlots.ItemInSlot(0) as WandItem);
         WandItem output = new WandItem(reference.BaseName, reference.Level + 1, reference.BaseStats, reference.LevelStats, reference.WandMaterial);
 
-        IEnumerable<ComponentQuantity> componentInputs = new List<ComponentQuantity> { };
-        IEnumerable<ComponentQuantity> componentOutputs = new List<ComponentQuantity> { };
+        IEnumerable<FragmentQuantity> componentInputs = new List<FragmentQuantity> { };
+        IEnumerable<FragmentQuantity> componentOutputs = new List<FragmentQuantity> { };
         IEnumerable<IItem> itemOutputs = new List<WandItem> { output };
         return new Recipe(6.0, componentInputs, componentOutputs, itemOutputs);
     }
