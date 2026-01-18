@@ -26,10 +26,11 @@ public class AnvilMachine : BaseMachine
         WandReforgeScriptableObject reforgeData = ScriptableObjectData.RandomWandReforgeData();
         WandItem output = new WandItem(reference.BaseName, reference.Level, reference.BaseStats, reference.LevelStats, reference.WandMaterial, new WandReforge(reforgeData));
 
-        IEnumerable<FragmentQuantity> componentInputs = new List<FragmentQuantity> { new FragmentQuantity(reference.WandMaterial.Name, 10) };
-        IEnumerable<FragmentQuantity> componentOutputs = new List<FragmentQuantity> { };
+        FragmentInventory fragmentInputs = new FragmentInventory();
+        fragmentInputs.AddFragmentQuantity(new FragmentQuantity(reference.WandMaterial, 10));
+
         IEnumerable<IItem> itemOutputs = new List<WandItem> { output };
-        return new Recipe(15.0, componentInputs, componentOutputs, itemOutputs);
+        return new Recipe(15.0, fragmentInputs, new FragmentInventory(), itemOutputs);
     }
 
     protected override void ExtractItemInputs()

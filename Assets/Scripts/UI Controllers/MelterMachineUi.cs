@@ -9,7 +9,7 @@ public class MelterMachineUi : MachineUi
 
     void UpdateComponentValue()
     {
-        componentListUi.Components = Machine.GetInputMaterialValue();
+        componentListUi.FragmentInventory = Machine.GetInputMaterialValue();
     }
 
     protected override void OnLoad()

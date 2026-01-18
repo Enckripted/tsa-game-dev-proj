@@ -7,34 +7,34 @@ public class FragmentListUi : MonoBehaviour
 {
     public bool ShowTextWhenNull = false;
 
-    private IEnumerable<FragmentQuantity> _components;
-    public IEnumerable<FragmentQuantity> Components
+    private FragmentInventory _fragmentInventory;
+    public FragmentInventory FragmentInventory
     {
-        get => _components; //the get accessor can only be blank in c# 14 if there's a set accessor???
+        get => _fragmentInventory; //the get accessor can only be blank in c# 14 if there's a set accessor???
         set
         {
-            _components = value;
+            _fragmentInventory = value;
             UpdateText();
         }
     }
 
-    private TextMeshProUGUI componentsText;
+    private TextMeshProUGUI fragmentsText;
 
     void UpdateText()
     {
-        componentsText.text = "None";
-        if (_components == null || _components.Count() == 0) return;
+        fragmentsText.text = "None";
+        if (_fragmentInventory == null || _fragmentInventory.Fragments.Count() == 0) return;
 
         List<string> lines = new List<string>();
-        foreach (var fragmentQuantity in _components)
+        foreach (var fragmentQuantity in _fragmentInventory.Fragments)
         {
             lines.Add($"{fragmentQuantity.Type}: {fragmentQuantity.Amount}");
         }
-        componentsText.text = string.Join("\n", lines);
+        fragmentsText.text = string.Join("\n", lines);
     }
 
     void Awake()
     {
-        componentsText = GetComponent<TextMeshProUGUI>();
+        fragmentsText = GetComponent<TextMeshProUGUI>();
     }
 }

@@ -3,14 +3,15 @@ using UnityEngine;
 
 public class FragmentInventoryUi : MonoBehaviour
 {
-    [SerializeField] private GameObject componentQuantityElement;
+    public FragmentInventory Inventory;
+    [SerializeField] private GameObject fragmentQuantityElement;
 
     void Start()
     {
-        foreach (KeyValuePair<string, uint> pair in Player.PlayerComponents.Components)
+        foreach (FragmentQuantity quantity in Inventory)
         {
-            GameObject nQuantity = Instantiate(componentQuantityElement, transform);
-            nQuantity.GetComponent<FragmentQuantityUi>().ComponentType = pair.Key;
+            GameObject nQuantity = Instantiate(fragmentQuantityElement, transform);
+            nQuantity.GetComponent<FragmentQuantityUi>().Quantity = quantity;
         }
     }
 }

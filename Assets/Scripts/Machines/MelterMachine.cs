@@ -25,36 +25,28 @@ public class MelterMachine : BaseMachine
         return FindSlotWithWandItem() != -1;
     }
 
-    public IEnumerable<FragmentQuantity> GetInputMaterialValue()
+    public FragmentInventory GetInputMaterialValue()
     {
-        Dictionary<string, uint> quant = new Dictionary<string, uint>();
+        FragmentInventory fragments = new FragmentInventory();
         for (int i = 0; i < InputSlots.TotalSlots; i++)
         {
             if (InputSlots.SlotContainsItem(i) && InputSlots.ItemInSlot(i).Type == ItemType.WandItem)
             {
-
                 WandItem currentGear = InputSlots.ItemInSlot(i) as WandItem;
-                if (!quant.ContainsKey(currentGear.WandMaterial.Name)) quant.Add(currentGear.WandMaterial.Name, 0);
-                quant[currentGear.WandMaterial.Name] += 5;
+                fragments.AddFragmentQuantity(new FragmentQuantity(currentGear.WandMaterial, 5));
             }
         }
-
-        List<FragmentQuantity> components = new List<FragmentQuantity>();
-        foreach (KeyValuePair<string, uint> pair in quant)
-        {
-            components.Add(new FragmentQuantity(pair.Key, pair.Value));
-        }
-        return components;
+        return fragments;
     }
 
     protected override Recipe GetRecipe()
     {
         WandItem inputItem = InputSlots.ItemInSlot(FindSlotWithWandItem()) as WandItem;
 
-        IEnumerable<FragmentQuantity> inputComp = new List<FragmentQuantity> { };
-        IEnumerable<FragmentQuantity> outputComp = new List<FragmentQuantity> { new FragmentQuantity(inputItem.WandMaterial.Name, 5) };
-        IEnumerable<IItem> itemOutput = new List<IItem> { };
-        return new Recipe(2.0, inputComp, outputComp, itemOutput);
+        FragmentInventory outputComp = new FragmentInventory();
+        outputComp.AddFragmentQuantity(new FragmentQuantity(inputItem.WandMaterial, 5));
+
+        return new Recipe(2.0, new FragmentInventory(), outputComp, new List<IItem>());
     }
 
     protected override void ExtractItemInputs()

@@ -4,17 +4,17 @@ public class Player : MonoBehaviour
 {
     public static double Money;
     public static Inventory PlayerInventory;
-    public static FragmentInventory PlayerComponents;
+    public static FragmentInventory PlayerFragments;
 
     void Awake()
     {
         Money = 0;
         PlayerInventory = new Inventory(8);
 
-        PlayerComponents = new FragmentInventory();
+        PlayerFragments = new FragmentInventory();
         foreach (MaterialScriptableObject material in ScriptableObjectData.BaseMaterials)
         {
-            PlayerComponents.AddComponentQuantity(new FragmentQuantity(material.name, 0));
+            PlayerFragments.AddFragmentQuantity(new FragmentQuantity(material.name, 0));
         }
     }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class FragmentQuantityUi : MonoBehaviour
 {
-    public string ComponentType { get; set; }
+    public FragmentQuantity Quantity;
 
     private TextMeshProUGUI textElement;
 
@@ -14,6 +14,6 @@ public class FragmentQuantityUi : MonoBehaviour
 
     void Update()
     {
-        textElement.text = $"{ComponentType}: {Player.PlayerComponents.GetQuantity(ComponentType)}";
+        textElement.text = $"{Quantity.Type}: {Quantity.Amount}";
     }
 }

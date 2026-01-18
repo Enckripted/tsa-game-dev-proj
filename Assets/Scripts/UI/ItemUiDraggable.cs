@@ -10,7 +10,7 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
     [SerializeField] private TextMeshProUGUI nameText;
 
     public InventorySlot InventorySlot;
-    public bool CanDropInSlot;
+    public bool CanDropInSlot = true;
 
     public bool BeingDragged { get; private set; }
 
@@ -100,7 +100,8 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag == null || !CanDropInSlot) return;
+        Debug.Log(InventorySlot.CanInsert);
+        if (eventData.pointerDrag == null || !InventorySlot.CanInsert) return;
 
         InventorySlot otherSlot = eventData.pointerDrag.GetComponent<ItemUiDraggable>().InventorySlot;
         IItem currentItem = InventorySlot.Pop();

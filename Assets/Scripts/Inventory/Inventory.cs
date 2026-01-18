@@ -11,8 +11,9 @@ using UnityEngine.Events;
 [Serializable]
 public class Inventory : IEnumerable
 {
-    [field: SerializeField] public int TotalSlots { get; }
+    [field: SerializeField] public int TotalSlots { get; private set; }
     [field: SerializeField] public int AvailableSlots { get; private set; }
+    [field: SerializeField] public bool CanInsert { get; private set; }
     public Inventory TargetInventory { get => _targetInventory; set { _targetInventory = value; UpdateTargetInventory(); } }
     [field: SerializeField] public List<InventorySlot> Slots { get; private set; }
 
@@ -31,13 +32,14 @@ public class Inventory : IEnumerable
         prevSlotFillState[slotIndex] = Slots[slotIndex].ContainsItem;
     }
 
-    public Inventory(int totalSlots, Inventory targetInventory = null)
+    public Inventory(int totalSlots, bool canInsert = true, Inventory targetInventory = null)
     {
         TotalSlots = totalSlots;
         AvailableSlots = totalSlots;
+        CanInsert = canInsert;
         Changed = new UnityEvent();
 
-        Slots = Enumerable.Range(0, totalSlots).Select(_ => new InventorySlot(_targetInventory)).ToList();
+        Slots = Enumerable.Range(0, totalSlots).Select(_ => new InventorySlot(canInsert, _targetInventory)).ToList();
         this.prevSlotFillState = Enumerable.Repeat(false, totalSlots).ToList();
 
         TargetInventory = targetInventory;

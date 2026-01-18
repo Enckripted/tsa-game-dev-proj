@@ -1,57 +1,71 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 //TODO: maybe add safety checks for strings that aren't in our material database?
 
 //Wrapper for dictionary containing Fragments
-public class FragmentInventory
+public class FragmentInventory : IEnumerable
 {
     //as far as i know there's no real downside to using serializeddictionary instead of a normal dictionary
     //so im just gonna keep this here
-    [field: SerializeField] public SerializedDictionary<string, uint> Components { get; private set; }
+    [field: SerializeField] public List<FragmentQuantity> Fragments { get; private set; }
 
     public FragmentInventory()
     {
-        Components = new SerializedDictionary<string, uint>();
+        Fragments = new List<FragmentQuantity>();
     }
 
-    private bool MatTypeInInventory(string matType)
+    public IEnumerator GetEnumerator()
     {
-        return Components.ContainsKey(matType);
+        return Fragments.GetEnumerator();
     }
 
-    public bool HasQuantityAvailable(FragmentQuantity fragmentQuantity)
+    private bool KeyExists(FragmentQuantity target)
     {
-        return Components[fragmentQuantity.Type] >= fragmentQuantity.Amount;
+        foreach (FragmentQuantity quantity in Fragments) if (quantity.Type == target.Type) return true;
+        return false;
     }
 
-    public bool HasQuantitiesAvailable(IEnumerable<FragmentQuantity> fragmentQuantitys)
+    //assumes the key exists
+    private FragmentQuantity GetMatchingQuantity(FragmentQuantity target)
     {
-        foreach (FragmentQuantity fragmentQuantity in fragmentQuantitys)
-        {
-            if (!HasQuantityAvailable(fragmentQuantity)) return false;
-        }
+        foreach (FragmentQuantity quantity in Fragments) if (quantity.Type == target.Type) return quantity;
+        throw new Exception("Wasn't able to find quantity of type " + target.Type);
+    }
+
+    public bool Contains(FragmentQuantity quantity)
+    {
+        return KeyExists(quantity) && GetMatchingQuantity(quantity).Amount >= quantity.Amount;
+    }
+
+    public bool Contains(FragmentInventory quantities)
+    {
+        foreach (FragmentQuantity quantity in quantities) if (!KeyExists(quantity) && !Contains(quantity)) return false;
         return true;
     }
 
-    public uint GetQuantity(string matType)
+    public void AddFragmentQuantity(FragmentQuantity quantity)
     {
-        if (!MatTypeInInventory(matType)) Components[matType] = 0;
-        return Components[matType];
+        if (!KeyExists(quantity)) Fragments.Add(quantity);
+        GetMatchingQuantity(quantity).Amount += quantity.Amount;
     }
 
-    public void AddComponentQuantity(FragmentQuantity fragmentQuantity)
+    public void SubFragmentQuantity(FragmentQuantity quantity)
     {
-        if (!MatTypeInInventory(fragmentQuantity.Type)) Components[fragmentQuantity.Type] = 0;
-        Components[fragmentQuantity.Type] += fragmentQuantity.Amount;
+        if (!KeyExists(quantity) || GetMatchingQuantity(quantity).Amount < quantity.Amount) throw new Exception("Attempted to make negative " + quantity.Type);
+        GetMatchingQuantity(quantity).Amount -= quantity.Amount;
     }
 
-    public void SubtractComponentQuantity(FragmentQuantity fragmentQuantity)
+    public void AddFragments(FragmentInventory inventory)
     {
-        if (!MatTypeInInventory(fragmentQuantity.Type)) Components[fragmentQuantity.Type] = 0;
-        if (GetQuantity(fragmentQuantity.Type) - fragmentQuantity.Amount < 0) throw new Exception("Subtracted more than current amount for fragment type called " + fragmentQuantity.Type);
-        Components[fragmentQuantity.Type] -= fragmentQuantity.Amount;
+        foreach (FragmentQuantity quantity in inventory) AddFragmentQuantity(quantity);
+    }
+
+    //assumes a check has been done with .Contains
+    public void SubFragments(FragmentInventory inventory)
+    {
+        foreach (FragmentQuantity quantity in inventory) SubFragmentQuantity(quantity);
     }
 }

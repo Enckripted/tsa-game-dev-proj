@@ -2,24 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-//A basic container, where machines will put the fragments they will consume, the fragments and
-//items they will output along with the recipe duration. Prevents repetition across other machines'
-//code.
-public struct Recipe
-{
-    public double Duration { get; }
-    public IEnumerable<FragmentQuantity> FragmentInputs { get; }
-    public IEnumerable<FragmentQuantity> FragmentOutputs { get; }
-    public IEnumerable<IItem> ItemOutputs { get; }
-    public Recipe(double nDuration, IEnumerable<FragmentQuantity> nFragInputs, IEnumerable<FragmentQuantity> nFragOutputs, IEnumerable<IItem> nItemOutputs) //ienumerable is a read only list, which is what we want in this case
-    {
-        Duration = nDuration;
-        FragmentInputs = nFragInputs;
-        FragmentOutputs = nFragOutputs;
-        ItemOutputs = nItemOutputs;
-    }
-}
-
 //Allows machines to be passed in generically in other places.
 public interface IMachine
 {
@@ -74,7 +56,7 @@ public abstract class BaseMachine : TileEntity, IMachine
     {
         return CurrentRecipe.HasValue &&
         OutputSlots.AvailableSlots >= CurrentRecipe.Value.ItemOutputs.Count<IItem>() &&
-        Player.PlayerComponents.HasQuantitiesAvailable(CurrentRecipe.Value.FragmentInputs);
+        Player.PlayerFragments.Contains(CurrentRecipe.Value.FragmentInputs);
     }
 
     protected void StartRecipe()
@@ -83,7 +65,7 @@ public abstract class BaseMachine : TileEntity, IMachine
         Running = true;
 
         foreach (FragmentQuantity fragmentQuantity in CurrentRecipe.Value.FragmentInputs)
-            Player.PlayerComponents.SubtractComponentQuantity(fragmentQuantity);
+            Player.PlayerFragments.SubFragmentQuantity(fragmentQuantity);
         ExtractItemInputs();
     }
 
@@ -92,7 +74,7 @@ public abstract class BaseMachine : TileEntity, IMachine
         Running = false;
 
         foreach (FragmentQuantity fragmentQuantity in CurrentRecipe.Value.FragmentOutputs)
-            Player.PlayerComponents.AddComponentQuantity(fragmentQuantity);
+            Player.PlayerFragments.AddFragmentQuantity(fragmentQuantity);
         foreach (IItem output in CurrentRecipe.Value.ItemOutputs)
             OutputSlots.PushItem(output);
 
@@ -127,8 +109,8 @@ public abstract class BaseMachine : TileEntity, IMachine
 
     protected override void OnStart()
     {
-        InputSlots = new Inventory(NumInputSlots, Player.PlayerInventory);
-        OutputSlots = new Inventory(NumOutputSlots, Player.PlayerInventory);
+        InputSlots = new Inventory(NumInputSlots, true, Player.PlayerInventory);
+        OutputSlots = new Inventory(NumOutputSlots, false, Player.PlayerInventory);
         MachineAudioSource = GetComponent<AudioSource>();
         InputSlots.Changed.AddListener(UpdateRecipe);
     }

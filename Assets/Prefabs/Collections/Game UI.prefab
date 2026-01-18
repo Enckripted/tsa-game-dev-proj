@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6156958903130714460}
   - component: {fileID: 110847803782719416}
   m_Layer: 5
-  m_Name: Component List
+  m_Name: Fragment List
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -424,6 +424,7 @@ GameObject:
   - component: {fileID: 302995185171440742}
   - component: {fileID: 149093046195621735}
   - component: {fileID: 6826503234123230581}
+  - component: {fileID: 8472360664197118648}
   m_Layer: 5
   m_Name: Toolbar
   m_TagString: Untagged
@@ -503,6 +504,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &8472360664197118648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3838990608408893603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef7e1db30df60cf4aa94bb7e34b95cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerToolbarUi
+  <PlayerInventoryUi>k__BackingField: {fileID: 221708998142107626}
+  <PlayerFragmentUi>k__BackingField: {fileID: 110847803782719416}
+  <MoneyText>k__BackingField: {fileID: 5363098696783464953}
 --- !u!1 &4385465444299124094
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,7 +530,6 @@ GameObject:
   - component: {fileID: 7649670875552074985}
   - component: {fileID: 7998559786563997692}
   - component: {fileID: 5363098696783464953}
-  - component: {fileID: 5510629901626531136}
   m_Layer: 5
   m_Name: Money Amount
   m_TagString: Untagged
@@ -640,18 +655,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5510629901626531136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4385465444299124094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5530ee46bb5bfd548a79ac2ee2520dbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MoneyAmountUi
 --- !u!1 &6556583151208699941
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +667,7 @@ GameObject:
   - component: {fileID: 7114775428610012364}
   - component: {fileID: 2742937963475489745}
   - component: {fileID: 655730834681035962}
-  - component: {fileID: 7864021740203582773}
+  - component: {fileID: 221708998142107626}
   m_Layer: 5
   m_Name: Inventory UI
   m_TagString: Untagged
@@ -739,7 +742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
   m_HorizontalFit: 2
   m_VerticalFit: 0
---- !u!114 &7864021740203582773
+--- !u!114 &221708998142107626
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -748,10 +751,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6556583151208699941}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 291f923935d2f464e868af8a974504c9, type: 3}
+  m_Script: {fileID: 11500000, guid: c3fb9b925fc56f748b29a4e2cce1dc5b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryUiManager
-  SlotPrefab: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryUi
+  slotPrefab: {fileID: 5223675979348635170, guid: f4ade00e2f3af6749b6d88fa87d52168, type: 3}
 --- !u!1 &6642384093912636039
 GameObject:
   m_ObjectHideFlags: 0

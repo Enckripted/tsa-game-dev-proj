@@ -15,12 +15,12 @@ public class AnvilMachineUi : MachineUi
     {
         if (Machine.CurrentRecipe != null)
         {
-            uiComponentCost.Components = Machine.CurrentRecipe.Value.FragmentInputs;
+            uiComponentCost.FragmentInventory = Machine.CurrentRecipe.Value.FragmentInputs;
             uiCostText.gameObject.SetActive(true);
         }
         else
         {
-            uiComponentCost.Components = new List<FragmentQuantity>();
+            uiComponentCost.FragmentInventory = new FragmentInventory();
             uiCostText.gameObject.SetActive(true);
         }
     }
