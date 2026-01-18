@@ -3,22 +3,22 @@ using UnityEngine;
 
 public class LevellerMachine : BaseMachine
 {
-    public override int numInputSlots => 4;
-    public override int numOutputSlots => 9;
-    public override bool runsAutomatically => false;
-    public override bool stopsWhenFinished => true;
+    public override int NumInputSlots => 4;
+    public override int NumOutputSlots => 9;
+    public override bool RunsAutomatically => false;
+    public override bool StopsWhenFinished => true;
 
-    [field: SerializeField] public override GameObject uiPrefab { get; protected set; }
+    [field: SerializeField] public override GameObject UiPrefab { get; protected set; }
     [field: SerializeField] private AudioClip finishSfx;
 
-    private bool allInputsIdentical()
+    private bool AllInputsIdentical()
     {
-        if (inputSlots.AvailableSlots != 0) return false;
+        if (InputSlots.AvailableSlots != 0) return false;
 
-        WandItem reference = inputSlots.ItemInSlot(0) as WandItem;
-        for (int i = 0; i < numInputSlots; i++)
+        WandItem reference = InputSlots.ItemInSlot(0) as WandItem;
+        for (int i = 0; i < NumInputSlots; i++)
         {
-            WandItem cur = inputSlots.ItemInSlot(i) as WandItem;
+            WandItem cur = InputSlots.ItemInSlot(i) as WandItem;
             //TODO: probably replace this with some sort of custom operator on WandItem?
             if (cur.BaseName != reference.BaseName ||
             cur.Level != reference.Level ||
@@ -27,38 +27,36 @@ public class LevellerMachine : BaseMachine
         return true;
     }
 
-    public override bool hasValidRecipe()
+    public override bool HasValidRecipe()
     {
-        return allInputsIdentical();
+        return AllInputsIdentical();
     }
 
-    protected override Recipe getRecipe()
+    protected override Recipe GetRecipe()
     {
-        WandItem reference = (inputSlots.ItemInSlot(0) as WandItem);
+        WandItem reference = (InputSlots.ItemInSlot(0) as WandItem);
         WandItem output = new WandItem(reference.BaseName, reference.Level + 1, reference.BaseStats, reference.LevelStats, reference.WandMaterial);
 
-        IEnumerable<ComponentQuantity> componentInputs = new List<ComponentQuantity> { };
-        IEnumerable<ComponentQuantity> componentOutputs = new List<ComponentQuantity> { };
         IEnumerable<IItem> itemOutputs = new List<WandItem> { output };
-        return new Recipe(6.0, componentInputs, componentOutputs, itemOutputs);
+        return new Recipe(6.0, new FragmentInventory(), new FragmentInventory(), itemOutputs);
     }
 
-    protected override void extractItemInputs()
+    protected override void ExtractItemInputs()
     {
-        for (int i = 0; i < numInputSlots; i++)
-            inputSlots.GetSlot(i).Pop();
+        for (int i = 0; i < NumInputSlots; i++)
+            InputSlots.GetSlot(i).Pop();
     }
 
-    protected override void onRecipeEnd()
+    protected override void OnRecipeEnd()
     {
-        audioSource.PlayOneShot(finishSfx);
+        MachineAudioSource.PlayOneShot(finishSfx);
     }
 
-    protected override void machineUpdate() { }
+    protected override void MachineUpdate() { }
 
-    protected override void loadMachineIntoUi(GameObject uiInstance)
+    protected override void LoadMachineIntoUi(GameObject uiInstance)
     {
         LevellerMachineUi ui = uiInstance.GetComponent<LevellerMachineUi>();
-        ui.machine = this;
+        ui.Machine = this;
     }
 }

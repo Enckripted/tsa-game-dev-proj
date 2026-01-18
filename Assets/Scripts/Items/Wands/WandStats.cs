@@ -1,5 +1,7 @@
 using System;
 
+//Struct with operations for multiplying and adding WandStats of the same type, alongside one for
+//multiplication with an integer for stuff like wand levels.
 [Serializable]
 public struct WandStats
 {

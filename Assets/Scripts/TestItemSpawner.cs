@@ -11,7 +11,7 @@ public class TestItemSpawner : MonoBehaviour
     {
         if (droppedItem == null)
         {
-            WandItem chosenWand = RandomItemFactory.CreateRandomWand();
+            WandItem chosenWand = RandomItemService.CreateRandomWand();
 
             //we need to set data before the awake method is called
             GameObject obj = Instantiate(DroppedItemPrefab, transform);

@@ -5,55 +5,56 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AnvilMachine : BaseMachine
 {
-    public override int numInputSlots => 1;
-    public override int numOutputSlots => 1;
-    public override bool runsAutomatically => false;
-    public override bool stopsWhenFinished => true;
+    public override int NumInputSlots => 1;
+    public override int NumOutputSlots => 1;
+    public override bool RunsAutomatically => false;
+    public override bool StopsWhenFinished => true;
 
-    [field: SerializeField] public override GameObject uiPrefab { get; protected set; }
+    [field: SerializeField] public override GameObject UiPrefab { get; protected set; }
     [SerializeField] private AudioClip runningSfx;
     [SerializeField] private float runningSfxDelaySecs;
     [SerializeField] private AudioClip finishSfx;
 
-    public override bool hasValidRecipe()
+    public override bool HasValidRecipe()
     {
-        return inputSlots.AvailableSlots == 0;
+        return InputSlots.AvailableSlots == 0;
     }
 
-    protected override Recipe getRecipe()
+    protected override Recipe GetRecipe()
     {
-        WandItem reference = (inputSlots.ItemInSlot(0) as WandItem);
+        WandItem reference = (InputSlots.ItemInSlot(0) as WandItem);
         WandReforgeScriptableObject reforgeData = ScriptableObjectData.RandomWandReforgeData();
         WandItem output = new WandItem(reference.BaseName, reference.Level, reference.BaseStats, reference.LevelStats, reference.WandMaterial, new WandReforge(reforgeData));
 
-        IEnumerable<ComponentQuantity> componentInputs = new List<ComponentQuantity> { new ComponentQuantity(reference.WandMaterial.Name, 10) };
-        IEnumerable<ComponentQuantity> componentOutputs = new List<ComponentQuantity> { };
+        FragmentInventory fragmentInputs = new FragmentInventory();
+        fragmentInputs.AddFragmentQuantity(new FragmentQuantity(reference.WandMaterial, 10));
+
         IEnumerable<IItem> itemOutputs = new List<WandItem> { output };
-        return new Recipe(15.0, componentInputs, componentOutputs, itemOutputs);
+        return new Recipe(15.0, fragmentInputs, new FragmentInventory(), itemOutputs);
     }
 
-    protected override void extractItemInputs()
+    protected override void ExtractItemInputs()
     {
-        inputSlots.GetSlot(0).Pop();
-        audioSource.clip = runningSfx;
-        audioSource.Play();
+        InputSlots.GetSlot(0).Pop();
+        MachineAudioSource.clip = runningSfx;
+        MachineAudioSource.Play();
     }
 
-    protected override void onRecipeEnd()
+    protected override void OnRecipeEnd()
     {
     }
 
-    protected override void machineUpdate()
+    protected override void MachineUpdate()
     {
-        if (running && !audioSource.isPlaying)
+        if (Running && !MachineAudioSource.isPlaying)
         {
-            audioSource.PlayDelayed(runningSfxDelaySecs);
+            MachineAudioSource.PlayDelayed(runningSfxDelaySecs);
         }
     }
 
-    protected override void loadMachineIntoUi(GameObject uiInstance)
+    protected override void LoadMachineIntoUi(GameObject uiInstance)
     {
         AnvilMachineUi ui = uiInstance.GetComponent<AnvilMachineUi>();
-        ui.machine = this;
+        ui.Machine = this;
     }
 }

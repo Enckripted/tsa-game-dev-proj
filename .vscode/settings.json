@@ -71,5 +71,5 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.indentSize": "tabSize",
-    "editor.insertSpaces": false
+    "editor.insertSpaces": false,
 }

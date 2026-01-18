@@ -5,18 +5,22 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
+//Inventory with support for adding and removing items, counting available items, and shift clicking
+//items into a target inventory. IEnumerable means that it can be iterated through with a foreach
+//loop.
 [Serializable]
 public class Inventory : IEnumerable
 {
-    [field: SerializeField] public int TotalSlots { get; }
+    [field: SerializeField] public int TotalSlots { get; private set; }
     [field: SerializeField] public int AvailableSlots { get; private set; }
+    [field: SerializeField] public bool CanInsert { get; private set; }
     public Inventory TargetInventory { get => _targetInventory; set { _targetInventory = value; UpdateTargetInventory(); } }
     [field: SerializeField] public List<InventorySlot> Slots { get; private set; }
 
     private Inventory _targetInventory;
 
     public UnityEvent Changed;
-    private List<bool> prevSlotFillState;
+    private readonly List<bool> prevSlotFillState;
 
     //utility function for keeping track of how many available slots are left in the inventory
     //which is used in stuff like machines
@@ -28,13 +32,14 @@ public class Inventory : IEnumerable
         prevSlotFillState[slotIndex] = Slots[slotIndex].ContainsItem;
     }
 
-    public Inventory(int totalSlots, Inventory targetInventory = null)
+    public Inventory(int totalSlots, bool canInsert = true, Inventory targetInventory = null)
     {
         TotalSlots = totalSlots;
         AvailableSlots = totalSlots;
+        CanInsert = canInsert;
         Changed = new UnityEvent();
 
-        Slots = Enumerable.Range(0, totalSlots).Select(_ => new InventorySlot(_targetInventory)).ToList();
+        Slots = Enumerable.Range(0, totalSlots).Select(_ => new InventorySlot(canInsert, _targetInventory)).ToList();
         this.prevSlotFillState = Enumerable.Repeat(false, totalSlots).ToList();
 
         TargetInventory = targetInventory;

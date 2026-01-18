@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5f564dcad5847f49a9ffdb6e46ccc46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  <interactText>k__BackingField: '[E] Use'
+  <InteractText>k__BackingField: '[E] Interact'
 --- !u!114 &3104406702626241101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,4 +165,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shop
   numSellSlots: 20
-  <uiPrefab>k__BackingField: {fileID: 7214800564637545079, guid: cfe4e2d23e86be34ca54d4e22b2078ae, type: 3}
+  <UiPrefab>k__BackingField: {fileID: 7214800564637545079, guid: cfe4e2d23e86be34ca54d4e22b2078ae, type: 3}

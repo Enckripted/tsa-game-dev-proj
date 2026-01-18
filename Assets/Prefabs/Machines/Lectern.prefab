@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5f564dcad5847f49a9ffdb6e46ccc46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  <interactText>k__BackingField: '[E] Use'
+  <InteractText>k__BackingField: '[E] Interact'
 --- !u!114 &6554309933976928275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,4 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab42f0a950fffe438b2ec85cbd63ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ContractTileEntity
-  <uiPrefab>k__BackingField: {fileID: 7214800564637545079, guid: 401bb5a8ab6ce8548b42ce160ced4541, type: 3}
+  <UiPrefab>k__BackingField: {fileID: 7214800564637545079, guid: ef639a5a847b122489641c2491512dba, type: 3}
+  OnContractChanged:
+    m_PersistentCalls:
+      m_Calls: []

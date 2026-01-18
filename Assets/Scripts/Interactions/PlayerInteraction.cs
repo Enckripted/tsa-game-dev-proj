@@ -70,7 +70,7 @@ public class PlayerInteraction : MonoBehaviour
             if (currentInteractable != newInteractable)
             {
                 currentInteractable = newInteractable;
-                currentPrompt.Setup(currentInteractable.interactText); // setup prompt text
+                currentPrompt.Setup(currentInteractable.InteractText); // setup prompt text
             }
 
             // simple fix moved transform outside of if statemtent so it updates every frame
@@ -100,7 +100,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    // helper methods 
+    // helper methods
     private void PerformInteraction()
     {
 

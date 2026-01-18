@@ -2,135 +2,123 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public struct Recipe
-{
-    public double duration { get; }
-    public IEnumerable<ComponentQuantity> componentInputs { get; }
-    public IEnumerable<ComponentQuantity> componentOutputs { get; }
-    public IEnumerable<IItem> itemOutputs { get; }
-    public Recipe(double nDuration, IEnumerable<ComponentQuantity> nCompInputs, IEnumerable<ComponentQuantity> nCompOutputs, IEnumerable<IItem> nItemOutputs) //ienumerable is a read only list, which is what we want in this case
-    {
-        duration = nDuration;
-        componentInputs = nCompInputs;
-        componentOutputs = nCompOutputs;
-        itemOutputs = nItemOutputs;
-    }
-}
-
+//Allows machines to be passed in generically in other places.
 public interface IMachine
 {
-    public Inventory inputSlots { get; }
-    public Inventory outputSlots { get; }
-    public bool runsAutomatically { get; }
+    public Inventory InputSlots { get; }
+    public Inventory OutputSlots { get; }
+    public bool RunsAutomatically { get; }
 
-    public Recipe? currentRecipe { get; }
-    public double secondsRemaining { get; }
-    public bool running { get; }
+    public Recipe? CurrentRecipe { get; }
+    public double SecondsRemaining { get; }
+    public bool Running { get; }
 
-    public bool hasValidRecipe();
-    public void attemptMachineStart();
-    public void attemptMachineStop();
+    public bool HasValidRecipe();
+    public void AttemptMachineStart();
+    public void AttemptMachineStop();
 }
 
-[RequireComponent(typeof(Interactable))]
+//This abstract class handles the logic for starting and ending recipes, loading and unloading the
+//UI, and provides abstract functions that member classes will override to implement their own
+//behavior.
 [RequireComponent(typeof(AudioSource))]
 public abstract class BaseMachine : TileEntity, IMachine
 {
-    public abstract int numInputSlots { get; }
-    public abstract int numOutputSlots { get; }
-    public abstract bool runsAutomatically { get; }
-    public abstract bool stopsWhenFinished { get; }
+    public abstract int NumInputSlots { get; }
+    public abstract int NumOutputSlots { get; }
+    public abstract bool RunsAutomatically { get; }
+    public abstract bool StopsWhenFinished { get; }
 
-    public Inventory inputSlots { get; private set; }
-    public Inventory outputSlots { get; private set; }
+    public Inventory InputSlots { get; private set; }
+    public Inventory OutputSlots { get; private set; }
 
-    public Recipe? currentRecipe { get; protected set; }
-    [field: SerializeField] public double secondsRemaining { get; protected set; }
-    [field: SerializeField] public bool running { get; protected set; }
+    public Recipe? CurrentRecipe { get; protected set; }
+    [field: SerializeField] public double SecondsRemaining { get; protected set; }
+    [field: SerializeField] public bool Running { get; protected set; }
 
-    public abstract bool hasValidRecipe();
-    protected abstract Recipe getRecipe();
-    protected abstract void extractItemInputs();
-    protected abstract void onRecipeEnd();
-    protected abstract void machineUpdate();
-    protected abstract void loadMachineIntoUi(GameObject uiInstance);
+    public abstract bool HasValidRecipe();
+    protected abstract Recipe GetRecipe();
+    protected abstract void ExtractItemInputs();
+    protected abstract void OnRecipeEnd();
+    protected abstract void MachineUpdate();
+    protected abstract void LoadMachineIntoUi(GameObject uiInstance);
 
-    protected AudioSource audioSource;
+    protected AudioSource MachineAudioSource;
 
-    private void updateRecipe()
+    private void UpdateRecipe()
     {
-        if (running) return;
-        if (hasValidRecipe()) currentRecipe = getRecipe();
-        else currentRecipe = null;
+        if (Running) return;
+        if (HasValidRecipe()) CurrentRecipe = GetRecipe();
+        else CurrentRecipe = null;
     }
 
-    private bool canRunRecipe()
+    private bool CanRunRecipe()
     {
-        return currentRecipe.HasValue &&
-        outputSlots.AvailableSlots >= currentRecipe.Value.itemOutputs.Count<IItem>() &&
-        ComponentInventory.instance.hasQuantitiesAvailable(currentRecipe.Value.componentInputs);
+        return CurrentRecipe.HasValue &&
+        OutputSlots.AvailableSlots >= CurrentRecipe.Value.ItemOutputs.Count<IItem>() &&
+        Player.PlayerFragments.Contains(CurrentRecipe.Value.FragmentInputs);
     }
 
-    protected void startRecipe()
+    protected void StartRecipe()
     {
-        secondsRemaining = currentRecipe.Value.duration;
-        running = true;
+        SecondsRemaining = CurrentRecipe.Value.Duration;
+        Running = true;
 
-        foreach (ComponentQuantity compQuant in currentRecipe.Value.componentInputs)
-            ComponentInventory.instance.subtractComponentQuantity(compQuant);
-        extractItemInputs();
+        foreach (FragmentQuantity fragmentQuantity in CurrentRecipe.Value.FragmentInputs)
+            Player.PlayerFragments.SubFragmentQuantity(fragmentQuantity);
+        ExtractItemInputs();
     }
 
-    protected void endRecipe()
+    protected void EndRecipe()
     {
-        running = false;
+        Running = false;
 
-        foreach (ComponentQuantity compQuant in currentRecipe.Value.componentOutputs)
-            ComponentInventory.instance.addComponentQuantity(compQuant);
-        foreach (IItem output in currentRecipe.Value.itemOutputs)
-            outputSlots.PushItem(output);
+        foreach (FragmentQuantity fragmentQuantity in CurrentRecipe.Value.FragmentOutputs)
+            Player.PlayerFragments.AddFragmentQuantity(fragmentQuantity);
+        foreach (IItem output in CurrentRecipe.Value.ItemOutputs)
+            OutputSlots.PushItem(output);
 
-        onRecipeEnd();
-        updateRecipe();
-        if (currentRecipe != null && !stopsWhenFinished) startRecipe();
+        OnRecipeEnd();
+        UpdateRecipe();
+        if (CurrentRecipe != null && !StopsWhenFinished) StartRecipe();
     }
 
-    public void attemptMachineStart()
+    public void AttemptMachineStart()
     {
-        if (!running && currentRecipe.HasValue && canRunRecipe()) startRecipe();
+        if (!Running && CurrentRecipe.HasValue && CanRunRecipe()) StartRecipe();
     }
 
-    public void attemptMachineStop()
+    public void AttemptMachineStop()
     {
-        if (!running) return;
-        running = false;
-        updateRecipe();
+        if (!Running) return;
+        Running = false;
+        UpdateRecipe();
     }
 
-    public override void loadUi(GameObject uiInstance)
+    public override void LoadUi(GameObject uiInstance)
     {
-        loadMachineIntoUi(uiInstance);
-        Player.PlayerInventory.TargetInventory = inputSlots;
+        LoadMachineIntoUi(uiInstance);
+        Player.PlayerInventory.TargetInventory = InputSlots;
     }
 
-    public override void unloadUi(GameObject uiInstance)
+    public override void UnloadUi(GameObject uiInstance)
     {
         Player.PlayerInventory.TargetInventory = null;
     }
 
-    protected override void onStart()
+    protected override void OnStart()
     {
-        inputSlots = new Inventory(numInputSlots, Player.PlayerInventory);
-        outputSlots = new Inventory(numOutputSlots, Player.PlayerInventory);
-        audioSource = GetComponent<AudioSource>();
-        inputSlots.Changed.AddListener(updateRecipe);
+        InputSlots = new Inventory(NumInputSlots, true, Player.PlayerInventory);
+        OutputSlots = new Inventory(NumOutputSlots, false, Player.PlayerInventory);
+        MachineAudioSource = GetComponent<AudioSource>();
+        InputSlots.Changed.AddListener(UpdateRecipe);
     }
 
     void Update()
     {
-        secondsRemaining -= Time.deltaTime;
-        if (running && secondsRemaining <= 0) endRecipe();
-        if (!running && runsAutomatically) attemptMachineStart();
-        machineUpdate();
+        SecondsRemaining -= Time.deltaTime;
+        if (Running && SecondsRemaining <= 0) EndRecipe();
+        if (!Running && RunsAutomatically) AttemptMachineStart();
+        MachineUpdate();
     }
 }

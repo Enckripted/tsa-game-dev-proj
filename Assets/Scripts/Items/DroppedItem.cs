@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Interactable))]
-public class DroppedItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class DroppedItem : Entity, IPointerEnterHandler, IPointerExitHandler
 {
     public TextMeshPro ItemName;
 
@@ -18,7 +18,7 @@ public class DroppedItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (success)
         {
             Destroy(gameObject);
-            TooltipManager.instance.HideTooltip();
+            TooltipManager.Instance.HideTooltip();
         }
     }
 
@@ -28,7 +28,7 @@ public class DroppedItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (Item.Type == ItemType.WandItem)
         {
             WandItem wandItem = Item as WandItem;
-            sprite = ItemSpriteManager.instance.getItemSpriteFor(wandItem.BaseName, wandItem.WandMaterial);
+            sprite = ItemSpriteService.GetItemSpriteFor(wandItem.BaseName, wandItem.WandMaterial);
         }
         else
         {
@@ -37,26 +37,21 @@ public class DroppedItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         spriteRenderer.sprite = sprite;
     }
 
-    void Awake()
+    protected override void OnInteract() => PickupItem();
+    protected override void OnStart()
     {
         interactable = GetComponent<Interactable>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         LoadSprite();
-        //itemName.text = item.name;
-    }
-
-    void Start()
-    {
-        interactable.interactEvent.AddListener(PickupItem);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        TooltipManager.instance.ShowTooltip(Item.ItemTooltip);
+        TooltipManager.Instance.ShowTooltip(Item.ItemTooltip);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        TooltipManager.instance.HideTooltip();
+        TooltipManager.Instance.HideTooltip();
     }
 }

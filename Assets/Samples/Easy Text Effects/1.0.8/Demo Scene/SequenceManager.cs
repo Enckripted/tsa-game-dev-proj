@@ -5,16 +5,16 @@ namespace EasyTextEffects.Samples
 {
     public class SequenceManager : MonoBehaviour
     {
-        public List<GameObject> slides;
+        public List<GameObject> Slides;
 
         private int currentSlideIndex_ = -1;
-        public List<float> slideDelays;
+        public List<float> SlideDelays;
 
         void Start()
         {
-            for (int i = 0; i < slides.Count; i++)
+            for (int i = 0; i < Slides.Count; i++)
             {
-                slides[i].SetActive(false);
+                Slides[i].SetActive(false);
             }
         }
 
@@ -28,14 +28,14 @@ namespace EasyTextEffects.Samples
 
         public void NextSlide()
         {
-            if (currentSlideIndex_ > -1 && currentSlideIndex_ < slides.Count)
+            if (currentSlideIndex_ > -1 && currentSlideIndex_ < Slides.Count)
             {
                 StopEffect(currentSlideIndex_);
             }
             currentSlideIndex_++;
-            if (currentSlideIndex_ > -1 && currentSlideIndex_ < slides.Count)
+            if (currentSlideIndex_ > -1 && currentSlideIndex_ < Slides.Count)
             {
-                Invoke(nameof(StartCurrentEffect), slideDelays[currentSlideIndex_]);
+                Invoke(nameof(StartCurrentEffect), SlideDelays[currentSlideIndex_]);
             }
             else
             {
@@ -43,9 +43,9 @@ namespace EasyTextEffects.Samples
             }
         }
 
-        private void StopEffect(int _index)
+        private void StopEffect(int index)
         {
-            GameObject currentSlide = slides[_index];
+            GameObject currentSlide = Slides[index];
             var currentText = currentSlide.GetComponentInChildren<TextEffect>();
             if (currentText == null)
             {
@@ -60,16 +60,16 @@ namespace EasyTextEffects.Samples
                 currentSlide.SetActive(false);
                 return;
             }
-            effect.onEffectCompleted.AddListener(() => 
+            effect.onEffectCompleted.AddListener(() =>
             {
                 currentSlide.SetActive(false);
                 effect.onEffectCompleted.RemoveAllListeners();
             });
         }
 
-        private void StartEffect(int _index)
+        private void StartEffect(int index)
         {
-            GameObject currentSlide = slides[_index];
+            GameObject currentSlide = Slides[index];
 
             currentSlide.SetActive(true);
             var currentText = currentSlide.GetComponentInChildren<TextEffect>();

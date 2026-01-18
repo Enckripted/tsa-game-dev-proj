@@ -2,20 +2,24 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
+//Class that allows for the InventorySlot UI component to only control the state of the slot it
+//controls
 [Serializable]
 public class InventorySlot
 {
     public readonly UnityEvent Changed;
     [field: SerializeField] public IItem StoredItem { get; private set; }
     [field: SerializeField] public bool ContainsItem { get; private set; }
+    [field: SerializeField] public bool CanInsert { get; private set; }
     [field: SerializeReference] public Inventory TargetInventory { get; set; } //maybe don't serialize
     //TODO: add a custom setter here
 
-    public InventorySlot(Inventory targetInventory)
+    public InventorySlot(bool canInsert, Inventory targetInventory)
     {
         Changed = new UnityEvent();
         ContainsItem = false;
         TargetInventory = targetInventory;
+        CanInsert = canInsert;
     }
 
     public bool Insert(IItem nItem)
