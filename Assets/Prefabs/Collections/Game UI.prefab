@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b5548cec60b25489fa0f9dbdad55ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ComponentListUi
-  componentQuantityElement: {fileID: 8388037741589774605, guid: 100cf2723e3249c40ab766de9f39aa21, type: 3}
+  fragmentQuantityElement: {fileID: 8388037741589774605, guid: 100cf2723e3249c40ab766de9f39aa21, type: 3}
 --- !u!1 &2894721829007366303
 GameObject:
   m_ObjectHideFlags: 0

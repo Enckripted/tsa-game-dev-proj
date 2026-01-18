@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba2e11ff0ae6c64fa19d8ebbd926ea3, type: 3}
   m_Name: Strong
   m_EditorClassIdentifier: Assembly-CSharp::ReforgeData
-  <Name>k__BackingField: Bulky
+  <Name>k__BackingField: Strong
   <StatMultiplier>k__BackingField:
     Power: 1.2
     TimeToCast: 0.8
