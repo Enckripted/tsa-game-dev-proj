@@ -5,6 +5,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
+//Inventory with support for adding and removing items, counting available items, and shift clicking
+//items into a target inventory. IEnumerable means that it can be iterated through with a foreach
+//loop.
 [Serializable]
 public class Inventory : IEnumerable
 {

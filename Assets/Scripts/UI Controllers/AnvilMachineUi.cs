@@ -15,7 +15,7 @@ public class AnvilMachineUi : MachineUi
     {
         if (Machine.CurrentRecipe != null)
         {
-            uiComponentCost.Components = Machine.CurrentRecipe.Value.ComponentInputs;
+            uiComponentCost.Components = Machine.CurrentRecipe.Value.FragmentInputs;
             uiCostText.gameObject.SetActive(true);
         }
         else

@@ -26,9 +26,9 @@ public class FragmentListUi : MonoBehaviour
         if (_components == null || _components.Count() == 0) return;
 
         List<string> lines = new List<string>();
-        foreach (var compQuant in _components)
+        foreach (var fragmentQuantity in _components)
         {
-            lines.Add($"{compQuant.Type}: {compQuant.Amount}");
+            lines.Add($"{fragmentQuantity.Type}: {fragmentQuantity.Amount}");
         }
         componentsText.text = string.Join("\n", lines);
     }

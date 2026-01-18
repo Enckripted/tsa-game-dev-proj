@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSpriteManager : MonoBehaviour
+public class ItemSpriteService : MonoBehaviour
 {
     [SerializeField] private Color maskColor;
     private static Dictionary<string, Dictionary<string, Sprite>> sprites;
@@ -24,7 +24,7 @@ public class ItemSpriteManager : MonoBehaviour
         {
             sprites.Add(itemTexture.name, new Dictionary<string, Sprite>());
 
-            foreach (MaterialData materialData in ScriptableObjectData.BaseMaterials)
+            foreach (MaterialScriptableObject materialData in ScriptableObjectData.BaseMaterials)
             {
                 Texture2D texture = TextureColorerService.ColorTexture(itemTexture, maskColor, materialData.Color);
                 Sprite sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));

@@ -35,7 +35,7 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
         if (item.Type == ItemType.WandItem)
         {
             WandItem gearItem = item as WandItem;
-            sprite = ItemSpriteManager.GetItemSpriteFor(gearItem.BaseName, gearItem.WandMaterial);
+            sprite = ItemSpriteService.GetItemSpriteFor(gearItem.BaseName, gearItem.WandMaterial);
         }
         else
         {

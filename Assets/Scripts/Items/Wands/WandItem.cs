@@ -51,7 +51,12 @@ public class WandItem : IItem
         tooltip.AddLine($"Time to Cast: {Stats.TimeToCast:0.00}");
         tooltip.AddLine($"Power per Second: {Stats.PowerPerSecond:0.00}");
         tooltip.AddNewLine();
-        tooltip.CombineWith(WandMaterial.MaterialTooltip);
+        tooltip.CombineWith(WandMaterial.HoverTooltip);
+        if (WandReforge != null)
+        {
+            tooltip.AddNewLine();
+            tooltip.CombineWith(WandReforge.HoverTooltip);
+        }
         return tooltip;
     }
 

@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
         PlayerInventory = new Inventory(8);
 
         PlayerComponents = new FragmentInventory();
-        foreach (MaterialData material in ScriptableObjectData.BaseMaterials)
+        foreach (MaterialScriptableObject material in ScriptableObjectData.BaseMaterials)
         {
             PlayerComponents.AddComponentQuantity(new FragmentQuantity(material.name, 0));
         }

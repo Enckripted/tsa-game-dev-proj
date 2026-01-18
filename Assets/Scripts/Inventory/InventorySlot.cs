@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
+//Class that allows for the InventorySlot UI component to only control the state of the slot it
+//controls
 [Serializable]
 public class InventorySlot
 {

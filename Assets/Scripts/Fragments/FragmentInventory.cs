@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 //TODO: maybe add safety checks for strings that aren't in our material database?
+
+//Wrapper for dictionary containing Fragments
 public class FragmentInventory
 {
     //as far as i know there's no real downside to using serializeddictionary instead of a normal dictionary
@@ -20,16 +22,16 @@ public class FragmentInventory
         return Components.ContainsKey(matType);
     }
 
-    public bool HasQuantityAvailable(FragmentQuantity compQuant)
+    public bool HasQuantityAvailable(FragmentQuantity fragmentQuantity)
     {
-        return Components[compQuant.Type] >= compQuant.Amount;
+        return Components[fragmentQuantity.Type] >= fragmentQuantity.Amount;
     }
 
-    public bool HasQuantitiesAvailable(IEnumerable<FragmentQuantity> compQuants)
+    public bool HasQuantitiesAvailable(IEnumerable<FragmentQuantity> fragmentQuantitys)
     {
-        foreach (FragmentQuantity compQuant in compQuants)
+        foreach (FragmentQuantity fragmentQuantity in fragmentQuantitys)
         {
-            if (!HasQuantityAvailable(compQuant)) return false;
+            if (!HasQuantityAvailable(fragmentQuantity)) return false;
         }
         return true;
     }
@@ -40,16 +42,16 @@ public class FragmentInventory
         return Components[matType];
     }
 
-    public void AddComponentQuantity(FragmentQuantity compQuant)
+    public void AddComponentQuantity(FragmentQuantity fragmentQuantity)
     {
-        if (!MatTypeInInventory(compQuant.Type)) Components[compQuant.Type] = 0;
-        Components[compQuant.Type] += compQuant.Amount;
+        if (!MatTypeInInventory(fragmentQuantity.Type)) Components[fragmentQuantity.Type] = 0;
+        Components[fragmentQuantity.Type] += fragmentQuantity.Amount;
     }
 
-    public void SubtractComponentQuantity(FragmentQuantity compQuant)
+    public void SubtractComponentQuantity(FragmentQuantity fragmentQuantity)
     {
-        if (!MatTypeInInventory(compQuant.Type)) Components[compQuant.Type] = 0;
-        if (GetQuantity(compQuant.Type) - compQuant.Amount < 0) throw new Exception("Subtracted more than current amount for component type called " + compQuant.Type);
-        Components[compQuant.Type] -= compQuant.Amount;
+        if (!MatTypeInInventory(fragmentQuantity.Type)) Components[fragmentQuantity.Type] = 0;
+        if (GetQuantity(fragmentQuantity.Type) - fragmentQuantity.Amount < 0) throw new Exception("Subtracted more than current amount for fragment type called " + fragmentQuantity.Type);
+        Components[fragmentQuantity.Type] -= fragmentQuantity.Amount;
     }
 }

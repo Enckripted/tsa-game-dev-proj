@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/*
+This a base class that just specifies an interactable and an hook on the interactable.
+*/
 [RequireComponent(typeof(Interactable))]
 public abstract class Entity : MonoBehaviour
 {
@@ -8,13 +11,9 @@ public abstract class Entity : MonoBehaviour
     protected abstract void OnInteract();
     protected abstract void OnStart();
 
-    void Awake()
-    {
-        InteractionPrompt = GetComponent<Interactable>();
-    }
-
     void Start()
     {
+        InteractionPrompt = GetComponent<Interactable>();
         InteractionPrompt.InteractEvent.AddListener(OnInteract);
         OnStart();
     }

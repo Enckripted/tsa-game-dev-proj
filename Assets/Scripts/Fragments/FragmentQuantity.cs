@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+//Simple representation of fragment amounts
 [Serializable]
 public class FragmentQuantity
 {

@@ -6,7 +6,7 @@ public static class RandomItemService
     public static WandItem CreateRandomWand()
     {
         WandScriptableObject wandData = ScriptableObjectData.RandomBaseWandData();
-        MaterialData materialData = ScriptableObjectData.RandomMaterialData();
+        MaterialScriptableObject materialData = ScriptableObjectData.RandomMaterialData();
         WandReforgeScriptableObject reforgeData = ScriptableObjectData.RandomWandReforgeData();
         WandItem wand = new WandItem(wandData, 1,
             new Material(materialData),

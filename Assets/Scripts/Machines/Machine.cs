@@ -2,21 +2,25 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+//A basic container, where machines will put the fragments they will consume, the fragments and
+//items they will output along with the recipe duration. Prevents repetition across other machines'
+//code.
 public struct Recipe
 {
     public double Duration { get; }
-    public IEnumerable<FragmentQuantity> ComponentInputs { get; }
-    public IEnumerable<FragmentQuantity> ComponentOutputs { get; }
+    public IEnumerable<FragmentQuantity> FragmentInputs { get; }
+    public IEnumerable<FragmentQuantity> FragmentOutputs { get; }
     public IEnumerable<IItem> ItemOutputs { get; }
-    public Recipe(double nDuration, IEnumerable<FragmentQuantity> nCompInputs, IEnumerable<FragmentQuantity> nCompOutputs, IEnumerable<IItem> nItemOutputs) //ienumerable is a read only list, which is what we want in this case
+    public Recipe(double nDuration, IEnumerable<FragmentQuantity> nFragInputs, IEnumerable<FragmentQuantity> nFragOutputs, IEnumerable<IItem> nItemOutputs) //ienumerable is a read only list, which is what we want in this case
     {
         Duration = nDuration;
-        ComponentInputs = nCompInputs;
-        ComponentOutputs = nCompOutputs;
+        FragmentInputs = nFragInputs;
+        FragmentOutputs = nFragOutputs;
         ItemOutputs = nItemOutputs;
     }
 }
 
+//Allows machines to be passed in generically in other places.
 public interface IMachine
 {
     public Inventory InputSlots { get; }
@@ -32,7 +36,9 @@ public interface IMachine
     public void AttemptMachineStop();
 }
 
-[RequireComponent(typeof(Interactable))]
+//This abstract class handles the logic for starting and ending recipes, loading and unloading the
+//UI, and provides abstract functions that member classes will override to implement their own
+//behavior.
 [RequireComponent(typeof(AudioSource))]
 public abstract class BaseMachine : TileEntity, IMachine
 {
@@ -68,7 +74,7 @@ public abstract class BaseMachine : TileEntity, IMachine
     {
         return CurrentRecipe.HasValue &&
         OutputSlots.AvailableSlots >= CurrentRecipe.Value.ItemOutputs.Count<IItem>() &&
-        Player.PlayerComponents.HasQuantitiesAvailable(CurrentRecipe.Value.ComponentInputs);
+        Player.PlayerComponents.HasQuantitiesAvailable(CurrentRecipe.Value.FragmentInputs);
     }
 
     protected void StartRecipe()
@@ -76,8 +82,8 @@ public abstract class BaseMachine : TileEntity, IMachine
         SecondsRemaining = CurrentRecipe.Value.Duration;
         Running = true;
 
-        foreach (FragmentQuantity compQuant in CurrentRecipe.Value.ComponentInputs)
-            Player.PlayerComponents.SubtractComponentQuantity(compQuant);
+        foreach (FragmentQuantity fragmentQuantity in CurrentRecipe.Value.FragmentInputs)
+            Player.PlayerComponents.SubtractComponentQuantity(fragmentQuantity);
         ExtractItemInputs();
     }
 
@@ -85,8 +91,8 @@ public abstract class BaseMachine : TileEntity, IMachine
     {
         Running = false;
 
-        foreach (FragmentQuantity compQuant in CurrentRecipe.Value.ComponentOutputs)
-            Player.PlayerComponents.AddComponentQuantity(compQuant);
+        foreach (FragmentQuantity fragmentQuantity in CurrentRecipe.Value.FragmentOutputs)
+            Player.PlayerComponents.AddComponentQuantity(fragmentQuantity);
         foreach (IItem output in CurrentRecipe.Value.ItemOutputs)
             OutputSlots.PushItem(output);
 

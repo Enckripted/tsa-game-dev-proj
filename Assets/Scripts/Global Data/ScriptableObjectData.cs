@@ -4,7 +4,7 @@ using UnityEngine;
 public class ScriptableObjectData : MonoBehaviour
 {
     public static List<WandScriptableObject> BaseWands { get; private set; }
-    public static List<MaterialData> BaseMaterials { get; private set; }
+    public static List<MaterialScriptableObject> BaseMaterials { get; private set; }
     public static List<WandReforgeScriptableObject> BaseWandReforges { get; private set; }
 
     //i don't know if there's a better way of doing this
@@ -18,7 +18,7 @@ public class ScriptableObjectData : MonoBehaviour
         return ChooseFrom(BaseWands);
     }
 
-    public static MaterialData RandomMaterialData()
+    public static MaterialScriptableObject RandomMaterialData()
     {
         return ChooseFrom(BaseMaterials);
     }
@@ -31,7 +31,7 @@ public class ScriptableObjectData : MonoBehaviour
     void Awake()
     {
         BaseWands = new List<WandScriptableObject>(Resources.LoadAll<WandScriptableObject>("Base Wands"));
-        BaseMaterials = new List<MaterialData>(Resources.LoadAll<MaterialData>("Materials"));
+        BaseMaterials = new List<MaterialScriptableObject>(Resources.LoadAll<MaterialScriptableObject>("Materials"));
         BaseWandReforges = new List<WandReforgeScriptableObject>(Resources.LoadAll<WandReforgeScriptableObject>("Wand Reforges"));
     }
 }
