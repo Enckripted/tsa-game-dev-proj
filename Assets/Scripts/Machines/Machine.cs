@@ -97,7 +97,6 @@ public abstract class BaseMachine : TileEntity, IMachine
 
     public override void LoadUi(GameObject uiInstance)
     {
-        Debug.Log(InputSlots);
         LoadMachineIntoUi(uiInstance);
         Player.PlayerInventory.TargetInventory = InputSlots;
     }

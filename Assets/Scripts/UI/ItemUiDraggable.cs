@@ -100,7 +100,6 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log(InventorySlot.CanInsert);
         if (eventData.pointerDrag == null || !InventorySlot.CanInsert) return;
 
         InventorySlot otherSlot = eventData.pointerDrag.GetComponent<ItemUiDraggable>().InventorySlot;
