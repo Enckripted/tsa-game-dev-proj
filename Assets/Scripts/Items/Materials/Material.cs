@@ -14,12 +14,8 @@ public class Material : IWandEnhancement
     {
         get
         {
-            Tooltip tooltip = new Tooltip();
-            tooltip.AddLine(Name, true, Color);
-            if (StatMultiplier.Power != 1.0) tooltip.AddLine($"x{StatMultiplier.TimeToCast:0.00} to item power");
-            if (StatMultiplier.TimeToCast != 1.0) tooltip.AddLine($"x{StatMultiplier.TimeToCast:0.00} to casting speed");
-            if (StatMultiplier.SellValue != 1.0) tooltip.AddLine($"x{StatMultiplier.SellValue:0.00} to sell value");
-            return tooltip;
+            Tooltip tooltip = new Tooltip(Name, Color);
+            return MultiplierTooltipService.CreateFromWandStats(tooltip, StatMultiplier);
         }
     }
 
@@ -33,6 +29,11 @@ public class Material : IWandEnhancement
     public WandStats ApplyTo(WandStats curStats)
     {
         return curStats * StatMultiplier;
+    }
+
+    public Material ShallowCopy()
+    {
+        return (Material)MemberwiseClone();
     }
 }
 

@@ -5,6 +5,10 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
+//TODO: Maybe support having inventories of a single item type? Could be useful
+//in cases like the Applier machine (adds gems to an item) to prevent confusion,
+//but definetely not enough time to do this now.
+
 //Inventory with support for adding and removing items, counting available items, and shift clicking
 //items into a target inventory. IEnumerable means that it can be iterated through with a foreach
 //loop.

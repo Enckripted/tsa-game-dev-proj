@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5f564dcad5847f49a9ffdb6e46ccc46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  <interactText>k__BackingField: '[E] Pickup'
+  <InteractText>k__BackingField: '[E] Interact'
 --- !u!114 &5711318272433138062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2adb9d6a8d35cf14694ba18a81388c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DroppedItem
-  itemName: {fileID: 1111914367051639528}
+  ItemName: {fileID: 1111914367051639528}
 --- !u!1 &8708204715360947471
 GameObject:
   m_ObjectHideFlags: 0

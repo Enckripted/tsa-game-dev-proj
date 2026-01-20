@@ -47,6 +47,7 @@ public class Tooltip
 
     public void CombineWith(Tooltip tooltip)
     {
+        if (tooltip.Name != "") AddLine(tooltip.Name, true, tooltip.NameColor);
         foreach (string line in tooltip.Lines)
         {
             Lines.Add(line);

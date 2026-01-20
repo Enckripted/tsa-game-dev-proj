@@ -28,6 +28,7 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
         if (InventorySlot.StoredItem == null)
         {
             image.enabled = false;
+            nameText.text = "";
             return;
         }
         IItem item = InventorySlot.StoredItem;
@@ -37,12 +38,20 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
             WandItem gearItem = item as WandItem;
             sprite = ItemSpriteService.GetItemSpriteFor(gearItem.BaseName, gearItem.WandMaterial);
         }
+        else if (item.Type == ItemType.GemItem)
+        {
+            sprite = null;
+        }
         else
         {
             throw new Exception("this code path shouldn't run unless we add new items!");
         }
-        image.sprite = sprite;
-        image.enabled = true;
+        if (sprite != null)
+        {
+            image.sprite = sprite;
+            image.enabled = true;
+        }
+        else nameText.text = item.Name;
     }
 
     bool CheckShiftClick()
@@ -110,7 +119,7 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (InventorySlot.StoredItem != null) TooltipManager.Instance.ShowTooltip(InventorySlot.StoredItem.ItemTooltip);
+        if (InventorySlot.StoredItem != null) TooltipManager.Instance.ShowTooltip(InventorySlot.StoredItem.HoverTooltip);
     }
 
     public void OnPointerExit(PointerEventData eventData)

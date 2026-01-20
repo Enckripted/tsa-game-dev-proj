@@ -35,7 +35,7 @@ public class LevellerMachine : BaseMachine
     protected override Recipe GetRecipe()
     {
         WandItem reference = (InputSlots.ItemInSlot(0) as WandItem);
-        WandItem output = new WandItem(reference.BaseName, reference.Level + 1, reference.BaseStats, reference.LevelStats, reference.WandMaterial);
+        WandItem output = new WandItem(reference.BaseName, reference.Level + 1, reference.BaseStats, reference.LevelStats, reference.WandMaterial, reference.GemSlots);
 
         IEnumerable<IItem> itemOutputs = new List<WandItem> { output };
         return new Recipe(6.0, new FragmentInventory(), new FragmentInventory(), itemOutputs);

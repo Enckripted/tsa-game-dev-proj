@@ -1,3 +1,4 @@
+using UnityEngine;
 using System;
 
 //Struct with operations for multiplying and adding WandStats of the same type, alongside one for
@@ -5,9 +6,14 @@ using System;
 [Serializable]
 public struct WandStats
 {
-    public double Power;
-    public double TimeToCast;
-    public double SellValue;
+    [field: SerializeField] public double Power { get; private set; }
+    [field: SerializeField] public double TimeToCast { get; private set; }
+    [field: SerializeField] public double SellValue { get; private set; }
+
+    [field: SerializeField] public double FirePowerMult { get; private set; }
+    [field: SerializeField] public double WaterPowerMult { get; private set; }
+    [field: SerializeField] public double EarthPowerMult { get; private set; }
+    [field: SerializeField] public double AirPowerMult { get; private set; }
 
     public double PowerPerSecond
     {

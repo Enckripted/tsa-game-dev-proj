@@ -15,6 +15,10 @@ MonoBehaviour:
   Name: Gold
   Color: {r: 0.5754717, g: 0.5562377, b: 0, a: 1}
   StatMultipliers:
-    Power: 0.9
-    TimeToCast: 1.05
-    SellValue: 1.1
+    <Power>k__BackingField: 0.9
+    <TimeToCast>k__BackingField: 1.05
+    <SellValue>k__BackingField: 1.1
+    <FirePowerMult>k__BackingField: 1
+    <WaterPowerMult>k__BackingField: 1
+    <EarthPowerMult>k__BackingField: 1
+    <AirPowerMult>k__BackingField: 1

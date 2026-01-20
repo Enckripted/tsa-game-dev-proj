@@ -7,7 +7,7 @@ public class PlayerToolbarUi : MonoBehaviour
     [field: SerializeField] public FragmentInventoryUi PlayerFragmentUi { get; private set; }
     [field: SerializeField] public TextMeshProUGUI MoneyText { get; private set; }
 
-    void Start()
+    void Awake()
     {
         PlayerInventoryUi.Inventory = Player.PlayerInventory;
         PlayerFragmentUi.Inventory = Player.PlayerFragments;

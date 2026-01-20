@@ -9,7 +9,6 @@ public class DroppedItem : Entity, IPointerEnterHandler, IPointerExitHandler
 
     public IItem Item;
 
-    private Interactable interactable;
     private SpriteRenderer spriteRenderer;
 
     void PickupItem()
@@ -30,24 +29,28 @@ public class DroppedItem : Entity, IPointerEnterHandler, IPointerExitHandler
             WandItem wandItem = Item as WandItem;
             sprite = ItemSpriteService.GetItemSpriteFor(wandItem.BaseName, wandItem.WandMaterial);
         }
+        else if (Item.Type == ItemType.GemItem)
+        {
+            sprite = null;
+        }
         else
         {
             throw new System.Exception("this code path shouldn't run unless we add new items!");
         }
-        spriteRenderer.sprite = sprite;
+        if (sprite == null) ItemName.text = Item.Name;
+        else spriteRenderer.sprite = sprite;
     }
 
     protected override void OnInteract() => PickupItem();
     protected override void OnStart()
     {
-        interactable = GetComponent<Interactable>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         LoadSprite();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        TooltipManager.Instance.ShowTooltip(Item.ItemTooltip);
+        TooltipManager.Instance.ShowTooltip(Item.HoverTooltip);
     }
 
     public void OnPointerExit(PointerEventData eventData)
