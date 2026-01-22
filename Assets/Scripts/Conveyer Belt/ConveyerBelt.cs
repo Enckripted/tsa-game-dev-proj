@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class ConveyerBelt : MonoBehaviour
@@ -36,6 +36,8 @@ public class ConveyerBelt : MonoBehaviour
     // main loop
     void Update() //as far i know, it's fine if this is update instead of fixedupdate since delta time is used -diego
     {
+        if (GameState.GamePaused) return;
+
         MoveItems();
         HandleSpawning();
     }

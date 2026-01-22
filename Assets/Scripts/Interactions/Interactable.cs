@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
@@ -8,6 +8,8 @@ public class Interactable : MonoBehaviour
 
     public void Interact()
     {
+        if (GameState.GamePaused) return;
+
         InteractEvent.Invoke();
     }
 

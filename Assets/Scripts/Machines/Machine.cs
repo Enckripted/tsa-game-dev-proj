@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -116,6 +116,8 @@ public abstract class BaseMachine : TileEntity, IMachine
 
     void Update()
     {
+        if (GameState.GamePaused) return;
+
         SecondsRemaining -= Time.deltaTime;
         if (Running && SecondsRemaining <= 0) EndRecipe();
         if (!Running && RunsAutomatically) AttemptMachineStart();
