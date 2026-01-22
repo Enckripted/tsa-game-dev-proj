@@ -14,10 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GearData
   <Name>k__BackingField: Wand
   <BaseStats>k__BackingField:
-    Power: 5
-    TimeToCast: 2
-    SellValue: 0.5
+    <Power>k__BackingField: 4
+    <TimeToCast>k__BackingField: 2
+    <SellValue>k__BackingField: 0.5
+    <FirePowerMult>k__BackingField: 0
+    <WaterPowerMult>k__BackingField: 0
+    <EarthPowerMult>k__BackingField: 0
+    <AirPowerMult>k__BackingField: 0
   <LevelStats>k__BackingField:
-    Power: 1
-    TimeToCast: 0.1
-    SellValue: 0.5
+    <Power>k__BackingField: 0.5
+    <TimeToCast>k__BackingField: 0.1
+    <SellValue>k__BackingField: 0.25
+    <FirePowerMult>k__BackingField: 0
+    <WaterPowerMult>k__BackingField: 0
+    <EarthPowerMult>k__BackingField: 0
+    <AirPowerMult>k__BackingField: 0

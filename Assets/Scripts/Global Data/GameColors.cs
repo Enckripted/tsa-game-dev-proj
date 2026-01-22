@@ -6,6 +6,7 @@ public class GameColors : MonoBehaviour
 
     public Color GoldColor;
     public Color NameReforgeColor;
+    public Color GemSlotColor;
 
     void Awake()
     {

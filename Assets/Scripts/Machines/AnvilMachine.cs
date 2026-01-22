@@ -24,7 +24,7 @@ public class AnvilMachine : BaseMachine
     {
         WandItem reference = (InputSlots.ItemInSlot(0) as WandItem);
         WandReforgeScriptableObject reforgeData = ScriptableObjectData.RandomWandReforgeData();
-        WandItem output = new WandItem(reference.BaseName, reference.Level, reference.BaseStats, reference.LevelStats, reference.WandMaterial, new WandReforge(reforgeData));
+        WandItem output = new WandItem(reference.BaseName, reference.Level, reference.BaseStats, reference.LevelStats, reference.WandMaterial, reference.GemSlots, reference.Gems, new WandReforge(reforgeData));
 
         FragmentInventory fragmentInputs = new FragmentInventory();
         fragmentInputs.AddFragmentQuantity(new FragmentQuantity(reference.WandMaterial, 10));

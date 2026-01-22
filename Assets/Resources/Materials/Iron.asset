@@ -15,6 +15,10 @@ MonoBehaviour:
   Name: Iron
   Color: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
   StatMultipliers:
-    Power: 1.2
-    TimeToCast: 0.95
-    SellValue: 5
+    <Power>k__BackingField: 1.2
+    <TimeToCast>k__BackingField: 0.95
+    <SellValue>k__BackingField: 5
+    <FirePowerMult>k__BackingField: 1
+    <WaterPowerMult>k__BackingField: 1
+    <EarthPowerMult>k__BackingField: 1
+    <AirPowerMult>k__BackingField: 1

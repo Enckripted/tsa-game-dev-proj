@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ec3dea19045c34abedadc6de708bde, type: 3}
+  m_Name: Intimidating
+  m_EditorClassIdentifier: Assembly-CSharp::GemScriptableObject
+  <Name>k__BackingField: Energetic Gem
+  <StatAddition>k__BackingField:
+    <Power>k__BackingField: 0
+    <TimeToCast>k__BackingField: 0
+    <SellValue>k__BackingField: 0
+    <FirePowerMult>k__BackingField: 0
+    <WaterPowerMult>k__BackingField: 0
+    <EarthPowerMult>k__BackingField: 0
+    <AirPowerMult>k__BackingField: 0
+  <StatMultiplier>k__BackingField:
+    <Power>k__BackingField: 1.5
+    <TimeToCast>k__BackingField: 1
+    <SellValue>k__BackingField: 1
+    <FirePowerMult>k__BackingField: 1
+    <WaterPowerMult>k__BackingField: 1
+    <EarthPowerMult>k__BackingField: 1
+    <AirPowerMult>k__BackingField: 1

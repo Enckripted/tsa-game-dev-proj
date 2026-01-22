@@ -12,12 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c9d948c83980e34c9605c11e9420d15, type: 3}
   m_Name: Staff
   m_EditorClassIdentifier: Assembly-CSharp::GearData
-  <Name>k__BackingField: Scepter
+  <Name>k__BackingField: Staff
   <BaseStats>k__BackingField:
-    Power: 4
-    TimeToCast: 1.5
-    SellValue: 0.5
+    <Power>k__BackingField: 3
+    <TimeToCast>k__BackingField: 1.5
+    <SellValue>k__BackingField: 0.75
+    <FirePowerMult>k__BackingField: 0
+    <WaterPowerMult>k__BackingField: 0
+    <EarthPowerMult>k__BackingField: 0
+    <AirPowerMult>k__BackingField: 0
   <LevelStats>k__BackingField:
-    Power: 0.5
-    TimeToCast: 0.15
-    SellValue: 0.5
+    <Power>k__BackingField: 0.4
+    <TimeToCast>k__BackingField: 0.15
+    <SellValue>k__BackingField: 0.25
+    <FirePowerMult>k__BackingField: 0
+    <WaterPowerMult>k__BackingField: 0
+    <EarthPowerMult>k__BackingField: 0
+    <AirPowerMult>k__BackingField: 0

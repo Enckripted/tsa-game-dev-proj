@@ -15,6 +15,10 @@ MonoBehaviour:
   Name: Diamond
   Color: {r: 0, g: 0.7907807, b: 0.8301887, a: 1}
   StatMultipliers:
-    Power: 0.5
-    TimeToCast: 1.25
-    SellValue: 1.5
+    <Power>k__BackingField: 0.5
+    <TimeToCast>k__BackingField: 1.25
+    <SellValue>k__BackingField: 1.5
+    <FirePowerMult>k__BackingField: 1
+    <WaterPowerMult>k__BackingField: 1
+    <EarthPowerMult>k__BackingField: 1
+    <AirPowerMult>k__BackingField: 1
