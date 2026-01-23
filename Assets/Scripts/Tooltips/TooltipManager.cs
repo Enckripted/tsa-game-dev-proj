@@ -1,5 +1,7 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.Rendering;
 
 public class TooltipManager : MonoBehaviour
@@ -23,7 +25,7 @@ public class TooltipManager : MonoBehaviour
 
     void Update()
     {
-        Vector3 mousePos = Input.mousePosition;
+        Vector2 mousePos = new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue());
         Vector2 pivot = new Vector2(0, 1);
 
         transform.position = mousePos;

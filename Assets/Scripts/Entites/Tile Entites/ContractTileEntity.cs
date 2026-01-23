@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,6 @@ public class ContractTileEntity : TileEntity
     {
         Inventory = new Inventory(1, true, Player.PlayerInventory);
         GenerateContracts();
-
     }
 
     public void GenerateContracts()
@@ -57,7 +56,7 @@ public class ContractTileEntity : TileEntity
 
         Contract contract = new Contract();
         contract.RequiredBaseName = baseWand.Name;
-        contract.RequiredMaterial = material.Name;
+        contract.RequiredMaterial = new Material(material);
 
         double powerMult = Random.Range(0.85f, 0.95f);
         double valueMult = Random.Range(0.85f, 0.95f);
@@ -66,12 +65,6 @@ public class ContractTileEntity : TileEntity
         contract.MinSellValue = Math.Floor(refWand.Stats.SellValue * valueMult);
 
         contract.Reward = refWand.Stats.SellValue * 1.5f;
-
-        string matColorHex = material.Color.ToHexString();
-        string powerHex = "FF0000";
-        string goldHex = GameColors.Instance.GoldColor.ToHexString();
-
-        contract.Description = $"Create a <color=#{matColorHex}>{contract.RequiredMaterial}</color> {contract.RequiredBaseName} with at least <color=#{powerHex}>{contract.MinPower:0}</color> Power and a sell value of at least <color=yellow>${contract.MinSellValue:0.00}</color>";
 
         return contract;
     }
