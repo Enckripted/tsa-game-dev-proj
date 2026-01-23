@@ -61,7 +61,10 @@ public class IntroTextManager : MonoBehaviour
     {
         curText++;
         if (curText == IntroTexts.Count)
+        {
             SceneManager.LoadScene("MAIN SCENE");
+            return;
+        }
 
         //all the setup (ugly)
         words = new List<string>(IntroTexts[curText].Text.Split(" "));
@@ -79,7 +82,15 @@ public class IntroTextManager : MonoBehaviour
 
     void Start()
     {
+        //so... apparently unity will automatically enable all input actions
+        //when entering a scene from play mode, but won't if you enter a scene
+        //from loading it in. we have to do this .Enable() call otherwise the
+        //intro just wont work on a game over. FIXME and find a better solution
+        //than just putting this line of code here if possible
+        InputSystem.actions.Enable();
+
         forwardAction = InputSystem.actions.FindAction("Jump");
+        timeTillNextChar = 0;
         NextText();
     }
 
@@ -90,9 +101,10 @@ public class IntroTextManager : MonoBehaviour
 
         SpaceToContinueText.SetActive(curWord == words.Count);
         if (forwardAction.WasPressedThisFrame())
+        {
             if (curWord != words.Count) ForwardText();
             else NextText();
-
+        }
         TextElement.text = ShownText;
     }
 }
