@@ -460,6 +460,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5511329392293923051, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5953223539769857418, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1496,5 +1500,5 @@ SceneRoots:
   - {fileID: 1129451667}
   - {fileID: 547214048}
   - {fileID: 1889136412}
-  - {fileID: 509562387}
   - {fileID: 688047823}
+  - {fileID: 509562387}

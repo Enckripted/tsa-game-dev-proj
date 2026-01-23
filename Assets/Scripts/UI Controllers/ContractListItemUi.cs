@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
@@ -15,16 +15,16 @@ public class ContractListItemUi : MonoBehaviour
     {
         _contract = contract;
         _entity = entity;
-        
+
 
         if (descriptionText != null)
         {
-             descriptionText.text = contract.Description;
+            descriptionText.text = contract.Description;
         }
 
         if (rewardText != null)
         {
-             rewardText.text = $"Reward: <color=yellow>${contract.Reward:0.00}</color>";
+            rewardText.text = $"Reward: <color=yellow>${contract.Reward:0.00}</color>";
         }
 
         if (acceptButton != null)
