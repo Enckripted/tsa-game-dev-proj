@@ -13,10 +13,10 @@ public class Player4Dir : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 currentVelocity;
     private InputSystem_Actions controls;
-    private List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    private readonly List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     private Animator animator;
-    private const string horizontal = "Horizontal";
-    private const string vertical = "Vertical";
+    private const string Horizontal = "Horizontal";
+    private const string Vertical = "Vertical";
 
     private void Awake()
     {
@@ -42,8 +42,8 @@ public class Player4Dir : MonoBehaviour
     private void Update()
     {
         moveInput = controls.Player.Move.ReadValue<Vector2>();
-        animator.SetFloat(horizontal, moveInput.x);
-        animator.SetFloat(vertical, moveInput.y);
+        animator.SetFloat(Horizontal, moveInput.x);
+        animator.SetFloat(Vertical, moveInput.y);
     }
 
     private void FixedUpdate()

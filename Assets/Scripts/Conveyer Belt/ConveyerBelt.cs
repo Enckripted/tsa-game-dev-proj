@@ -107,7 +107,7 @@ public class ConveyerBelt : MonoBehaviour
         WandItem chosenWand = RandomItemService.CreateRandomWand(); // singleton call
 
         //parent under this object to tidy up the inspector
-        GameObject obj = Instantiate(droppedItemPrefab, new Vector3(startPos.x, startPos.y, -4f), Quaternion.identity, transform.parent); // create obj
+        GameObject obj = Instantiate(droppedItemPrefab, new Vector3(startPos.x, startPos.y, -4f), Quaternion.identity, transform); // create obj
 
         obj.transform.localScale = Vector3.one * 0.75f; // make smaller
 
