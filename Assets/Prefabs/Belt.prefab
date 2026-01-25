@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 1019499490291942227}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 1}
-  m_LocalScale: {x: 1, y: 3, z: 1}
+  m_LocalPosition: {x: 0, y: 4.5, z: 1}
+  m_LocalScale: {x: 1, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5428773827762066728}
@@ -289,12 +289,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1633f7d965899b48a34eff5c429bab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConveyerBelt
-  beltSpeed: 5
+  beltSpeed: 0.5
   beltDirection: {x: 0, y: 1}
-  beltLength: 10
+  beltLength: 9
   droppedItemPrefab: {fileID: 8244762787987124848, guid: 8145d7c6f08df4043b7adbbb3e731e07, type: 3}
-  spawnInterval: 0.5
-  maxItemsOnBelt: 5
+  spawnInterval: 2.5
+  maxItemsOnBelt: 99
   spawnOffset: {x: 0, y: 0}
   minItemSpacing: 1.5
 --- !u!1 &8193442368912354814
@@ -323,7 +323,7 @@ Transform:
   m_GameObject: {fileID: 8193442368912354814}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

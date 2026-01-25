@@ -45,23 +45,25 @@ public class GlobalQuota : MonoBehaviour
 
     void Update()
     {
-        if (GameState.GamePaused) return;
-
-        paymentTimeRemaining -= Time.deltaTime;
-        if (paymentTimeRemaining <= 0)
-        {
-            if (!Player.HasMoney(paymentAmount))
-            {
-                SceneManager.LoadScene("INTRO SCENE");
-                return;
-            }
-            Player.RemoveMoney(paymentAmount);
-            GetNextPayment();
-        }
         paymentAmountText.text = $"${paymentAmount:0.00}";
         paymentTimeText.text = $"Due in {Math.Floor(paymentTimeRemaining / 60)}:{paymentTimeRemaining % 60:00}";
 
         contextText.color = paymentTimeRemaining > secondsForRedText ? Color.white : Color.red;
         paymentTimeText.color = paymentTimeRemaining > secondsForRedText ? Color.white : Color.red;
+
+        if (GameState.GamePaused || GameState.TutorialRunning) return;
+        paymentTimeRemaining -= Time.deltaTime;
+        if (paymentTimeRemaining <= 0)
+        {
+            if (!Player.HasMoney(paymentAmount))
+            {
+                SceneManager.LoadScene("GAME OVER");
+                return;
+            }
+            Player.RemoveMoney(paymentAmount);
+            GetNextPayment();
+        }
+
+
     }
 }

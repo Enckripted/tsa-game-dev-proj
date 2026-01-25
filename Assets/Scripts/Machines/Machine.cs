@@ -99,6 +99,7 @@ public abstract class BaseMachine : TileEntity, IMachine
     {
         LoadMachineIntoUi(uiInstance);
         Player.PlayerInventory.TargetInventory = InputSlots;
+        InputSlots.TargetInventory = Player.PlayerInventory;
     }
 
     public override void UnloadUi(GameObject uiInstance)

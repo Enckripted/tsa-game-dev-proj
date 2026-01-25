@@ -1,9 +1,9 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Interactable))]
-public class DroppedItem : Entity, IPointerEnterHandler, IPointerExitHandler
+public class DroppedItem : Entity//, IPointerEnterHandler, IPointerExitHandler
 {
     public TextMeshPro ItemName;
 
@@ -16,8 +16,9 @@ public class DroppedItem : Entity, IPointerEnterHandler, IPointerExitHandler
         bool success = Player.PlayerInventory.PushItem(Item);
         if (success)
         {
+            Player.ItemsPickedUp++;
             Destroy(gameObject);
-            TooltipManager.Instance.HideTooltip();
+            //TooltipManager.Instance.HideTooltip();
         }
     }
 
@@ -48,6 +49,7 @@ public class DroppedItem : Entity, IPointerEnterHandler, IPointerExitHandler
         LoadSprite();
     }
 
+    /*
     public void OnPointerEnter(PointerEventData eventData)
     {
         TooltipManager.Instance.ShowTooltip(Item.HoverTooltip);
@@ -56,5 +58,6 @@ public class DroppedItem : Entity, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerExit(PointerEventData eventData)
     {
         TooltipManager.Instance.HideTooltip();
-    }
+    }*/
+
 }

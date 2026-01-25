@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler
+public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler//, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TextMeshProUGUI nameText;
 
@@ -117,6 +117,7 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
         otherSlot.Insert(currentItem);
     }
 
+    /*
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (InventorySlot.StoredItem != null) TooltipManager.Instance.ShowTooltip(InventorySlot.StoredItem.HoverTooltip);
@@ -125,5 +126,5 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
     public void OnPointerExit(PointerEventData eventData)
     {
         TooltipManager.Instance.HideTooltip();
-    }
+    }*/
 }

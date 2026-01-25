@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,9 +15,19 @@ public class AnvilMachine : BaseMachine
     [SerializeField] private float runningSfxDelaySecs;
     [SerializeField] private AudioClip finishSfx;
 
+    //assumes there is an item inside of the anvil
+    private FragmentInventory GetFragmentCost()
+    {
+        WandItem reference = InputSlots.ItemInSlot(0) as WandItem;
+        return new FragmentInventory(new List<FragmentQuantity>()
+        {
+            new FragmentQuantity(reference.WandMaterial, 10)
+        });
+    }
+
     public override bool HasValidRecipe()
     {
-        return InputSlots.AvailableSlots == 0;
+        return InputSlots.AvailableSlots == 0 && Player.PlayerFragments.Contains(GetFragmentCost());
     }
 
     protected override Recipe GetRecipe()
@@ -26,11 +36,8 @@ public class AnvilMachine : BaseMachine
         WandReforgeScriptableObject reforgeData = ScriptableObjectData.RandomWandReforgeData();
         WandItem output = new WandItem(reference.BaseName, reference.Level, reference.BaseStats, reference.LevelStats, reference.WandMaterial, reference.GemSlots, reference.Gems, new WandReforge(reforgeData));
 
-        FragmentInventory fragmentInputs = new FragmentInventory();
-        fragmentInputs.AddFragmentQuantity(new FragmentQuantity(reference.WandMaterial, 10));
-
         IEnumerable<IItem> itemOutputs = new List<WandItem> { output };
-        return new Recipe(15.0, fragmentInputs, new FragmentInventory(), itemOutputs);
+        return new Recipe(GameState.TutorialRunning ? 3.0 : 15.0, GetFragmentCost(), new FragmentInventory(), itemOutputs);
     }
 
     protected override void ExtractItemInputs()
@@ -42,6 +49,7 @@ public class AnvilMachine : BaseMachine
 
     protected override void OnRecipeEnd()
     {
+        Player.ItemsReforged++;
     }
 
     protected override void MachineUpdate()

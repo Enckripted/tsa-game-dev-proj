@@ -1,4 +1,4 @@
-//this is a very jank way to add a storage container but we'll roll with it for now
+﻿//this is a very jank way to add a storage container but we'll roll with it for now
 using UnityEngine;
 
 public class StorageBox : TileEntity
@@ -14,6 +14,7 @@ public class StorageBox : TileEntity
         ui.StorageBoxInstance = this;
 
         Player.PlayerInventory.TargetInventory = StorageSlots;
+        StorageSlots.TargetInventory = Player.PlayerInventory;
     }
 
     public override void UnloadUi(GameObject uiInstance)

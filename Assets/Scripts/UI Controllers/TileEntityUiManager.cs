@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -36,6 +36,8 @@ public class TileEntityUiManager : MonoBehaviour
 
     public void CloseUi()
     {
+        if (GameState.GamePaused) return;
+
         currentTileEntity.UnloadUi(currentUiInstance);
         Destroy(currentUiInstance);
         canvasGroup.blocksRaycasts = false;
