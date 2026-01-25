@@ -38,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 506823242367159701, guid: 8d981dc5500a4a64aa5716a3ac6e2b02, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 107
       objectReference: {fileID: 0}
     - target: {fileID: 506823242367159701, guid: 8d981dc5500a4a64aa5716a3ac6e2b02, type: 3}
       propertyPath: m_LocalPosition.x
@@ -104,14 +104,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3667545269159230265, guid: 8d981dc5500a4a64aa5716a3ac6e2b02, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5230146726313999611}
+      addedObject: {fileID: 6613230866584318006}
   m_SourcePrefab: {fileID: 100100000, guid: 8d981dc5500a4a64aa5716a3ac6e2b02, type: 3}
 --- !u!1 &817277849623286354 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3667545269159230265, guid: 8d981dc5500a4a64aa5716a3ac6e2b02, type: 3}
   m_PrefabInstance: {fileID: 4157439429733067115}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5230146726313999611
+--- !u!114 &6613230866584318006
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

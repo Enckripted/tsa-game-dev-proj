@@ -64,15 +64,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 6088794144020531199, guid: 9975631307f5dd342aa8309f7d1ed32a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -273,7 +273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8362503775228345951, guid: 71dc289f3ff85dc47afaf783b2226d84, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 200
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 8362503775228345951, guid: 71dc289f3ff85dc47afaf783b2226d84, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -286,6 +286,22 @@ PrefabInstance:
     - target: {fileID: 8362503775228345951, guid: 71dc289f3ff85dc47afaf783b2226d84, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488813592997994972, guid: 71dc289f3ff85dc47afaf783b2226d84, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488813592997994972, guid: 71dc289f3ff85dc47afaf783b2226d84, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488813592997994972, guid: 71dc289f3ff85dc47afaf783b2226d84, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488813592997994972, guid: 71dc289f3ff85dc47afaf783b2226d84, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -441,7 +457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4520110099548988670, guid: 1c6232654f5e68746aecc24743973de8, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 107
       objectReference: {fileID: 0}
     - target: {fileID: 4520110099548988670, guid: 1c6232654f5e68746aecc24743973de8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -477,7 +493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4520110099548988670, guid: 1c6232654f5e68746aecc24743973de8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -300
+      value: -166.5
       objectReference: {fileID: 0}
     - target: {fileID: 4520110099548988670, guid: 1c6232654f5e68746aecc24743973de8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -539,7 +555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1707093611160539684, guid: 560f29418a4b4cc429cbb02379347406, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 107
       objectReference: {fileID: 0}
     - target: {fileID: 1707093611160539684, guid: 560f29418a4b4cc429cbb02379347406, type: 3}
       propertyPath: m_LocalPosition.x
@@ -575,7 +591,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1707093611160539684, guid: 560f29418a4b4cc429cbb02379347406, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 160
+      value: -53.5
       objectReference: {fileID: 0}
     - target: {fileID: 1707093611160539684, guid: 560f29418a4b4cc429cbb02379347406, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
