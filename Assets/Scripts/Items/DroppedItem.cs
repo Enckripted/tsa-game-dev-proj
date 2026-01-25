@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -16,6 +16,7 @@ public class DroppedItem : Entity, IPointerEnterHandler, IPointerExitHandler
         bool success = Player.PlayerInventory.PushItem(Item);
         if (success)
         {
+            Player.ItemsPickedUp++;
             Destroy(gameObject);
             TooltipManager.Instance.HideTooltip();
         }

@@ -45,7 +45,7 @@ public class GlobalQuota : MonoBehaviour
 
     void Update()
     {
-        if (GameState.GamePaused) return;
+        if (GameState.GamePaused || GameState.TutorialRunning) return;
 
         paymentTimeRemaining -= Time.deltaTime;
         if (paymentTimeRemaining <= 0)

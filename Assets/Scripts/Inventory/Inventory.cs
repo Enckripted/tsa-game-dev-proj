@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +17,7 @@ public class Inventory : IEnumerable
 {
     [field: SerializeField] public int TotalSlots { get; private set; }
     [field: SerializeField] public int AvailableSlots { get; private set; }
+    public int UsedSlots { get => TotalSlots - AvailableSlots; }
     [field: SerializeField] public bool CanInsert { get; private set; }
     public Inventory TargetInventory { get => _targetInventory; set { _targetInventory = value; UpdateTargetInventory(); } }
     [field: SerializeField] public List<InventorySlot> Slots { get; private set; }

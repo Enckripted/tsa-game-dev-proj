@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class MelterMachine : BaseMachine
@@ -22,6 +22,8 @@ public class MelterMachine : BaseMachine
 
     public override bool HasValidRecipe()
     {
+        //FIXME: literally do anything other than whatever the hell this is
+        if (Player.ItemsMelted == 2 && GameState.TutorialRunning) return false;
         return FindSlotWithWandItem() != -1;
     }
 
@@ -56,6 +58,7 @@ public class MelterMachine : BaseMachine
 
     protected override void OnRecipeEnd()
     {
+        Player.ItemsMelted++;
         //TODO: replace with proper sound playing
         //SoundManager.instance.playSound(soundEffect);
     }

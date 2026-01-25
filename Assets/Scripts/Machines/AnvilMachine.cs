@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,7 +30,7 @@ public class AnvilMachine : BaseMachine
         fragmentInputs.AddFragmentQuantity(new FragmentQuantity(reference.WandMaterial, 10));
 
         IEnumerable<IItem> itemOutputs = new List<WandItem> { output };
-        return new Recipe(15.0, fragmentInputs, new FragmentInventory(), itemOutputs);
+        return new Recipe(GameState.TutorialRunning ? 3.0 : 15.0, fragmentInputs, new FragmentInventory(), itemOutputs);
     }
 
     protected override void ExtractItemInputs()
@@ -42,6 +42,7 @@ public class AnvilMachine : BaseMachine
 
     protected override void OnRecipeEnd()
     {
+        Player.ItemsReforged++;
     }
 
     protected override void MachineUpdate()

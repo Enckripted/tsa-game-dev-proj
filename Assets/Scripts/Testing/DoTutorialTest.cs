@@ -1,15 +1,16 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class DoTutorialTest : Entity
 {
     protected override void OnInteract()
     {
-        TutorialManagerUi.DoTutorialMessage("This is test message #1", () =>
+        TutorialManagerUi.DoTutorialMessages(new List<string>(){
+            "This is test message #1",
+            "This is test message #2, which should Debug.Log tutorial finished once this message ends!",
+        }, () =>
         {
-            TutorialManagerUi.DoTutorialMessage("This is test message #2, which should Debug.Log tutorial finished once this message ends!", () =>
-            {
-                Debug.Log("Finished tutorial");
-            });
+            Debug.Log("Finished tutorial");
         });
     }
 

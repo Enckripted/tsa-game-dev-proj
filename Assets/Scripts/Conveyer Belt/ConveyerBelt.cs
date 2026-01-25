@@ -19,6 +19,8 @@ public class ConveyerBelt : MonoBehaviour
     private Vector2 startPos;
     private Vector2 normalizedDir;
 
+    public static bool IsEnabled = true;
+
     // POCO class to hold data for each item on list
     private class BeltItemData
     {
@@ -36,7 +38,7 @@ public class ConveyerBelt : MonoBehaviour
     // main loop
     void Update() //as far i know, it's fine if this is update instead of fixedupdate since delta time is used -diego
     {
-        if (GameState.GamePaused) return;
+        if (GameState.GamePaused || GameState.TutorialRunning) return;
 
         MoveItems();
         HandleSpawning();

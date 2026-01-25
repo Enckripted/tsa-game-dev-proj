@@ -74,6 +74,7 @@ public class ContractTileEntity : TileEntity
         if (AcceptedContract != null) return;
         if (!AvailableContracts.Contains(contract)) return;
 
+        Player.ContractsAccepted++;
         AcceptedContract = contract;
 
         AvailableContracts.Clear();
@@ -97,6 +98,13 @@ public class ContractTileEntity : TileEntity
         {
             FulfillContract();
         }
+    }
+
+    //im sorry for doing this nikhil
+    public void OverrideContracts(List<Contract> contracts)
+    {
+        AvailableContracts = contracts;
+        OnContractChanged.Invoke();
     }
 
     private void FulfillContract()
