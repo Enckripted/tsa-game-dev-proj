@@ -1,14 +1,18 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class Contract
 {
     public string Description { get => GetDescription(); }
+    public double Difficulty;
     public double Reward;
 
-    public Material RequiredMaterial;
-    public string RequiredBaseName;
-    public double MinPower;
-    public double MinSellValue;
+    public Material RequiredMaterial = null;
+    public string RequiredBaseName = "";
+    public double MinPower = 0;
+    public double MaxTimeToCast = 0;
+    public double MinSellValue = 0;
 
     private const string POWER_HEX = "FF0000";
 
@@ -30,16 +34,19 @@ public class Contract
         if (item == null) return "Enter an item";
         if (item is not WandItem wand) return "Item is not a wand";
 
-        if (wand.WandMaterial.Name != RequiredMaterial.Name)
+        if (RequiredMaterial != null && wand.WandMaterial.Name != RequiredMaterial.Name)
             return $"Item must be made of {RequiredMaterial.Name}";
 
         if (!string.IsNullOrEmpty(RequiredBaseName) && wand.BaseName != RequiredBaseName)
             return $"Item must be a {RequiredBaseName}";
 
-        if (wand.Stats.Power < MinPower)
+        if (MinPower != 0 && wand.Stats.Power < MinPower)
             return $"Power too low ({wand.Stats.Power:0}/{MinPower:0})";
 
-        if (wand.Stats.SellValue < MinSellValue)
+        if (MaxTimeToCast != 0 && wand.Stats.TimeToCast > MaxTimeToCast)
+            return "Time to cast too high ({wand.Stats.TimeToCast}/{MaxTimeToCast})";
+
+        if (MinSellValue != 0 && wand.Stats.SellValue < MinSellValue)
             return $"Value too low (${wand.Stats.SellValue:0.00}/${MinSellValue:0.00})";
 
         return "Ready!";
@@ -47,11 +54,22 @@ public class Contract
 
     private string GetDescription()
     {
-        string description = "Create a ";
-        description += $"<color=#{ColorUtility.ToHtmlStringRGB(RequiredMaterial.Color)}>{RequiredMaterial.Name}</color> ";
-        description += $"{RequiredBaseName} with ";
-        description += $"at least <color=#{POWER_HEX}>{MinPower:0}</color> Power";
-        description += $"and a sell value of at least <color=yellow>${MinSellValue:0.00}</color>";
-        return description;
+        List<string> description = new List<string>();
+
+        if (MinPower != 0)
+            description.Add($"at least <color=#{POWER_HEX}>{MinPower:0}</color> Power");
+        if (MaxTimeToCast != 0)
+            description.Add($"a max Time to Cast of <color=blue>{MaxTimeToCast:0.00}</color> secs");
+        if (MinSellValue != 0)
+            description.Add($"a Sell Value of at least <color=yellow>${MinSellValue:0.00}</color>");
+
+        if (description.Count > 1)
+            description[description.Count - 1] = "and " + description[description.Count - 1];
+
+        return
+            "Create a " + (RequiredMaterial != null ? $"<color=#{ColorUtility.ToHtmlStringRGB(RequiredMaterial.Color)}>{RequiredMaterial.Name}</color> " : "") +
+            RequiredBaseName +
+            (description.Count > 0 ? " with " : "") +
+            (description.Count > 2 ? string.Join(", ", description) : string.Join(" ", description));
     }
 }

@@ -23,7 +23,7 @@ MonoBehaviour:
     <AirPowerMult>k__BackingField: 0
   <LevelStats>k__BackingField:
     <Power>k__BackingField: 1
-    <TimeToCast>k__BackingField: 0.05
+    <TimeToCast>k__BackingField: 0.1
     <SellValue>k__BackingField: 0.25
     <FirePowerMult>k__BackingField: 0
     <WaterPowerMult>k__BackingField: 0

@@ -57,7 +57,7 @@ public class GlobalQuota : MonoBehaviour
         {
             if (!Player.HasMoney(paymentAmount))
             {
-                SceneManager.LoadScene("INTRO SCENE");
+                SceneManager.LoadScene("GAME OVER");
                 return;
             }
             Player.RemoveMoney(paymentAmount);

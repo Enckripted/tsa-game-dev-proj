@@ -32,11 +32,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3655628925723403916}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 25, y: 18}
-  m_SizeDelta: {x: 750, y: 76}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 25, y: -16}
+  m_SizeDelta: {x: 750, y: 108}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &996313427814358544
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -66,7 +66,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Create a <color=#FD9CFB>Material</color> Staff with at least <color=red>####
-    Power</color> and a sell value of at least <color=yellow>$$$$$</color>
+    Power</color> and a sell value of at least <color=yellow>$$$$$</color>. Here
+    is the 3rd line.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a5af2307a5b57ac4e835e3b28acd0cda, type: 2}
   m_sharedMaterial: {fileID: 6384241035045446204, guid: a5af2307a5b57ac4e835e3b28acd0cda, type: 2}
@@ -426,11 +427,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3655628925723403916}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 25, y: -40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 25, y: 15}
   m_SizeDelta: {x: 500, y: 40}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!222 &1258410218759361230
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -569,7 +570,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 200}
-  m_SizeDelta: {x: 950, y: 130}
+  m_SizeDelta: {x: 950, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &994317562272744192
 CanvasRenderer:
