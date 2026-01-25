@@ -41,6 +41,8 @@ public class Player4Dir : MonoBehaviour
 
     private void Update()
     {
+        if (GameState.GamePaused) return;
+
         moveInput = controls.Player.Move.ReadValue<Vector2>();
         animator.SetFloat(Horizontal, moveInput.x);
         animator.SetFloat(Vertical, moveInput.y);

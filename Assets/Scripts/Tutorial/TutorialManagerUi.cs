@@ -7,68 +7,56 @@ public class TutorialManagerUi : MonoBehaviour
 {
     [SerializeField] private int CharsPerSec;
     [SerializeField] private TextMeshProUGUI messageText;
+    [SerializeField] private GameObject containerObject;
     private InputAction continueAction;
 
-    private string currentMessage;
-    private Action currentCallback;
-    private bool runningTutorial = false;
+    private static int charsPerSec;
+    private static Action currentCallback;
+    private static bool runningTutorial = false;
 
-    private int curChar = 0;
-    private float timeUntilNextChar = 0;
+    private static Typewriter typewriter;
 
-    void IncrementText()
-    {
-        if (!runningTutorial) return;
-
-        timeUntilNextChar -= Time.deltaTime;
-        if (timeUntilNextChar <= 0)
-        {
-            if (curChar < currentMessage.Length) curChar++;
-            timeUntilNextChar = 1f / CharsPerSec;
-        }
-    }
-
-    void ForwardText()
-    {
-        curChar = currentMessage.Length;
-    }
-
-    void FinishText()
+    static void FinishText()
     {
         GameState.GamePaused = false;
         runningTutorial = false;
-        currentCallback();
+        if (currentCallback != null) currentCallback();
     }
 
-    public void DoTutorialMessage(string message, Action callback)
+    //this is a very bad way of doing this, it would be much better if we could
+    //use something like the fluent interface pattern
+    //https://dotnettutorials.net/lesson/fluent-interface-design-pattern/ but
+    //that is a thing for not 48 hours before the submission deadline
+    public static void DoTutorialMessage(string message, Action callback = null)
     {
         //something has gone bad if we made it here
         if (runningTutorial) throw new Exception("Attempted to run a tutorial while another was running");
 
         GameState.GamePaused = true;
         runningTutorial = true;
-        currentMessage = message;
         currentCallback = callback;
-        curChar = 0;
-        timeUntilNextChar = 1f / CharsPerSec;
+        typewriter = new Typewriter(message, charsPerSec);
     }
 
     void Update()
     {
+        containerObject.SetActive(runningTutorial);
         if (!runningTutorial) return;
 
         if (continueAction.WasPressedThisFrame())
         {
-            if (curChar < currentMessage.Length) ForwardText();
-            else FinishText();
+            if (typewriter.Finished) FinishText();
+            else typewriter.ForwardAction();
         }
-        IncrementText();
+        typewriter.IncrementTime(Time.deltaTime);
 
-        messageText.text = currentMessage.Substring(0, curChar + 1) + new string(' ', currentMessage.Length - curChar - 1);
+        messageText.text = typewriter.Text;
     }
 
     void Awake()
     {
+        //dirty!
+        charsPerSec = CharsPerSec;
         continueAction = InputSystem.actions.FindAction("Jump");
     }
 }

@@ -1,9 +1,10 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 /*
 This a base class that just specifies an interactable and an hook on the interactable.
 */
 [RequireComponent(typeof(Interactable))]
+[RequireComponent(typeof(BoxCollider2D))]
 public abstract class Entity : MonoBehaviour
 {
     protected Interactable InteractionPrompt;
