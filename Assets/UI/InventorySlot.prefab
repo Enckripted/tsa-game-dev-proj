@@ -180,11 +180,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemUiDraggable
   nameText: {fileID: 8523125821843999522}
-  inventorySlot:
-    <containsItem>k__BackingField: 0
-    <targetInventory>k__BackingField:
+  InventorySlot:
+    <ContainsItem>k__BackingField: 0
+    <CanInsert>k__BackingField: 0
+    <TargetInventory>k__BackingField:
       rid: -2
-  canDropInSlot: 1
+  CanDropInSlot: 1
   references:
     version: 2
     RefIds:
@@ -248,15 +249,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.49803922, g: 0.49803922, b: 0.49803922, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 4804446361586417100, guid: a3cfc6a79cd53b74b9ceae1f3aec622b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
