@@ -19,7 +19,7 @@ public class Typewriter
 
     private readonly int charsPerLine;
     private readonly double commaTimeMult;
-    private readonly double periodTimeMult;
+    private readonly double puncTimeMult;
 
     public string Text
     {
@@ -51,7 +51,7 @@ public class Typewriter
         if (Finished) return 0;
 
         if (GetPreviousChar() == ',') return timePerChar * commaTimeMult;
-        else if (GetPreviousChar() == '.') return timePerChar * periodTimeMult;
+        else if (GetPreviousChar() == '.' || GetPreviousChar() == '!') return timePerChar * puncTimeMult;
         else return timePerChar;
     }
 
@@ -82,7 +82,7 @@ public class Typewriter
         previousText = "";
 
         this.commaTimeMult = commaTimeMult;
-        this.periodTimeMult = periodTimeMult;
+        this.puncTimeMult = periodTimeMult;
     }
 
     public void IncrementTime(float deltaTime)

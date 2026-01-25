@@ -436,10 +436,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1521918056582545199, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1965041867612572314, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -463,10 +459,6 @@ PrefabInstance:
     - target: {fileID: 1965041867612572314, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3409544272995720593, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
-      propertyPath: m_VerticalFit
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3531657367592401617, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
       propertyPath: m_Name
@@ -580,6 +572,10 @@ PrefabInstance:
       propertyPath: SlotPrefab
       value: 
       objectReference: {fileID: 5223675979348635170, guid: f4ade00e2f3af6749b6d88fa87d52168, type: 3}
+    - target: {fileID: 8457077304248405136, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 233814708}
     m_RemovedComponents:
     - {fileID: 7864021740203582773, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
     m_RemovedGameObjects: []
@@ -594,18 +590,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1314242128078222458, guid: e7f02b8e74d1d4948aa263407d2f9f5c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4474090040010615912, guid: e7f02b8e74d1d4948aa263407d2f9f5c, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4474090040010615912, guid: e7f02b8e74d1d4948aa263407d2f9f5c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.5
-      objectReference: {fileID: 0}
     - target: {fileID: 5428773827762066728, guid: e7f02b8e74d1d4948aa263407d2f9f5c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.5
@@ -645,22 +629,6 @@ PrefabInstance:
     - target: {fileID: 5428773827762066728, guid: e7f02b8e74d1d4948aa263407d2f9f5c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5627645089948010476, guid: e7f02b8e74d1d4948aa263407d2f9f5c, type: 3}
-      propertyPath: beltSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5627645089948010476, guid: e7f02b8e74d1d4948aa263407d2f9f5c, type: 3}
-      propertyPath: beltLength
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5627645089948010476, guid: e7f02b8e74d1d4948aa263407d2f9f5c, type: 3}
-      propertyPath: spawnInterval
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5627645089948010476, guid: e7f02b8e74d1d4948aa263407d2f9f5c, type: 3}
-      propertyPath: maxItemsOnBelt
-      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 7613301886794113962, guid: e7f02b8e74d1d4948aa263407d2f9f5c, type: 3}
       propertyPath: m_Name
@@ -723,6 +691,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Leveller
       objectReference: {fileID: 0}
+    - target: {fileID: 3471085250111783448, guid: dcbfc0424783b9742b4c7a14fa2c1884, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -736,34 +708,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2309340168480305501, guid: 2fc038701335f6142a67ad307f4b51ee, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 553.46893
-      objectReference: {fileID: 0}
-    - target: {fileID: 2309340168480305501, guid: 2fc038701335f6142a67ad307f4b51ee, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 342.46014
-      objectReference: {fileID: 0}
-    - target: {fileID: 2309340168480305501, guid: 2fc038701335f6142a67ad307f4b51ee, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2309340168480305501, guid: 2fc038701335f6142a67ad307f4b51ee, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2309340168480305501, guid: 2fc038701335f6142a67ad307f4b51ee, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2309340168480305501, guid: 2fc038701335f6142a67ad307f4b51ee, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2309340168480305501, guid: 2fc038701335f6142a67ad307f4b51ee, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2309340168480305501, guid: 2fc038701335f6142a67ad307f4b51ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
@@ -788,22 +732,6 @@ PrefabInstance:
       propertyPath: tooltipTransform
       value: 
       objectReference: {fileID: 914896820}
-    - target: {fileID: 5030055507360490457, guid: 2fc038701335f6142a67ad307f4b51ee, type: 3}
-      propertyPath: GemSlotColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5030055507360490457, guid: 2fc038701335f6142a67ad307f4b51ee, type: 3}
-      propertyPath: GemSlotColor.b
-      value: 0.69411767
-      objectReference: {fileID: 0}
-    - target: {fileID: 5030055507360490457, guid: 2fc038701335f6142a67ad307f4b51ee, type: 3}
-      propertyPath: GemSlotColor.g
-      value: 0.3537736
-      objectReference: {fileID: 0}
-    - target: {fileID: 5030055507360490457, guid: 2fc038701335f6142a67ad307f4b51ee, type: 3}
-      propertyPath: GemSlotColor.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7524182710692427518, guid: 2fc038701335f6142a67ad307f4b51ee, type: 3}
       propertyPath: m_Name
       value: Singletons
@@ -818,6 +746,22 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1521918056582545199, guid: 32df43da9dc0b2846a890f1f72f79a81, type: 3}
   m_PrefabInstance: {fileID: 509562387}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &931335621 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3471085250111783448, guid: dcbfc0424783b9742b4c7a14fa2c1884, type: 3}
+  m_PrefabInstance: {fileID: 654666236}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &931335623 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2432444790113731502, guid: dcbfc0424783b9742b4c7a14fa2c1884, type: 3}
+  m_PrefabInstance: {fileID: 654666236}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931335621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5cca6a47c50684bbae7a7ff4d8d28c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevellerMachine
 --- !u!1 &1070772118 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6130020791396143526, guid: a3b0665269761214cb9943bdbc14035d, type: 3}
@@ -870,10 +814,6 @@ PrefabInstance:
     - target: {fileID: 3291394547772822086, guid: a3b0665269761214cb9943bdbc14035d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438676155276265965, guid: a3b0665269761214cb9943bdbc14035d, type: 3}
-      propertyPath: numStorageSlots
-      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 6130020791396143526, guid: a3b0665269761214cb9943bdbc14035d, type: 3}
       propertyPath: m_Name
@@ -1140,11 +1080,39 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4568939404109642328, guid: 6bf0a34f9ead47344823f527200c9520, type: 3}
+      propertyPath: <UnlockUpgrades>k__BackingField.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568939404109642328, guid: 6bf0a34f9ead47344823f527200c9520, type: 3}
+      propertyPath: <UnlockUpgrades>k__BackingField.Array.data[1].<Name>k__BackingField
+      value: Levellers
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568939404109642328, guid: 6bf0a34f9ead47344823f527200c9520, type: 3}
+      propertyPath: <UnlockUpgrades>k__BackingField.Array.data[1].<Tiers>k__BackingField.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568939404109642328, guid: 6bf0a34f9ead47344823f527200c9520, type: 3}
+      propertyPath: <UnlockUpgrades>k__BackingField.Array.data[1].<Tiers>k__BackingField.Array.data[0].Cost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568939404109642328, guid: 6bf0a34f9ead47344823f527200c9520, type: 3}
+      propertyPath: <UnlockUpgrades>k__BackingField.Array.data[1].<Tiers>k__BackingField.Array.data[1].Cost
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568939404109642328, guid: 6bf0a34f9ead47344823f527200c9520, type: 3}
       propertyPath: <UnlockUpgrades>k__BackingField.Array.data[0].<Tiers>k__BackingField.Array.data[0].ObjectUnlock
       value: 
       objectReference: {fileID: 1296638444}
     - target: {fileID: 4568939404109642328, guid: 6bf0a34f9ead47344823f527200c9520, type: 3}
       propertyPath: <UnlockUpgrades>k__BackingField.Array.data[0].<Tiers>k__BackingField.Array.data[1].ObjectUnlock
+      value: 
+      objectReference: {fileID: 1070772118}
+    - target: {fileID: 4568939404109642328, guid: 6bf0a34f9ead47344823f527200c9520, type: 3}
+      propertyPath: <UnlockUpgrades>k__BackingField.Array.data[1].<Tiers>k__BackingField.Array.data[0].ObjectUnlock
+      value: 
+      objectReference: {fileID: 931335621}
+    - target: {fileID: 4568939404109642328, guid: 6bf0a34f9ead47344823f527200c9520, type: 3}
+      propertyPath: <UnlockUpgrades>k__BackingField.Array.data[1].<Tiers>k__BackingField.Array.data[1].ObjectUnlock
       value: 
       objectReference: {fileID: 1070772118}
     m_RemovedComponents: []
@@ -1183,7 +1151,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameTutorial
   itemSpawnBox: {fileID: 1389317774}
   contractTileEntity: {fileID: 1981183906526060608}
-  tutorialWhileInDevMode: 1
+  firstLevellerMachine: {fileID: 931335623}
+  tutorialWhileInDevMode: 0
   startTutorial:
   - Grab the two wands from the box.
   processItemsTutorial:
@@ -1193,9 +1162,14 @@ MonoBehaviour:
   - Use the anvil and reforge the wand.
   acceptContractsTutorial:
   - Now go ahead and accept a contract for your new wand.
+  upgradesTutorial:
+  - If you think I'm paying for your new equipment, you're mistaken.
+  - Go down that there upgrade station and buy yourself a Leveller.
+  - Each upgrade listing will tell you what it does.
   closingTutorial:
-  - That's it! You can buy new machines at the upgrade station.
-  - Have fun.
+  - Well, I've taught you everything you need to know.
+  - Now get out there and make me some money!
+  - Or else...
 --- !u!4 &1798226042
 Transform:
   m_ObjectHideFlags: 0
@@ -1735,34 +1709,6 @@ PrefabInstance:
     - target: {fileID: 1678975777138187875, guid: 45493b3486643db4aa5fc98d11a635d8, type: 3}
       propertyPath: m_LocalScale.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640139262903061684, guid: 45493b3486643db4aa5fc98d11a635d8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640139262903061684, guid: 45493b3486643db4aa5fc98d11a635d8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640139262903061684, guid: 45493b3486643db4aa5fc98d11a635d8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640139262903061684, guid: 45493b3486643db4aa5fc98d11a635d8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640139262903061684, guid: 45493b3486643db4aa5fc98d11a635d8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640139262903061684, guid: 45493b3486643db4aa5fc98d11a635d8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4640139262903061684, guid: 45493b3486643db4aa5fc98d11a635d8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4640139262903061684, guid: 45493b3486643db4aa5fc98d11a635d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

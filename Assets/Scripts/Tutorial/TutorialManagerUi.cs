@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class TutorialManagerUi : MonoBehaviour
 {
     [SerializeField] private int CharsPerSec;
+    [SerializeField] private int CommaTimeMult;
+    [SerializeField] private int PunctuationTimeMult;
     [SerializeField] private TextMeshProUGUI messageText;
     [SerializeField] private TextMeshProUGUI spaceContinueText;
     [SerializeField] private GameObject containerObject;
@@ -15,6 +17,8 @@ public class TutorialManagerUi : MonoBehaviour
     private InputAction continueAction;
 
     private static int charsPerSec;
+    private static int commaTimeMult;
+    private static int puncTimeMult;
     private static bool runningTutorial = false;
 
     private static List<string> currentMessages;
@@ -43,7 +47,7 @@ public class TutorialManagerUi : MonoBehaviour
     {
         GameState.GamePaused = true;
         runningTutorial = true;
-        typewriter = new Typewriter(currentMessages[0], charsPerSec);
+        typewriter = new Typewriter(currentMessages[0], charsPerSec, commaTimeMult, puncTimeMult);
     }
 
     public static void DoTutorialMessage(string message, Action callback = null)
@@ -85,6 +89,8 @@ public class TutorialManagerUi : MonoBehaviour
     {
         //dirty!
         charsPerSec = CharsPerSec;
+        commaTimeMult = CommaTimeMult;
+        puncTimeMult = PunctuationTimeMult;
         continueAction = InputSystem.actions.FindAction("Jump");
     }
 }

@@ -74,7 +74,7 @@ public class ContractTileEntity : TileEntity
         if (AcceptedContract != null) return;
         if (!AvailableContracts.Contains(contract)) return;
 
-        Player.ContractsAccepted++;
+
         AcceptedContract = contract;
 
         AvailableContracts.Clear();
@@ -110,7 +110,7 @@ public class ContractTileEntity : TileEntity
     private void FulfillContract()
     {
         Inventory.RemoveItemFromSlot(0);
-
+        Player.ContractsCompleted++;
         Player.AddMoney(AcceptedContract.Reward);
         Debug.Log("Contract Fulfilled! Reward: " + AcceptedContract.Reward);
 

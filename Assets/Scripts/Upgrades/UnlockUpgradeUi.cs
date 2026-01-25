@@ -19,7 +19,7 @@ public class UnlockUpgradeUi : MonoBehaviour
 
     void Update()
     {
-        costText.text = $"${Upgrade.GetCurrentTier().Cost:0.00}";
+        costText.text = Upgrade.CurrentTier < Upgrade.Tiers.Count ? $"${Upgrade.GetCurrentTier().Cost:0.00}" : "MAXED";
         tierText.text = $"Tier: {Upgrade.CurrentTier}/{Upgrade.Tiers.Count}";
     }
 }

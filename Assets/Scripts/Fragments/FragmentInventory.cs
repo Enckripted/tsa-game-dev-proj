@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,9 +12,11 @@ public class FragmentInventory : IEnumerable
     //so im just gonna keep this here
     [field: SerializeField] public List<FragmentQuantity> Fragments { get; private set; }
 
-    public FragmentInventory()
+    public FragmentInventory() : this(new List<FragmentQuantity>()) { }
+
+    public FragmentInventory(List<FragmentQuantity> startingQuantity)
     {
-        Fragments = new List<FragmentQuantity>();
+        Fragments = startingQuantity;
     }
 
     public IEnumerator GetEnumerator()

@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public static int ItemsPickedUp;
     public static int ItemsMelted;
     public static int ItemsReforged;
-    public static int ContractsAccepted;
+    public static int ContractsCompleted;
 
     void Awake()
     {
@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
         }
 
         ItemsPickedUp = 0;
-        ContractsAccepted = 0;
+        ContractsCompleted = 0;
     }
 
     public static bool HasMoney(double amount) => Money >= amount;

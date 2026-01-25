@@ -412,6 +412,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TooltipManager
   NameText: {fileID: 5955867532325505002}
   TooltipText: {fileID: 47228494839056907}
+  graphicRaycaster: {fileID: 5196898445064546075}
+  eventSystem: {fileID: 0}
 --- !u!1 &3520308352138113669
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,6 +1249,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialManagerUi
   CharsPerSec: 30
+  CommaTimeMult: 8
+  PunctuationTimeMult: 16
   messageText: {fileID: 2721854451905065867}
   spaceContinueText: {fileID: 8358946759393972214}
   containerObject: {fileID: 9046898427324788608}
@@ -1756,11 +1760,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GlobalQuota
   nonEndlessPayments:
-  - Payment: 20
+  - Payment: 5
     Seconds: 150
-  - Payment: 40
+  - Payment: 10
     Seconds: 180
-  - Payment: 70
+  - Payment: 15
     Seconds: 210
   endlessPaymentMultiplier: 1.5
   endlessPaymentTime: 240

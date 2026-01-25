@@ -6,12 +6,14 @@ public class GameTutorial : MonoBehaviour
 {
     [SerializeField] private StorageBox itemSpawnBox;
     [SerializeField] private ContractTileEntity contractTileEntity;
+    [SerializeField] private LevellerMachine firstLevellerMachine;
     [SerializeField] private bool tutorialWhileInDevMode;
 
     [SerializeField] private List<string> startTutorial;
     [SerializeField] private List<string> processItemsTutorial;
     [SerializeField] private List<string> enhanceItemsTutorial;
     [SerializeField] private List<string> acceptContractsTutorial;
+    [SerializeField] private List<string> upgradesTutorial;
     [SerializeField] private List<string> closingTutorial;
 
     private WandScriptableObject baseWandData;
@@ -42,10 +44,19 @@ public class GameTutorial : MonoBehaviour
 
     IEnumerator ClosingTutorial()
     {
-        while (Player.ContractsAccepted < 1) yield return null;
+        while (!firstLevellerMachine.isActiveAndEnabled) yield return null;
         TutorialManagerUi.DoTutorialMessages(closingTutorial, () =>
         {
             GameState.TutorialRunning = false;
+        });
+    }
+
+    IEnumerator UpgradesTutorial()
+    {
+        while (Player.ContractsCompleted < 1) yield return null;
+        TutorialManagerUi.DoTutorialMessages(upgradesTutorial, () =>
+        {
+            StartCoroutine(ClosingTutorial());
         });
     }
 
@@ -54,7 +65,7 @@ public class GameTutorial : MonoBehaviour
         while (Player.ItemsReforged < 1) yield return null;
         TutorialManagerUi.DoTutorialMessages(acceptContractsTutorial, () =>
         {
-            StartCoroutine(ClosingTutorial());
+            StartCoroutine(UpgradesTutorial());
         });
     }
 
@@ -96,6 +107,6 @@ public class GameTutorial : MonoBehaviour
     {
         baseWandData = ScriptableObjectData.BaseWands[0];
         materialData = ScriptableObjectData.BaseMaterials[0];
-        if (Debug.isDebugBuild || tutorialWhileInDevMode) BeginTutorial();
+        if (!Debug.isDebugBuild || tutorialWhileInDevMode) BeginTutorial();
     }
 }
