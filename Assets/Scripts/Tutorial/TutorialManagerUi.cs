@@ -44,7 +44,6 @@ public class TutorialManagerUi : MonoBehaviour
         GameState.GamePaused = true;
         runningTutorial = true;
         typewriter = new Typewriter(currentMessages[0], charsPerSec);
-        Debug.Log(runningTutorial);
     }
 
     public static void DoTutorialMessage(string message, Action callback = null)
@@ -68,7 +67,7 @@ public class TutorialManagerUi : MonoBehaviour
     {
         containerObject.SetActive(runningTutorial);
         fadeObject.SetActive(runningTutorial);
-        //Debug.Log(runningTutorial);
+
         if (!runningTutorial) return;
 
         if (continueAction.WasPressedThisFrame())

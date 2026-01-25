@@ -80,12 +80,11 @@ public class GameTutorial : MonoBehaviour
     public void BeginTutorial()
     {
         GameState.TutorialRunning = true;
-        Debug.Log("ok");
+
         TutorialManagerUi.DoTutorialMessages(startTutorial, () =>
         {
             //we need to give some time for everything to initialize
             //once again this is horrible design done in a time crunch
-            Debug.Log("gop");
             contractTileEntity.OverrideContracts(GeneratePersonalizedContracts());
             for (int i = 0; i < 2; i++) SpawnWandInBox();
 
