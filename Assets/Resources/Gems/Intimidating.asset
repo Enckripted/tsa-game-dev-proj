@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ec3dea19045c34abedadc6de708bde, type: 3}
   m_Name: Intimidating
   m_EditorClassIdentifier: Assembly-CSharp::GemScriptableObject
-  <Name>k__BackingField: Energetic Gem
+  <Name>k__BackingField: Intimidating Gem
   <StatAddition>k__BackingField:
     <Power>k__BackingField: 0
     <TimeToCast>k__BackingField: 0
@@ -29,3 +29,4 @@ MonoBehaviour:
     <WaterPowerMult>k__BackingField: 1
     <EarthPowerMult>k__BackingField: 1
     <AirPowerMult>k__BackingField: 1
+  <Sprite>k__BackingField: {fileID: 91090361277348310, guid: d7b02fce23cab8d44a818d94fd2c8396, type: 3}

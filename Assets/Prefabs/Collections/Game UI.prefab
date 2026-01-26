@@ -2299,7 +2299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GlobalQuota
   nonEndlessPayments:
-  - Payment: 5
+  - Payment: 3
     Seconds: 210
   - Payment: 10
     Seconds: 210

@@ -40,7 +40,8 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
         }
         else if (item.Type == ItemType.GemItem)
         {
-            sprite = null;
+            GemItem gemItem = item as GemItem;
+            sprite = gemItem.Sprite;
         }
         else
         {
@@ -99,7 +100,7 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
         //store the size of the object before we reparent it
         Vector2 size = rectTransform.rect.size;
         transform.SetParent(dragPriorityObject.transform, false);
-        
+
         //set the size of the object to be the same as it was before we reparented it
         rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
         rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
@@ -117,7 +118,7 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
         BeingDragged = false;
         canvasGroup.blocksRaycasts = true;
         transform.SetParent(slotObject.transform, false);
-        
+
         //reset the size of the object to be 80% of the slot
         rectTransform.anchorMin = new Vector2(0.1f, 0.1f);
         rectTransform.anchorMax = new Vector2(0.9f, 0.9f);

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class GemItem : IItem, IWandEnhancement
@@ -7,7 +7,7 @@ public class GemItem : IItem, IWandEnhancement
 
     public string Name { get; }
     public Tooltip HoverTooltip { get => BuildGemTooltip(); }
-    public Image Sprite { get; }
+    public Sprite Sprite { get; }
 
     public readonly WandStats StatAddition;
     public readonly WandStats StatMultiplier;
@@ -17,6 +17,7 @@ public class GemItem : IItem, IWandEnhancement
         Name = so.Name;
         StatAddition = so.StatAddition;
         StatMultiplier = so.StatMultiplier;
+        Sprite = so.Sprite;
     }
 
     public WandStats ApplyTo(WandStats curStats)

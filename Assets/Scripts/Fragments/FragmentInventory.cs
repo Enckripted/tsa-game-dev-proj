@@ -44,7 +44,7 @@ public class FragmentInventory : IEnumerable
 
     public bool Contains(FragmentInventory quantities)
     {
-        foreach (FragmentQuantity quantity in quantities) if (!KeyExists(quantity) && !Contains(quantity)) return false;
+        foreach (FragmentQuantity quantity in quantities) if (!KeyExists(quantity) || !Contains(quantity)) return false;
         return true;
     }
 

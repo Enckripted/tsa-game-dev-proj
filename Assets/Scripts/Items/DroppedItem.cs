@@ -32,7 +32,8 @@ public class DroppedItem : Entity//, IPointerEnterHandler, IPointerExitHandler
         }
         else if (Item.Type == ItemType.GemItem)
         {
-            sprite = null;
+            GemItem gemItem = Item as GemItem;
+            sprite = gemItem.Sprite;
         }
         else
         {

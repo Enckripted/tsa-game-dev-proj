@@ -8,7 +8,7 @@ public class WandItem : IItem
 
     public string Name { get => BuildWandName(); }
     public Tooltip HoverTooltip { get => BuildWandTooltip(); }
-    public Image Sprite { get; }
+    public Sprite Sprite { get; }
 
     public readonly int Level;
     public readonly WandStats BaseStats;

@@ -50,8 +50,6 @@ public class Player4Dir : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameState.GamePaused) return;
-
         // movement vect doesnt go above 1 so we mult with max speed
         Vector2 targetVelocity = moveInput * maxSpeed;
 

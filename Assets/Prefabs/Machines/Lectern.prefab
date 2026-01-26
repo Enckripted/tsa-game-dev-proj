@@ -138,7 +138,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1.7}
   m_EdgeRadius: 0
 --- !u!114 &2770353212654132771
 MonoBehaviour:
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5f564dcad5847f49a9ffdb6e46ccc46, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   <InteractText>k__BackingField: '[E] Interact'
 --- !u!114 &6554309933976928275
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dab42f0a950fffe438b2ec85cbd63ce6, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ContractTileEntity
   <UiPrefab>k__BackingField: {fileID: 7214800564637545079, guid: ef639a5a847b122489641c2491512dba, type: 3}
   OnContractChanged:

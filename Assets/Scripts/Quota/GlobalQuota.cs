@@ -49,7 +49,7 @@ public class GlobalQuota : MonoBehaviour
     void Update()
     {
         paymentAmountText.text = $"${paymentAmount:0.00}";
-        paymentTimeText.text = $"Due in {Math.Floor(paymentTimeRemaining / 60)}:{paymentTimeRemaining % 60:00}";
+        paymentTimeText.text = $"Days ends in {Math.Floor(paymentTimeRemaining / 60)}:{paymentTimeRemaining % 60:00}";
 
         contextText.color = paymentTimeRemaining > secondsForRedText ? Color.white : Color.red;
         paymentTimeText.color = paymentTimeRemaining > secondsForRedText ? Color.white : Color.red;

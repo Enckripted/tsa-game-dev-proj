@@ -29,3 +29,4 @@ MonoBehaviour:
     <WaterPowerMult>k__BackingField: 1
     <EarthPowerMult>k__BackingField: 1
     <AirPowerMult>k__BackingField: 1
+  <Sprite>k__BackingField: {fileID: -8502977969941261236, guid: 113570ab2a654bd4095ecbcd7405e3b1, type: 3}
