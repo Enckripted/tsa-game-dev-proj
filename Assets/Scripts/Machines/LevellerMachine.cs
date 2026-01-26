@@ -1,11 +1,10 @@
-﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LevellerMachine : BaseMachine
 {
-    public override int NumInputSlots => 2;
-    public override int NumOutputSlots => 4;
+    public override int NumInputSlots => 4;
+    public override int NumOutputSlots => 9;
     public override bool RunsAutomatically => false;
     public override bool StopsWhenFinished => true;
 
@@ -23,8 +22,7 @@ public class LevellerMachine : BaseMachine
             //TODO: probably replace this with some sort of custom operator on WandItem?
             if (cur.BaseName != reference.BaseName ||
             cur.Level != reference.Level ||
-            cur.WandMaterial.Name != reference.WandMaterial.Name ||
-            cur.WandReforge != null && reference.WandReforge != null && cur.WandReforge.Name != reference.WandReforge.Name) return false;
+            cur.WandMaterial.Name != reference.WandMaterial.Name) return false;
         }
         return true;
     }
@@ -36,10 +34,8 @@ public class LevellerMachine : BaseMachine
 
     protected override Recipe GetRecipe()
     {
-        WandItem reference = InputSlots.ItemInSlot(0) as WandItem;
-        WandItem other = InputSlots.ItemInSlot(1) as WandItem;
-        WandItem output = new WandItem(reference.BaseName, reference.Level + 1, reference.BaseStats, reference.LevelStats, reference.WandMaterial,
-        Math.Min(reference.GemSlots, other.GemSlots), null, reference.WandReforge);
+        WandItem reference = (InputSlots.ItemInSlot(0) as WandItem);
+        WandItem output = new WandItem(reference.BaseName, reference.Level + 1, reference.BaseStats, reference.LevelStats, reference.WandMaterial, reference.GemSlots);
 
         IEnumerable<IItem> itemOutputs = new List<WandItem> { output };
         return new Recipe(6.0, new FragmentInventory(), new FragmentInventory(), itemOutputs);

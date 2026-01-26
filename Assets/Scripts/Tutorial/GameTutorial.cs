@@ -108,9 +108,5 @@ public class GameTutorial : MonoBehaviour
         baseWandData = ScriptableObjectData.BaseWands[0];
         materialData = ScriptableObjectData.BaseMaterials[0];
         if (!Debug.isDebugBuild || tutorialWhileInDevMode) BeginTutorial();
-        else
-        {
-            Player.AddMoney(2);
-        }
     }
 }

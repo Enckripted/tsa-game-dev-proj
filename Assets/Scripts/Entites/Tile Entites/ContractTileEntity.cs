@@ -13,16 +13,39 @@ public class ContractTileEntity : TileEntity
     public Inventory Inventory { get; private set; }
     public List<Contract> AvailableContracts { get; private set; } = new List<Contract>();
     public Contract AcceptedContract { get; private set; }
-    public int AcceptedContractIndex { get; private set; }
     public UnityEvent OnContractChanged = new UnityEvent();
-
-    [field: SerializeField] public double DifficultyCap { get; private set; }
-    [field: SerializeField] public double DifficultyCapIncrease { get; private set; }
 
     protected override void OnStart()
     {
         Inventory = new Inventory(1, true, Player.PlayerInventory);
         GenerateContracts();
+    }
+
+    public void GenerateContracts()
+    {
+        AvailableContracts.Clear();
+        int attempts = 0;
+        while (AvailableContracts.Count < 3 && attempts < 100)
+        {
+            Contract newContract = CreateRandomContract();
+            bool duplicate = false;
+            foreach (Contract c in AvailableContracts)
+            {
+                if (c.Description == newContract.Description)
+                {
+                    duplicate = true;
+                    break;
+                }
+            }
+
+            if (!duplicate)
+            {
+                Debug.Log("Added contract " + (AvailableContracts.Count + 1) + " with difficulty " + newContract.Difficulty);
+                AvailableContracts.Add(newContract);
+            }
+            attempts++;
+        }
+        OnContractChanged.Invoke();
     }
 
     private Contract LegacyCreateRandomContract()
@@ -48,7 +71,7 @@ public class ContractTileEntity : TileEntity
         return contract;
     }
 
-    private Contract CreateRandomContract(int attempts)
+    private Contract CreateRandomContract()
     {
         Contract contract = new Contract();
 
@@ -92,7 +115,7 @@ public class ContractTileEntity : TileEntity
         }
         if (attributesToExamine[2])
         {
-            int level = Random.Range(1, 5);
+            int level = Random.Range(0, 5);
             float randMult = Random.Range(0.75f, 1.25f);
 
             contract.MaxTimeToCast = 2.4 - baseLevelStats.TimeToCast * level * randMult;
@@ -111,39 +134,18 @@ public class ContractTileEntity : TileEntity
         contract.Difficulty = difficulty;
         contract.Reward = Math.Pow(difficulty, 1.25);
 
-        if (contract.Difficulty > DifficultyCap)
-        {
-            Contract alternative = CreateRandomContract(attempts - 1);
-            if (alternative.Difficulty < contract.Difficulty)
-                contract = alternative;
-        }
         return contract;
     }
 
-    private void ReplaceContractAtIndex(int index)
-    {
-        AvailableContracts.RemoveAt(index);
-        //note: i decided not to bother checking for duplicates here purely because its so unlikely
-        AvailableContracts.Insert(index, CreateRandomContract(100));
-    }
-
-    public void GenerateContracts()
-    {
-        AvailableContracts.Clear();
-        for (int i = 0; i < 3; i++)
-            AvailableContracts.Add(CreateRandomContract(100));
-        OnContractChanged.Invoke();
-    }
-
-    public void AcceptContract(int contractIndex)
+    public void AcceptContract(Contract contract)
     {
         if (AcceptedContract != null) return;
-        //if (!AvailableContracts.Contains(contract)) return;
+        if (!AvailableContracts.Contains(contract)) return;
 
-        AcceptedContractIndex = contractIndex;
-        AcceptedContract = AvailableContracts[contractIndex];
 
-        //AvailableContracts.Clear();
+        AcceptedContract = contract;
+
+        AvailableContracts.Clear();
 
         OnContractChanged.Invoke();
     }
@@ -151,7 +153,7 @@ public class ContractTileEntity : TileEntity
     public void CancelContract()
     {
         AcceptedContract = null;
-        OnContractChanged.Invoke();
+        GenerateContracts();
     }
 
     public void TryFulfillContract()
@@ -160,7 +162,6 @@ public class ContractTileEntity : TileEntity
         if (!Inventory.SlotContainsItem(0)) return;
 
         IItem item = Inventory.ItemInSlot(0);
-        Debug.Log(AcceptedContract.IsSatisfied(item));
         if (AcceptedContract.IsSatisfied(item))
         {
             FulfillContract();
@@ -168,7 +169,6 @@ public class ContractTileEntity : TileEntity
     }
 
     //im sorry for doing this nikhil
-    //this shouldnt be called anywhere other than the tutorial
     public void OverrideContracts(List<Contract> contracts)
     {
         AvailableContracts = contracts;
@@ -182,13 +182,8 @@ public class ContractTileEntity : TileEntity
         Player.AddMoney(AcceptedContract.Reward);
         Debug.Log("Contract Fulfilled! Reward: " + AcceptedContract.Reward);
 
-        DifficultyCap += DifficultyCapIncrease;
-
-        ReplaceContractAtIndex(AcceptedContractIndex);
         AcceptedContract = null;
-
-        //GenerateContracts();
-        OnContractChanged.Invoke();
+        GenerateContracts();
     }
 
     public override void LoadUi(GameObject uiInstance)
