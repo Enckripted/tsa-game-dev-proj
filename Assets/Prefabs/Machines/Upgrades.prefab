@@ -165,11 +165,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeTileEntity
   <UiPrefab>k__BackingField: {fileID: 7214800564637545079, guid: 7f77b90e3fc4b78478a51c5aafdbaf4d, type: 3}
+  giveAllUpgradesInDevMode: 0
   <UnlockUpgrades>k__BackingField:
-  - <Name>k__BackingField: Extra Storage Crates
-    <Description>k__BackingField: 
+  - <Name>k__BackingField: Leveller
+    <Description>k__BackingField: Combine 4 of the same item to get a levelled up
+      version.
     <Tiers>k__BackingField:
-    - Cost: 0
+    - Cost: 2
       ObjectUnlock: {fileID: 0}
     - Cost: 20
+      ObjectUnlock: {fileID: 0}
+    - Cost: 40
+      ObjectUnlock: {fileID: 0}
+  - <Name>k__BackingField: Anvil
+    <Description>k__BackingField: Changes the Reforge on different items in exchange
+      for fragments.
+    <Tiers>k__BackingField:
+    - Cost: 10
+      ObjectUnlock: {fileID: 0}
+    - Cost: 20
+      ObjectUnlock: {fileID: 0}
+  - <Name>k__BackingField: Cutters
+    <Description>k__BackingField: Removes gems from wands at the expense of the wand
+    <Tiers>k__BackingField:
+    - Cost: 10
+      ObjectUnlock: {fileID: 0}
+    - Cost: 20
+      ObjectUnlock: {fileID: 0}
+  - <Name>k__BackingField: Appliers
+    <Description>k__BackingField: Places gems inside empty gem slots
+    <Tiers>k__BackingField:
+    - Cost: 10
+      ObjectUnlock: {fileID: 0}
+    - Cost: 20
+      ObjectUnlock: {fileID: 0}
+  - <Name>k__BackingField: Extra Storage
+    <Description>k__BackingField: Get another one of those storage crates
+    <Tiers>k__BackingField:
+    - Cost: 5
       ObjectUnlock: {fileID: 0}

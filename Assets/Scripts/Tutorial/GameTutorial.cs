@@ -110,7 +110,7 @@ public class GameTutorial : MonoBehaviour
         if (!Debug.isDebugBuild || tutorialWhileInDevMode) BeginTutorial();
         else
         {
-            Player.AddMoney(2);
+            Player.AddMoney(20000);
         }
     }
 }

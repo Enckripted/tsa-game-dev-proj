@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using Unity.VisualScripting;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -89,10 +88,12 @@ public class WandItem : IItem
         Tooltip tooltip = new Tooltip(Name, WandReforge != null ? GameColors.Instance.NameReforgeColor : Color.white);
         tooltip.AddLine($"Level {Level} {BaseName}", true);
         tooltip.AddNewLine();
-        tooltip.AddLine($"${Stats.SellValue:0.00}", true, GameColors.Instance.GoldColor);
-        tooltip.AddLine($"Power: {Stats.Power:0.00}");
-        tooltip.AddLine($"Time to Cast: {Stats.TimeToCast:0.00}");
-        tooltip.AddLine($"Power per Second: {Stats.PowerPerSecond:0.00}");
+        //tooltip.AddLine($"${Stats.SellValue:0.00}", true, GameColors.Instance.GoldColor);
+        tooltip.AddLine($"Power: <color=red>{Stats.Power:0.00}</color>");
+        tooltip.AddLine($"Time to Cast: <color=blue>{Stats.TimeToCast:0.00}</color>");
+        //TODO: change this to match with the actual gold color
+        tooltip.AddLine($"Sell Value: <b><color=#{ColorUtility.ToHtmlStringRGB(GameColors.Instance.GoldColor)}>${Stats.SellValue:0.00}</color></b>");
+        //tooltip.AddLine($"Power per Second: {Stats.PowerPerSecond:0.00}");
         tooltip.AddNewLine();
         tooltip.CombineWith(WandMaterial.HoverTooltip);
         if (WandReforge != null)

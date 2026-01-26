@@ -167,6 +167,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevellerMachine
   <SecondsRemaining>k__BackingField: 0
   <Running>k__BackingField: 0
+  <MachineRunningSfx>k__BackingField: {fileID: 8300000, guid: 1aae1b3a6f729444c8ba217d4edad79a, type: 3}
+  <RunningSfxVolume>k__BackingField: 1
   <UiPrefab>k__BackingField: {fileID: 7214800564637545079, guid: 6f05e65ed5b93594084b292bc9d30f1c, type: 3}
   finishSfx: {fileID: 8300000, guid: a5a741e0db16c6747bc2a341d0712d4f, type: 3}
 --- !u!82 &783282819802039865

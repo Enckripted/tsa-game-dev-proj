@@ -19,6 +19,16 @@ public class TooltipManager : MonoBehaviour
     private CanvasGroup canvasGroup;
     private new RectTransform transform;
 
+    //dirty fix to an issue where you could view droppeditem tooltips under ui elements
+    private bool UiElementUnderCursor()
+    {
+        PointerEventData pointerEventData = new PointerEventData(eventSystem);
+        pointerEventData.position = Mouse.current.position.ReadValue();
+        List<RaycastResult> results = new List<RaycastResult>();
+        graphicRaycaster.Raycast(pointerEventData, results);
+        return results.Count > 0;
+    }
+
     private DroppedItem DroppedItemUnderCursor()
     {
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -58,7 +68,7 @@ public class TooltipManager : MonoBehaviour
 
         if (itemDraggable != null && itemDraggable.InventorySlot.ContainsItem)
             currentTooltip = itemDraggable.InventorySlot.StoredItem.HoverTooltip;
-        else if (droppedItem != null)
+        else if (droppedItem != null && !UiElementUnderCursor())
             currentTooltip = droppedItem.Item.HoverTooltip;
         else
             currentTooltip = null;

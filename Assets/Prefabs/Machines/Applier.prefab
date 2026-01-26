@@ -264,5 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ApplierMachine
   <SecondsRemaining>k__BackingField: 0
   <Running>k__BackingField: 0
+  <MachineRunningSfx>k__BackingField: {fileID: 8300000, guid: fd0022c049906ab48bb841c2a008f45d, type: 3}
+  <RunningSfxVolume>k__BackingField: 1
   <RecipeDuration>k__BackingField: 10
   <UiPrefab>k__BackingField: {fileID: 1088757288013990093, guid: 6e9db6f8ccbffe54a990a99f5c56ddcd, type: 3}

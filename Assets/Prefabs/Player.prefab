@@ -212,9 +212,9 @@ MonoBehaviour:
   collisionOffset: 0.05
   movementFilter:
     useTriggers: 0
-    useLayerMask: 0
+    useLayerMask: 1
     useDepth: 0
-    useOutsideDepth: 0
+    useOutsideDepth: 1
     useNormalAngle: 0
     useOutsideNormalAngle: 0
     layerMask:

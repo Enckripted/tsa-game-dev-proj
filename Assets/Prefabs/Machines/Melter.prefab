@@ -282,6 +282,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MelterMachine
   <SecondsRemaining>k__BackingField: 0
   <Running>k__BackingField: 0
+  <MachineRunningSfx>k__BackingField: {fileID: 8300000, guid: 8cfcc4ac2e11e7142b6acd41fcc8ff58, type: 3}
+  <RunningSfxVolume>k__BackingField: 0.5
   <UiPrefab>k__BackingField: {fileID: 7214800564637545079, guid: d15638a4dc2b2b847bf55a784ad2124a, type: 3}
   soundEffect: {fileID: 8300000, guid: 0e7b7c5fb09e1c542874c0e9f4f6015d, type: 3}
 --- !u!82 &8156576781214979570

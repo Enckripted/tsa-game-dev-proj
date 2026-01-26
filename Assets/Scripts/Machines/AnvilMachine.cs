@@ -11,9 +11,6 @@ public class AnvilMachine : BaseMachine
     public override bool StopsWhenFinished => true;
 
     [field: SerializeField] public override GameObject UiPrefab { get; protected set; }
-    [SerializeField] private AudioClip runningSfx;
-    [SerializeField] private float runningSfxDelaySecs;
-    [SerializeField] private AudioClip finishSfx;
 
     //assumes there is an item inside of the anvil
     private FragmentInventory GetFragmentCost()
@@ -43,8 +40,6 @@ public class AnvilMachine : BaseMachine
     protected override void ExtractItemInputs()
     {
         InputSlots.GetSlot(0).Pop();
-        MachineAudioSource.clip = runningSfx;
-        MachineAudioSource.Play();
     }
 
     protected override void OnRecipeEnd()
@@ -52,13 +47,7 @@ public class AnvilMachine : BaseMachine
         Player.ItemsReforged++;
     }
 
-    protected override void MachineUpdate()
-    {
-        if (Running && !MachineAudioSource.isPlaying)
-        {
-            MachineAudioSource.PlayDelayed(runningSfxDelaySecs);
-        }
-    }
+    protected override void MachineUpdate() { }
 
     protected override void LoadMachineIntoUi(GameObject uiInstance)
     {

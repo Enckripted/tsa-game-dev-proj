@@ -14,11 +14,13 @@ public class GlobalQuota : MonoBehaviour
     [SerializeField] private TextMeshProUGUI paymentAmountText;
     [SerializeField] private TextMeshProUGUI paymentTimeText;
     [SerializeField] private TextMeshProUGUI contextText;
+    [SerializeField] private DayBeginScren dayBeginScren;
 
     private double paymentAmount;
     private float paymentTimeRemaining;
 
     private int paymentIndex = 0;
+    private bool waitingOnDayAnimation;
 
     void GetNextPayment()
     {
@@ -41,6 +43,7 @@ public class GlobalQuota : MonoBehaviour
     void Start()
     {
         GetNextPayment();
+        dayBeginScren.DoFadeOutWith(paymentIndex, paymentAmount);
     }
 
     void Update()
@@ -53,17 +56,23 @@ public class GlobalQuota : MonoBehaviour
 
         if (GameState.GamePaused || GameState.TutorialRunning) return;
         paymentTimeRemaining -= Time.deltaTime;
-        if (paymentTimeRemaining <= 0)
+        if (paymentTimeRemaining <= 0 && !waitingOnDayAnimation)
         {
             if (!Player.HasMoney(paymentAmount))
             {
                 SceneManager.LoadScene("GAME OVER");
                 return;
             }
-            Player.RemoveMoney(paymentAmount);
+
             GetNextPayment();
+            Player.RemoveMoney(paymentAmount);
+            dayBeginScren.DoFadeOutWith(paymentIndex, paymentAmount);
+            waitingOnDayAnimation = true;
         }
 
-
+        if (!dayBeginScren.DoingAnimation && waitingOnDayAnimation)
+        {
+            waitingOnDayAnimation = false;
+        }
     }
 }

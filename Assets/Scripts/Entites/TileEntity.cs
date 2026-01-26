@@ -1,8 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 
 //Implements the Position and UI attributes from the interface, and also has code to load UIs into
 //the TileEntityUiManager to avoid repetition across the codebase.
+[RequireComponent(typeof(AudioSource))]
 public abstract class TileEntity : Entity, ITileEntity
 {
     //a set has to be there for it to serialize

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 //Allows machines to be passed in generically in other places.
@@ -21,7 +22,6 @@ public interface IMachine
 //This abstract class handles the logic for starting and ending recipes, loading and unloading the
 //UI, and provides abstract functions that member classes will override to implement their own
 //behavior.
-[RequireComponent(typeof(AudioSource))]
 public abstract class BaseMachine : TileEntity, IMachine
 {
     public abstract int NumInputSlots { get; }
@@ -43,6 +43,8 @@ public abstract class BaseMachine : TileEntity, IMachine
     protected abstract void MachineUpdate();
     protected abstract void LoadMachineIntoUi(GameObject uiInstance);
 
+    [field: SerializeField] protected AudioClip MachineRunningSfx { get; private set; }
+    [field: SerializeField] protected float RunningSfxVolume { get; private set; } = 1;
     protected AudioSource MachineAudioSource;
 
     private void UpdateRecipe()
@@ -59,6 +61,21 @@ public abstract class BaseMachine : TileEntity, IMachine
         Player.PlayerFragments.Contains(CurrentRecipe.Value.FragmentInputs);
     }
 
+    private void BeginPlayingAudio()
+    {
+        if (MachineRunningSfx == null) return;
+        MachineAudioSource.loop = true;
+        MachineAudioSource.volume = RunningSfxVolume;
+        MachineAudioSource.clip = MachineRunningSfx;
+        MachineAudioSource.Play();
+    }
+
+    private void StopPlayingAudio()
+    {
+        if (MachineRunningSfx == null) return;
+        MachineAudioSource.Stop();
+    }
+
     protected void StartRecipe()
     {
         SecondsRemaining = CurrentRecipe.Value.Duration;
@@ -67,6 +84,8 @@ public abstract class BaseMachine : TileEntity, IMachine
         foreach (FragmentQuantity fragmentQuantity in CurrentRecipe.Value.FragmentInputs)
             Player.PlayerFragments.SubFragmentQuantity(fragmentQuantity);
         ExtractItemInputs();
+
+        if (!MachineAudioSource.isPlaying) BeginPlayingAudio();
     }
 
     protected void EndRecipe()
@@ -81,6 +100,7 @@ public abstract class BaseMachine : TileEntity, IMachine
         OnRecipeEnd();
         UpdateRecipe();
         if (CurrentRecipe != null && !StopsWhenFinished) StartRecipe();
+        else StopPlayingAudio();
     }
 
     public void AttemptMachineStart()
@@ -93,6 +113,7 @@ public abstract class BaseMachine : TileEntity, IMachine
         if (!Running) return;
         Running = false;
         UpdateRecipe();
+        StopPlayingAudio();
     }
 
     public override void LoadUi(GameObject uiInstance)

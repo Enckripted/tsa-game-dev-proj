@@ -264,6 +264,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CuttingMachine
   <SecondsRemaining>k__BackingField: 0
   <Running>k__BackingField: 0
+  <MachineRunningSfx>k__BackingField: {fileID: 8300000, guid: f591231cf1faa0b41be7ba37a8a68fa9, type: 3}
+  <RunningSfxVolume>k__BackingField: 1
   <RecipeDuration>k__BackingField: 10
   <CutGemChance>k__BackingField: 2
   <UiPrefab>k__BackingField: {fileID: 1088757288013990093, guid: 85fd9e1745da62245aa0f1689950bc50, type: 3}

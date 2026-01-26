@@ -17,7 +17,7 @@ MonoBehaviour:
   StatMultipliers:
     <Power>k__BackingField: 1.2
     <TimeToCast>k__BackingField: 0.95
-    <SellValue>k__BackingField: 5
+    <SellValue>k__BackingField: 0.75
     <FirePowerMult>k__BackingField: 1
     <WaterPowerMult>k__BackingField: 1
     <EarthPowerMult>k__BackingField: 1

@@ -167,6 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnvilMachine
   <SecondsRemaining>k__BackingField: 0
   <Running>k__BackingField: 0
+  <MachineRunningSfx>k__BackingField: {fileID: 8300000, guid: 14bfdd9a24f20d14b86a5ca434de145b, type: 3}
   <UiPrefab>k__BackingField: {fileID: 7214800564637545079, guid: fdd29137d2cdf144fadd7aa44b92a9e1, type: 3}
   runningSfx: {fileID: 8300000, guid: 6eed360d7e7a5c041b30183d49688d3a, type: 3}
   runningSfxDelaySecs: 1

@@ -19,6 +19,9 @@ public class ContractTileEntity : TileEntity
     [field: SerializeField] public double DifficultyCap { get; private set; }
     [field: SerializeField] public double DifficultyCapIncrease { get; private set; }
 
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip contractCompleteSfx;
+
     protected override void OnStart()
     {
         Inventory = new Inventory(1, true, Player.PlayerInventory);
@@ -188,6 +191,8 @@ public class ContractTileEntity : TileEntity
         AcceptedContract = null;
 
         //GenerateContracts();
+        audioSource.clip = contractCompleteSfx;
+        audioSource.Play();
         OnContractChanged.Invoke();
     }
 
@@ -205,5 +210,10 @@ public class ContractTileEntity : TileEntity
     public override void UnloadUi(GameObject uiInstance)
     {
         Player.PlayerInventory.TargetInventory = null;
+    }
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
     }
 }

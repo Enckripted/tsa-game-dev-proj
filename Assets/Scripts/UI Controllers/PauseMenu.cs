@@ -1,15 +1,15 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenu;
-    public Button resumeButton;
-    public Button quitButton;
-    public string menuSceneName = "MAIN MENU";
-    public bool isPaused;
+    public GameObject PauseMenuObject;
+    public Button ResumeButton;
+    public Button QuitButton;
+    public string MenuSceneName = "MAIN MENU";
+    public bool IsPaused;
 
     private InputSystem_Actions inputActions;
 
@@ -32,25 +32,25 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
-        if (pauseMenu != null)
+        if (PauseMenuObject != null)
         {
-            pauseMenu.SetActive(false);
+            PauseMenuObject.SetActive(false);
         }
 
-        if (resumeButton != null)
+        if (ResumeButton != null)
         {
-            resumeButton.onClick.AddListener(ResumeGame);
+            ResumeButton.onClick.AddListener(ResumeGame);
         }
 
-        if (quitButton != null)
+        if (QuitButton != null)
         {
-            quitButton.onClick.AddListener(QuitGame);
+            QuitButton.onClick.AddListener(QuitGame);
         }
     }
 
     public void TogglePause()
     {
-        if (isPaused)
+        if (IsPaused)
         {
             ResumeGame();
         }
@@ -62,21 +62,21 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
-        if (pauseMenu != null) pauseMenu.SetActive(true);
+        if (PauseMenuObject != null) PauseMenuObject.SetActive(true);
         Time.timeScale = 0f;
-        isPaused = true;
+        IsPaused = true;
     }
 
     public void ResumeGame()
     {
-        if (pauseMenu != null) pauseMenu.SetActive(false);
+        if (PauseMenuObject != null) PauseMenuObject.SetActive(false);
         Time.timeScale = 1f;
-        isPaused = false;
+        IsPaused = false;
     }
 
     public void QuitGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(menuSceneName);
+        SceneManager.LoadScene(MenuSceneName);
     }
 }
