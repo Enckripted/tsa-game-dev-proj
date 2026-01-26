@@ -77,6 +77,11 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
     {
         InventorySlot.Changed.AddListener(UpdateSprite);
         UpdateSprite();
+
+        rectTransform.anchorMin = new Vector2(0.1f, 0.1f);
+        rectTransform.anchorMax = new Vector2(0.9f, 0.9f);
+        rectTransform.offsetMin = Vector2.zero;
+        rectTransform.offsetMax = Vector2.zero;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -90,7 +95,15 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
 
         BeingDragged = true;
         canvasGroup.blocksRaycasts = false;
+
+        //store the size of the object before we reparent it
+        Vector2 size = rectTransform.rect.size;
         transform.SetParent(dragPriorityObject.transform, false);
+        
+        //set the size of the object to be the same as it was before we reparented it
+        rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+        rectTransform.sizeDelta = size;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -104,6 +117,13 @@ public class ItemUiDraggable : MonoBehaviour, IPointerClickHandler, IBeginDragHa
         BeingDragged = false;
         canvasGroup.blocksRaycasts = true;
         transform.SetParent(slotObject.transform, false);
+        
+        //reset the size of the object to be 80% of the slot
+        rectTransform.anchorMin = new Vector2(0.1f, 0.1f);
+        rectTransform.anchorMax = new Vector2(0.9f, 0.9f);
+        rectTransform.offsetMin = Vector2.zero;
+        rectTransform.offsetMax = Vector2.zero;
+
         rectTransform.localPosition = new Vector2(0, 0);
     }
 

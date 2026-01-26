@@ -14,6 +14,8 @@ public abstract class MachineUi : MonoBehaviour
 
     void Start()
     {
+        GetComponent<RectTransform>().anchoredPosition += new Vector2(0, 70);
+
         uiInputSlots.Inventory = MachineInstance.InputSlots;
         startMachineButton.Machine = MachineInstance;
         recipeDurationText.Machine = MachineInstance;

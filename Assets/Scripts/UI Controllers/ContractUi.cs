@@ -21,6 +21,9 @@ public class ContractUi : MonoBehaviour
     {
         _entity = entity;
 
+        GetComponent<RectTransform>().anchoredPosition += new Vector2(0, 70);
+
+
         VerticalLayoutGroup layout = contractListContainer.GetComponent<VerticalLayoutGroup>();
         if (layout == null)
         {

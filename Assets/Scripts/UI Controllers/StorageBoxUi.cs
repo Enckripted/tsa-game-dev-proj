@@ -9,6 +9,7 @@ public class StorageBoxUi : MonoBehaviour
 
     void Start()
     {
+        GetComponent<RectTransform>().anchoredPosition += new Vector2(0, 70);
         uiStorageSlots.Inventory = StorageBoxInstance.StorageSlots;
     }
 }
