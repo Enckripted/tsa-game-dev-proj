@@ -168,3 +168,5 @@ MonoBehaviour:
   OnContractChanged:
     m_PersistentCalls:
       m_Calls: []
+  <DifficultyCap>k__BackingField: 6
+  <DifficultyCapIncrease>k__BackingField: 0.5
