@@ -20,12 +20,11 @@ public class Contract
     {
         if (item is not WandItem wand) return false;
 
-        if (RequiredMaterial != null && wand.WandMaterial.Name != RequiredMaterial.Name) return false;
+        if (wand.WandMaterial.Name != RequiredMaterial.Name) return false;
         if (wand.BaseName != RequiredBaseName) return false;
 
-        if (MinPower != 0 && wand.Stats.Power < MinPower) return false;
-        if (MaxTimeToCast != 0 && wand.Stats.TimeToCast > MaxTimeToCast) return false;
-        if (MinSellValue != 0 && wand.Stats.SellValue < MinSellValue) return false;
+        if (wand.Stats.Power < MinPower) return false;
+        if (wand.Stats.SellValue < MinSellValue) return false;
 
         return true;
     }

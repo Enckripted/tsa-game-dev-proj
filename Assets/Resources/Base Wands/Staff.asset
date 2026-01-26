@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GearData
   <Name>k__BackingField: Staff
   <BaseStats>k__BackingField:
-    <Power>k__BackingField: 4
-    <TimeToCast>k__BackingField: 2
-    <SellValue>k__BackingField: 0.5
+    <Power>k__BackingField: 3
+    <TimeToCast>k__BackingField: 1.5
+    <SellValue>k__BackingField: 0.75
     <FirePowerMult>k__BackingField: 0
     <WaterPowerMult>k__BackingField: 0
     <EarthPowerMult>k__BackingField: 0
