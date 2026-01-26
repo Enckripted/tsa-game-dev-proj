@@ -110,12 +110,12 @@ public class ContractTileEntity : TileEntity
             int level = Random.Range(3, 9);
             float randMult = Random.Range(0.75f, 1.25f);
 
-            contract.MinPower = baseLevelStats.Power * (level - 3) * randMult;
-            difficulty += level * randMult;
+            contract.MinPower = baseLevelStats.Power * level * randMult;
+            difficulty += (level - 2) * randMult;
         }
         if (attributesToExamine[2])
         {
-            int level = Random.Range(1, 5);
+            int level = Random.Range(0, 5);
             float randMult = Random.Range(0.75f, 1.25f);
 
             contract.MaxTimeToCast = 2.4 - baseLevelStats.TimeToCast * level * randMult;

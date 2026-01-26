@@ -6,6 +6,7 @@ using UnityEngine;
 public class UnlockUpgrade
 {
     [field: SerializeField] public string Name { get; private set; }
+    [field: SerializeField] public string Description { get; private set; }
     [field: SerializeField] public List<UnlockUpgradeTier> Tiers { get; private set; }
 
     public int CurrentTier { get; private set; } = 0;

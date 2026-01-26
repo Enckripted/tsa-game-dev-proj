@@ -7,6 +7,7 @@ public class UnlockUpgradeUi : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI costText;
     [SerializeField] private TextMeshProUGUI tierText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private Button buyButton;
 
     public UnlockUpgrade Upgrade;
@@ -21,5 +22,6 @@ public class UnlockUpgradeUi : MonoBehaviour
     {
         costText.text = Upgrade.CurrentTier < Upgrade.Tiers.Count ? $"${Upgrade.GetCurrentTier().Cost:0.00}" : "MAXED";
         tierText.text = $"Tier: {Upgrade.CurrentTier}/{Upgrade.Tiers.Count}";
+        descriptionText.text = Upgrade.Description;
     }
 }
