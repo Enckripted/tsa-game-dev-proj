@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ContractUi : MonoBehaviour
@@ -166,7 +166,8 @@ public class ContractUi : MonoBehaviour
                 Destroy(child.gameObject);
             }
 
-            foreach (Contract contract in _entity.AvailableContracts)
+            //spaghetti im adding last minute
+            for (int i = 0; i < _entity.AvailableContracts.Count; i++)
             {
                 GameObject itemObj = Instantiate(contractListItemPrefab, contractListContainer);
 
@@ -178,7 +179,8 @@ public class ContractUi : MonoBehaviour
                 ContractListItemUi itemUi = itemObj.GetComponent<ContractListItemUi>();
                 if (itemUi != null)
                 {
-                    itemUi.Init(contract, _entity);
+                    //Debug.Log(i + " with len " + _entity.AvailableContracts[i]);
+                    itemUi.Init(_entity.AvailableContracts[i], i, _entity);
                 }
             }
         }
