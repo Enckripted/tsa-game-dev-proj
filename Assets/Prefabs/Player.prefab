@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5598577918446001415}
   - component: {fileID: 1504536152988958822}
   - component: {fileID: 4209403036852913773}
+  - component: {fileID: 6973856997886030333}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -275,3 +276,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6973856997886030333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5911682250718741892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee2f0e670b1cdb44ab62a5431be8e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player4Dir
+  maxSpeed: 6
+  acceleration: 40
+  deceleration: 30
+  collisionOffset: 0.05
+  movementFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 1
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 65
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0

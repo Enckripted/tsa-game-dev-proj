@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746037525809143846}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -166,10 +166,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeTileEntity
   <UiPrefab>k__BackingField: {fileID: 7214800564637545079, guid: 7f77b90e3fc4b78478a51c5aafdbaf4d, type: 3}
   <UnlockUpgrades>k__BackingField:
-  - <Name>k__BackingField: Extra Storage Crates
+  - <Name>k__BackingField: Leveller
     <Description>k__BackingField: 
-    <Tiers>k__BackingField:
-    - Cost: 0
-      ObjectUnlock: {fileID: 0}
-    - Cost: 20
-      ObjectUnlock: {fileID: 0}
+    <Tiers>k__BackingField: []
